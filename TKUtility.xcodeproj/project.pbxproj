@@ -1,0 +1,642 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4006601811AEC94300FE4924 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006601711AEC94300FE4924 /* GTMSenTestCase.m */; };
+		4006602B11AECAAF00FE4924 /* badheaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4006602511AECAAF00FE4924 /* badheaders.csv */; };
+		4006602C11AECAAF00FE4924 /* headers.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4006602611AECAAF00FE4924 /* headers.csv */; };
+		4006602D11AECAAF00FE4924 /* keys.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4006602711AECAAF00FE4924 /* keys.csv */; };
+		4006602E11AECAAF00FE4924 /* keys.tab in Resources */ = {isa = PBXBuildFile; fileRef = 4006602811AECAAF00FE4924 /* keys.tab */; };
+		4006602F11AECAAF00FE4924 /* regular.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4006602911AECAAF00FE4924 /* regular.csv */; };
+		4006603011AECAAF00FE4924 /* regular.tab in Resources */ = {isa = PBXBuildFile; fileRef = 4006602A11AECAAF00FE4924 /* regular.tab */; };
+		400CEF8611D3C1A90034C5D1 /* TKAppController.h in Headers */ = {isa = PBXBuildFile; fileRef = 400CEF8411D3C1A90034C5D1 /* TKAppController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		400CEF8711D3C1A90034C5D1 /* TKAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 400CEF8511D3C1A90034C5D1 /* TKAppController.m */; };
+		401311DA11B67721003264DE /* TKComponentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DD211B53BD200C9FD1C /* TKComponentController.m */; };
+		401311DB11B67721003264DE /* TKQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DD411B53BD200C9FD1C /* TKQuestion.m */; };
+		401311DC11B67721003264DE /* TKQuestionSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DD611B53BD200C9FD1C /* TKQuestionSet.m */; };
+		401311DE11B67735003264DE /* TKSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 401311CD11B672F0003264DE /* TKSessionTest.m */; };
+		4013132011B6C8D3003264DE /* TKDelimitedFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 404F3D1F1191B2BB00C32CB8 /* TKDelimitedFileParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132111B6C8D3003264DE /* TKUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A65D7811A2DBFA00D984C8 /* TKUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132211B6C8D3003264DE /* TKLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B4874811AF0309008C8CB5 /* TKLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132311B6C8D3003264DE /* TKLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B4874A11AF0309008C8CB5 /* TKLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132411B6C8D3003264DE /* TKLogQueueItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B4874C11AF0309008C8CB5 /* TKLogQueueItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132511B6C8D3003264DE /* TKNotificationQueueItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B4874E11AF0309008C8CB5 /* TKNotificationQueueItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132611B6C8D3003264DE /* TKTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B4875011AF0309008C8CB5 /* TKTimer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132711B6C8D3003264DE /* TKTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A88DE511B5793A00C9FD1C /* TKTime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132811B6C8D3003264DE /* TKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A88DF511B57FF600C9FD1C /* TKSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132A11B6C8D3003264DE /* TKComponentController.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A88DD111B53BD100C9FD1C /* TKComponentController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132B11B6C8D3003264DE /* TKQuestion.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A88DD311B53BD200C9FD1C /* TKQuestion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013132C11B6C8D3003264DE /* TKQuestionSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A88DD511B53BD200C9FD1C /* TKQuestionSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4013150611B753B5003264DE /* TKSessionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4013150511B753B5003264DE /* TKSessionWindow.xib */; };
+		404F3D221191B2BB00C32CB8 /* TKDelimitedFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */; };
+		405D390511A416B9009ED54A /* TKDelimitedFileParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */; };
+		4071195211E5107800B7B59A /* TKPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 4071195011E5107800B7B59A /* TKPreferences.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4071195311E5107800B7B59A /* TKPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 4071195111E5107800B7B59A /* TKPreferences.m */; };
+		40A88DE811B5793A00C9FD1C /* TKTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DE611B5793A00C9FD1C /* TKTime.m */; };
+		40A88DF811B57FF600C9FD1C /* TKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DF611B57FF600C9FD1C /* TKSession.m */; };
+		40B4875311AF0309008C8CB5 /* TKLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874911AF0309008C8CB5 /* TKLibrary.m */; };
+		40B4875511AF0309008C8CB5 /* TKLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874B11AF0309008C8CB5 /* TKLogging.m */; };
+		40B4875711AF0309008C8CB5 /* TKLogQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874D11AF0309008C8CB5 /* TKLogQueueItem.m */; };
+		40B4875911AF0309008C8CB5 /* TKNotificationQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */; };
+		40B4875B11AF0309008C8CB5 /* TKTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4875111AF0309008C8CB5 /* TKTimer.m */; };
+		40E99C4111A4557200189D88 /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TKUtility.framework */; };
+		40F1FDE911BD83AB00F8D38A /* TKWaitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F1FDE811BD83AB00F8D38A /* TKWaitView.xib */; };
+		40F1FDEE11BD845900F8D38A /* TKWaitController.h in Headers */ = {isa = PBXBuildFile; fileRef = 40F1FDEC11BD845900F8D38A /* TKWaitController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		40F1FDEF11BD845900F8D38A /* TKWaitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F1FDED11BD845900F8D38A /* TKWaitController.m */; };
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		915E9F141200C8FB005B6718 /* TKVasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F291551200AC380080F6D2 /* TKVasView.xib */; };
+		91B3BC7111BE9B8B00463B5A /* TKVasController.h in Headers */ = {isa = PBXBuildFile; fileRef = 91B3BC6F11BE9B8B00463B5A /* TKVasController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91B3BC7211BE9B8B00463B5A /* TKVasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B3BC7011BE9B8B00463B5A /* TKVasController.m */; };
+		91F291561200AC380080F6D2 /* TKVasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F291551200AC380080F6D2 /* TKVasView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		40E99ADB11A43F1E00189D88 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = TKUtility;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		4006601511AEC94300FE4924 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		4006601611AEC94300FE4924 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMSenTestCase.h; sourceTree = "<group>"; };
+		4006601711AEC94300FE4924 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMSenTestCase.m; sourceTree = "<group>"; };
+		4006602511AECAAF00FE4924 /* badheaders.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = badheaders.csv; path = SAMPLE/badheaders.csv; sourceTree = "<group>"; };
+		4006602611AECAAF00FE4924 /* headers.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = headers.csv; path = SAMPLE/headers.csv; sourceTree = "<group>"; };
+		4006602711AECAAF00FE4924 /* keys.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = keys.csv; path = SAMPLE/keys.csv; sourceTree = "<group>"; };
+		4006602811AECAAF00FE4924 /* keys.tab */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = keys.tab; path = SAMPLE/keys.tab; sourceTree = "<group>"; };
+		4006602911AECAAF00FE4924 /* regular.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = regular.csv; path = SAMPLE/regular.csv; sourceTree = "<group>"; };
+		4006602A11AECAAF00FE4924 /* regular.tab */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = regular.tab; path = SAMPLE/regular.tab; sourceTree = "<group>"; };
+		400CEF8411D3C1A90034C5D1 /* TKAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKAppController.h; sourceTree = "<group>"; };
+		400CEF8511D3C1A90034C5D1 /* TKAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKAppController.m; sourceTree = "<group>"; };
+		401311CD11B672F0003264DE /* TKSessionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSessionTest.m; sourceTree = "<group>"; };
+		4013150511B753B5003264DE /* TKSessionWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKSessionWindow.xib; sourceTree = "<group>"; };
+		404F3D1F1191B2BB00C32CB8 /* TKDelimitedFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDelimitedFileParser.h; sourceTree = "<group>"; };
+		404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParser.m; sourceTree = "<group>"; };
+		405D390311A416B9009ED54A /* TKDelimitedFileParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDelimitedFileParserTest.h; sourceTree = "<group>"; };
+		405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParserTest.m; sourceTree = "<group>"; };
+		4071195011E5107800B7B59A /* TKPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPreferences.h; sourceTree = "<group>"; };
+		4071195111E5107800B7B59A /* TKPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPreferences.m; sourceTree = "<group>"; };
+		40A65D7811A2DBFA00D984C8 /* TKUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKUtility.h; sourceTree = "<group>"; };
+		40A65DF011A3118D00D984C8 /* TKUtility_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKUtility_Prefix.pch; sourceTree = "<group>"; };
+		40A65F5911A32DE900D984C8 /* TKUtilityTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TKUtilityTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		40A65F5A11A32DE900D984C8 /* TKUtilityTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TKUtilityTest-Info.plist"; sourceTree = "<group>"; };
+		40A88DD111B53BD100C9FD1C /* TKComponentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentController.h; sourceTree = "<group>"; };
+		40A88DD211B53BD200C9FD1C /* TKComponentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentController.m; sourceTree = "<group>"; };
+		40A88DD311B53BD200C9FD1C /* TKQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKQuestion.h; sourceTree = "<group>"; };
+		40A88DD411B53BD200C9FD1C /* TKQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKQuestion.m; sourceTree = "<group>"; };
+		40A88DD511B53BD200C9FD1C /* TKQuestionSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKQuestionSet.h; sourceTree = "<group>"; };
+		40A88DD611B53BD200C9FD1C /* TKQuestionSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKQuestionSet.m; sourceTree = "<group>"; };
+		40A88DE511B5793A00C9FD1C /* TKTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTime.h; sourceTree = "<group>"; };
+		40A88DE611B5793A00C9FD1C /* TKTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTime.m; sourceTree = "<group>"; };
+		40A88DF511B57FF600C9FD1C /* TKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSession.h; sourceTree = "<group>"; };
+		40A88DF611B57FF600C9FD1C /* TKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSession.m; sourceTree = "<group>"; };
+		40B4874811AF0309008C8CB5 /* TKLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKLibrary.h; sourceTree = "<group>"; };
+		40B4874911AF0309008C8CB5 /* TKLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKLibrary.m; sourceTree = "<group>"; };
+		40B4874A11AF0309008C8CB5 /* TKLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKLogging.h; sourceTree = "<group>"; };
+		40B4874B11AF0309008C8CB5 /* TKLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKLogging.m; sourceTree = "<group>"; };
+		40B4874C11AF0309008C8CB5 /* TKLogQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKLogQueueItem.h; sourceTree = "<group>"; };
+		40B4874D11AF0309008C8CB5 /* TKLogQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKLogQueueItem.m; sourceTree = "<group>"; };
+		40B4874E11AF0309008C8CB5 /* TKNotificationQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKNotificationQueueItem.h; sourceTree = "<group>"; };
+		40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNotificationQueueItem.m; sourceTree = "<group>"; };
+		40B4875011AF0309008C8CB5 /* TKTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTimer.h; sourceTree = "<group>"; };
+		40B4875111AF0309008C8CB5 /* TKTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTimer.m; sourceTree = "<group>"; };
+		40F1FDE811BD83AB00F8D38A /* TKWaitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKWaitView.xib; sourceTree = "<group>"; };
+		40F1FDEC11BD845900F8D38A /* TKWaitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKWaitController.h; sourceTree = "<group>"; };
+		40F1FDED11BD845900F8D38A /* TKWaitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKWaitController.m; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* TKUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TKUtility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91B3BC6F11BE9B8B00463B5A /* TKVasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKVasController.h; sourceTree = "<group>"; };
+		91B3BC7011BE9B8B00463B5A /* TKVasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKVasController.m; sourceTree = "<group>"; };
+		91F291551200AC380080F6D2 /* TKVasView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKVasView.xib; sourceTree = "<group>"; };
+		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40A65F5611A32DE900D984C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40E99C4111A4557200189D88 /* TKUtility.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* TKUtility.framework */,
+				40A65F5911A32DE900D984C8 /* TKUtilityTest.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* TKUtility.framework */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
+				40E99D1D11A4720F00189D88 /* Testing */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = TKUtility.framework;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C1665FE841158C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+				4013150511B753B5003264DE /* TKSessionWindow.xib */,
+				40F1FDE811BD83AB00F8D38A /* TKWaitView.xib */,
+				91F291551200AC380080F6D2 /* TKVasView.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				400CEF8411D3C1A90034C5D1 /* TKAppController.h */,
+				400CEF8511D3C1A90034C5D1 /* TKAppController.m */,
+				40A88DD111B53BD100C9FD1C /* TKComponentController.h */,
+				40A88DD211B53BD200C9FD1C /* TKComponentController.m */,
+				404F3D1F1191B2BB00C32CB8 /* TKDelimitedFileParser.h */,
+				404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */,
+				40B4874811AF0309008C8CB5 /* TKLibrary.h */,
+				40B4874911AF0309008C8CB5 /* TKLibrary.m */,
+				40B4874A11AF0309008C8CB5 /* TKLogging.h */,
+				40B4874B11AF0309008C8CB5 /* TKLogging.m */,
+				40B4874C11AF0309008C8CB5 /* TKLogQueueItem.h */,
+				40B4874D11AF0309008C8CB5 /* TKLogQueueItem.m */,
+				40B4874E11AF0309008C8CB5 /* TKNotificationQueueItem.h */,
+				40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */,
+				4071195011E5107800B7B59A /* TKPreferences.h */,
+				4071195111E5107800B7B59A /* TKPreferences.m */,
+				40A88DD311B53BD200C9FD1C /* TKQuestion.h */,
+				40A88DD411B53BD200C9FD1C /* TKQuestion.m */,
+				40A88DD511B53BD200C9FD1C /* TKQuestionSet.h */,
+				40A88DD611B53BD200C9FD1C /* TKQuestionSet.m */,
+				40A88DF511B57FF600C9FD1C /* TKSession.h */,
+				40A88DF611B57FF600C9FD1C /* TKSession.m */,
+				40A88DE511B5793A00C9FD1C /* TKTime.h */,
+				40A88DE611B5793A00C9FD1C /* TKTime.m */,
+				40B4875011AF0309008C8CB5 /* TKTimer.h */,
+				40B4875111AF0309008C8CB5 /* TKTimer.m */,
+				40A65D7811A2DBFA00D984C8 /* TKUtility.h */,
+				91B3BC6F11BE9B8B00463B5A /* TKVasController.h */,
+				91B3BC7011BE9B8B00463B5A /* TKVasController.m */,
+				40F1FDEC11BD845900F8D38A /* TKWaitController.h */,
+				40F1FDED11BD845900F8D38A /* TKWaitController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2F7E79907B2D74100F64583 /* CoreData.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				40A65DF011A3118D00D984C8 /* TKUtility_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		4006602311AECA1A00FE4924 /* TestCases */ = {
+			isa = PBXGroup;
+			children = (
+				405D390311A416B9009ED54A /* TKDelimitedFileParserTest.h */,
+				405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */,
+				401311CD11B672F0003264DE /* TKSessionTest.m */,
+			);
+			name = TestCases;
+			sourceTree = "<group>";
+		};
+		4006602411AECA5200FE4924 /* SampleData */ = {
+			isa = PBXGroup;
+			children = (
+				4006602511AECAAF00FE4924 /* badheaders.csv */,
+				4006602611AECAAF00FE4924 /* headers.csv */,
+				4006602711AECAAF00FE4924 /* keys.csv */,
+				4006602811AECAAF00FE4924 /* keys.tab */,
+				4006602911AECAAF00FE4924 /* regular.csv */,
+				4006602A11AECAAF00FE4924 /* regular.tab */,
+			);
+			name = SampleData;
+			sourceTree = "<group>";
+		};
+		4055D0F311AC36AF00DC13CB /* GTMSupport */ = {
+			isa = PBXGroup;
+			children = (
+				4006601511AEC94300FE4924 /* GTMDefines.h */,
+				4006601611AEC94300FE4924 /* GTMSenTestCase.h */,
+				4006601711AEC94300FE4924 /* GTMSenTestCase.m */,
+			);
+			name = GTMSupport;
+			sourceTree = "<group>";
+		};
+		40E99D1D11A4720F00189D88 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				40A65F5A11A32DE900D984C8 /* TKUtilityTest-Info.plist */,
+				4055D0F311AC36AF00DC13CB /* GTMSupport */,
+				4006602411AECA5200FE4924 /* SampleData */,
+				4006602311AECA1A00FE4924 /* TestCases */,
+			);
+			name = Testing;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4013132011B6C8D3003264DE /* TKDelimitedFileParser.h in Headers */,
+				4013132111B6C8D3003264DE /* TKUtility.h in Headers */,
+				4013132211B6C8D3003264DE /* TKLibrary.h in Headers */,
+				4013132311B6C8D3003264DE /* TKLogging.h in Headers */,
+				4013132411B6C8D3003264DE /* TKLogQueueItem.h in Headers */,
+				4013132511B6C8D3003264DE /* TKNotificationQueueItem.h in Headers */,
+				4013132611B6C8D3003264DE /* TKTimer.h in Headers */,
+				4013132711B6C8D3003264DE /* TKTime.h in Headers */,
+				4013132811B6C8D3003264DE /* TKSession.h in Headers */,
+				4013132A11B6C8D3003264DE /* TKComponentController.h in Headers */,
+				4013132B11B6C8D3003264DE /* TKQuestion.h in Headers */,
+				4013132C11B6C8D3003264DE /* TKQuestionSet.h in Headers */,
+				40F1FDEE11BD845900F8D38A /* TKWaitController.h in Headers */,
+				91B3BC7111BE9B8B00463B5A /* TKVasController.h in Headers */,
+				400CEF8611D3C1A90034C5D1 /* TKAppController.h in Headers */,
+				4071195211E5107800B7B59A /* TKPreferences.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		40A65F5811A32DE900D984C8 /* TKUtilityTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40A65F5E11A32DEA00D984C8 /* Build configuration list for PBXNativeTarget "TKUtilityTest" */;
+			buildPhases = (
+				40A65F5411A32DE900D984C8 /* Resources */,
+				40A65F5511A32DE900D984C8 /* Sources */,
+				40A65F5611A32DE900D984C8 /* Frameworks */,
+				40238D9411AEE2AE00B1704A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40E99ADC11A43F1E00189D88 /* PBXTargetDependency */,
+			);
+			name = TKUtilityTest;
+			productName = TKUtilityTest;
+			productReference = 40A65F5911A32DE900D984C8 /* TKUtilityTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8DC2EF4F0486A6940098B216 /* TKUtility */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TKUtility" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TKUtility;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = TKUtility.framework;
+			productReference = 8DC2EF5B0486A6940098B216 /* TKUtility.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "TKUtility" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* TKUtility.framework */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* TKUtility */,
+				40A65F5811A32DE900D984C8 /* TKUtilityTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40A65F5411A32DE900D984C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4006602B11AECAAF00FE4924 /* badheaders.csv in Resources */,
+				4006602C11AECAAF00FE4924 /* headers.csv in Resources */,
+				4006602D11AECAAF00FE4924 /* keys.csv in Resources */,
+				4006602E11AECAAF00FE4924 /* keys.tab in Resources */,
+				4006602F11AECAAF00FE4924 /* regular.csv in Resources */,
+				4006603011AECAAF00FE4924 /* regular.tab in Resources */,
+				91F291561200AC380080F6D2 /* TKVasView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+				4013150611B753B5003264DE /* TKSessionWindow.xib in Resources */,
+				40F1FDE911BD83AB00F8D38A /* TKWaitView.xib in Resources */,
+				915E9F141200C8FB005B6718 /* TKVasView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		40238D9411AEE2AE00B1704A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40A65F5511A32DE900D984C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				405D390511A416B9009ED54A /* TKDelimitedFileParserTest.m in Sources */,
+				4006601811AEC94300FE4924 /* GTMSenTestCase.m in Sources */,
+				401311DE11B67735003264DE /* TKSessionTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				404F3D221191B2BB00C32CB8 /* TKDelimitedFileParser.m in Sources */,
+				40B4875311AF0309008C8CB5 /* TKLibrary.m in Sources */,
+				40B4875511AF0309008C8CB5 /* TKLogging.m in Sources */,
+				40B4875711AF0309008C8CB5 /* TKLogQueueItem.m in Sources */,
+				40B4875911AF0309008C8CB5 /* TKNotificationQueueItem.m in Sources */,
+				40B4875B11AF0309008C8CB5 /* TKTimer.m in Sources */,
+				40A88DE811B5793A00C9FD1C /* TKTime.m in Sources */,
+				40A88DF811B57FF600C9FD1C /* TKSession.m in Sources */,
+				401311DA11B67721003264DE /* TKComponentController.m in Sources */,
+				401311DB11B67721003264DE /* TKQuestion.m in Sources */,
+				401311DC11B67721003264DE /* TKQuestionSet.m in Sources */,
+				40F1FDEF11BD845900F8D38A /* TKWaitController.m in Sources */,
+				91B3BC7211BE9B8B00463B5A /* TKVasController.m in Sources */,
+				400CEF8711D3C1A90034C5D1 /* TKAppController.m in Sources */,
+				4071195311E5107800B7B59A /* TKPreferences.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		40E99ADC11A43F1E00189D88 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TKUtility */;
+			targetProxy = 40E99ADB11A43F1E00189D88 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TKUtility_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_NAME = TKUtility;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TKUtility_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				PRODUCT_NAME = TKUtility;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+		40A65F5C11A32DEA00D984C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "TKUtilityTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TKUtilityTest;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		40A65F5D11A32DEA00D984C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "TKUtilityTest-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+					"-lgcov",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TKUtilityTest;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TKUtility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "TKUtility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40A65F5E11A32DEA00D984C8 /* Build configuration list for PBXNativeTarget "TKUtilityTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40A65F5C11A32DEA00D984C8 /* Debug */,
+				40A65F5D11A32DEA00D984C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
