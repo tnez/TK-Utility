@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'TKUtility.framework' target in the 'TKUtility.framework' project.
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
