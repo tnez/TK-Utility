@@ -61,7 +61,6 @@
 @property(nonatomic, retain) TKQuestion *question;
 @property(nonatomic, retain) NSString *leftLabelText;
 @property(nonatomic, retain) NSString *midLabelText;
-@property(nonatomic, retain) NSString *nibFileName;
 @property(nonatomic, retain) NSString *rightLabelText;
 @property(readwrite) NSInteger sliderMinValue;
 @property(readwrite) NSInteger sliderMaxValue;
