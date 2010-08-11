@@ -45,7 +45,14 @@
 }
 
 -(void)writeToDirectory:(NSString *)directory file:(NSString *)file contentsOfString:(NSString *)string overWriteOnFirstWrite:(BOOL)shouldOverwrite{
-  [self writeToDirectory:directory file:file contentsOfString:string overWriteOnFirstWrite:shouldOverwrite withOffset:[NSNumber numberWithLong:-1]];
+	// create directory if needed
+	[self createDirectoryIfNeeded:directory];
+	// create empty file if needed
+	if(![[NSFileManager defaultManager] fileExistsAtPath:[directory stringByAppendingPathComponent:file]]) {
+		[[NSFileManager defaultManager] createFileAtPath:[directory stringByAppendingPathComponent:file] contents:nil attributes:nil];
+	}
+	// write to file
+	[self writeToDirectory:directory file:file contentsOfString:string overWriteOnFirstWrite:shouldOverwrite withOffset:[NSNumber numberWithLong:-1]];
 }
 
 -(void) queueLogMessage:(NSString *)directory file:(NSString *)file contentsOfString:(NSString *)string overWriteOnFirstWrite:(BOOL)shouldOverwrite{
