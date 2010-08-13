@@ -35,38 +35,41 @@
 @interface TKSession : NSObject {
 	id delegate;
 	TKPreferences *prefs;
-  IBOutlet id window;
-  NSMutableArray *components;
+    IBOutlet id window;
+    NSMutableArray *componentDefinitions;
 	NSString *date;
 	NSString *task;
 	NSString *sessionID;
 	NSString *subjectID;
-  NSString *uuid;
-  TKTimer *sharedTimer;
-  TKTime startTimeMarker;
-  NSString *startTimeDesc;
+	NSString *studyID;
+    NSString *uuid;
+    TKTimer *sharedTimer;
+    TKTime startTimeMarker;
+    NSString *startTimeDesc;
 }
 @property(assign) id delegate;
 @property(assign) TKPreferences *prefs;
 @property(assign) IBOutlet id window;
-@property(nonatomic, retain) NSMutableArray *components;
+@property(nonatomic, retain) NSMutableArray *componentDefinitions;
 @property(nonatomic, retain) NSString *date;
 @property(nonatomic, retain) NSString *task;
 @property(nonatomic, retain) NSString *sessionID;
 @property(nonatomic, retain) NSString *subjectID;
+@property(nonatomic, retain) NSString *studyID;
 @property(nonatomic, retain) NSString *uuid;
 @property(readonly) TKTime startTimeMarker;
 @property(readonly) NSString *startTimeDesc;
 -(void) addComponent:(TKComponentController *) newComp;
 -(void) attemptToStartNextComponent;
 -(void) begin;
--(void) componentDidFinish:(id) sender;
 -(void) end;
--(void) event:(NSMutableDictionary *) eventInfo didOccurInComponent:(id) sender;
 -(TKComponentController *) nextComponent;
+#pragma mark TKComponentControllerDelegate Methods
+-(void) breakWithMessage:(NSString *) errorDescription fromComponent:(id) sender;
+-(void) componentDidFinish:(id) sender;
+-(void) event:(NSMutableDictionary *) eventInfo didOccurInComponent:(id) sender;
 @end
-
-// DELEGATE METHODS //
+//
 @interface NSObject (TKSessionDelegate)
 -(void) event:(NSDictionary *) eventInfo didOccurInComponent:(id) sender;
 -(void) sessionDidBegin:(NSNotification *) note;

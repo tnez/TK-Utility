@@ -26,60 +26,38 @@
  questionText = the actual question presented
  
 ***************************************************************/
-
 #import <Cocoa/Cocoa.h>
-#import "TKComponentController.h"
-#import "TKPreferences.h"
-#import "TKQuestionSet.h"
+#import "TKVsController.h"
 
-#define TKVAS_DEFAULT_LEFT_LABEL_TEXT @"0"
-#define TKVAS_DEFAULT_MID_LABEL_TEXT @""
-#define TKVAS_DEFAULT_RIGHT_LABEL_TEXT @"100"
-#define TKVAS_DEFAULT_NUMBER_OF_TICK_MARKS 2
-#define TKVAS_DEFAULT_QUESTION_ACCESS_METHOD TKQuestionSetSequentialAccess
-#define TKVAS_DEFAULT_SLIDER_MIN_VALUE 0
-#define TKVAS_DEFAULT_SLIDER_MAX_VALUE 100
-#define TKVAS_DEFAULT_NIB_FILE @"TKVasView"
+#pragma mark Preference Keys
+#define TK_VAS_LEFT_LABEL_KEY @"TKVasLeftLabel"
+#define TK_VAS_MID_LABEL_KEY @"TKVasMidLabel"
+#define TK_VAS_RIGHT_LABEL_KEY @"TKVasRightLabel"
+#define TK_VAS_NUMBER_OF_TICK_MARKS_KEY @"TKVasNumberOfTickMarks"
+#define TK_VAS_SLIDER_MIN_VALUE_KEY @"TKVasSliderMinValueKey"
+#define TK_VAS_SLIDER_MAX_VALUE_KEY @"TKVasSliderMaxValueKey"
 
-@interface TKVasController : TKComponentController {
-  TKQuestionSet *questionSet;
-  TKQuestion *question;
-  TKTime questionStartTime;
+@interface TKVasController : TKVsController {
 	NSString *leftLabelText;
 	NSString *midLabelText;
 	NSString *rightLabelText;
-	NSInteger sliderMinValue;
-	NSInteger sliderMaxValue;
-	NSInteger numberOfIntendedQuestions;
-	NSInteger numberOfQuestionsAsked;
+	double sliderMinValue;
+	double sliderMaxValue;
 	NSInteger numberOfTickMarks;	
 	IBOutlet NSButton *button;
 	IBOutlet NSSlider *slider;
 	IBOutlet NSTextField *text;
 }
-@property(nonatomic, retain) TKQuestionSet *questionSet;
-@property(nonatomic, retain) TKQuestion *question;
 @property(nonatomic, retain) NSString *leftLabelText;
 @property(nonatomic, retain) NSString *midLabelText;
 @property(nonatomic, retain) NSString *rightLabelText;
-@property(readwrite) NSInteger sliderMinValue;
-@property(readwrite) NSInteger sliderMaxValue;
-@property(readwrite) NSInteger numberOfIntendedQuestions;
-@property(readwrite) NSInteger numberOfQuestionsAsked;
+@property(readwrite) double sliderMinValue;
+@property(readwrite) double sliderMaxValue;
 @property(readwrite) NSInteger numberOfTickMarks;
 @property(assign) IBOutlet NSButton *button;
 @property(assign) IBOutlet NSSlider *slider;
 @property(assign) IBOutlet NSTextField *text;
--(void) begin;
--(void) end;
--(id) init;
--(id) initWithQuestions:(TKQuestionSet *) questionSet;
--(void) loadPreferences:(NSNotification *) aNotification;
 -(IBAction) submitButton:(id) sender;
 -(IBAction) sliderHasChanged:(id) sender;
-@end
-
-// PRIVATE METHODS
-@interface TKVasController ()
--(void) loadNextQuestion;
+-(void) resetInterface;
 @end

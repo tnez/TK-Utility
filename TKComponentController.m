@@ -17,11 +17,11 @@
 
 
 @implementation TKComponentController
-@synthesize componentStartTime,componentEndTime,delegate,nibFileName,view;
+@synthesize componentStartTime,componentEndTime,componentType,definition,delegate,view;
 
 -(void) begin {
-	//
-	return;
+    [self loadView];
+    componentStartTime = current_time_marker();
 }
 
 -(void) closeView {
@@ -29,38 +29,54 @@
 }
 
 -(void) dealloc {
-	[nibFileName release];
-  [super dealloc];
+    [definition release];
+    [componentType release];
+	[super dealloc];
 }
 
 -(void) end {
-	[delegate componentDidFinish: self];
-	return;
+    componentEndTime = current_time_marker();
+    [view exitFullScreenModeWithOptions:nil];
+    if([delegate respondsToSelector:@selector(componentDidFinish:)]) {
+        [delegate componentDidFinish:self];
+    }
 }
 
++(id) loadFromDefinition:(NSDictionary *) newDefinition sender:(id) sender {
+    // create new instance
+    TKComponentController *newComponent = [[TKComponentController alloc] init];
+    // configure new component
+    [newComponent loadDefinition:newDefinition];
+    [newComponent setDelegate:sender];
+    [NSBundle loadNibNamed:[newDefinition valueForKey:TK_COMPONENT_NIB_FILE_NAME_KEY] owner:newComponent];
+    return [newComponent autorelease];
+}
+
+-(void) loadDefinition:(NSDictionary *) newDefinition {
+    [self setDefinition:newDefinition];
+}
+    
 -(void) loadView {
 	if([delegate respondsToSelector:@selector(window)]) {
 		[[TKLibrary sharedLibrary] centerView:view inWindow:[delegate window]];
 	} else {
-		NSLog(@"Error: Could not load view in: %@",[self className]);
+        [self throwError:@"Could not load view" andBreak:YES];
 	}
 }
 
 -(void) loadPreferences {
-	// should be overridden in subclass
-	return;
-}
-
--(void) preferencesDidChange:(NSNotification *) aNotefification {
-	[self loadPreferences];
+    // each sub-class should implement a loadPreferences function and
+    // call [super loadPreferences] before closing to pass on up the chain
+    [self setComponentType:[definition valueForKey:TK_COMPONENT_TYPE_KEY]];
+    // this is the end of the chain
 }
 
 -(void) throwError:(NSString *) errorDescription andBreak:(BOOL) shouldBreak {
-	NSLog(@"TKVasCotroller: ",errorDescription);
+	NSLog(@"%@: %@",[self class],errorDescription);
 	if(shouldBreak) {
-		[delegate breakWithMessage: errorDescription fromComponent: self];
-	} else {
-		 // ...
+		if([delegate respondsToSelector:@selector(breakWithMessage:fromComponent:)]) {
+			[delegate breakWithMessage:errorDescription fromComponent:self];
+		}
 	}
 }
 

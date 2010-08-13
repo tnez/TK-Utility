@@ -18,24 +18,19 @@
 
 
 @implementation TKSession
-@synthesize components,date,delegate,prefs,startTimeDesc,startTimeMarker,sessionID,subjectID,task,uuid,window;
-
--(void) addComponent: (TKComponentController *)newComp {
-  [newComp setDelegate: self];
-  [components addObject: newComp];
-}
-
+@synthesize components,date,delegate,prefs,startTimeDesc,startTimeMarker,sessionID,subjectID,studyID,task,uuid,window;
+#pragma mark Housekeeping
 -(void) dealloc {
 	[components release];
 	[date release];
-  [startTimeDesc release];
+	[startTimeDesc release];
 	[sessionID release];
-  [subjectID release];
+	[subjectID release];
+	[studyID release];
 	[task release];
-  [uuid release];
-  [super dealloc];
+	[uuid release];
+	[super dealloc];
 }
-
 -(id) init {
   if(self=[super init]) {
     // create unique id
@@ -49,7 +44,18 @@
   }
   return nil;
 }
-
+#pragma mark Public Interface
+-(void) addComponent: (TKComponentController *)newComp {
+  [newComp setDelegate: self];
+  [components addObject: newComp];
+}
+-(void) attemptToStartNextComponent {
+  if([components count]>0) {
+    [[self nextComponent] begin];
+  } else {
+    [self end];
+  }
+}
 -(void) begin {
 	// create timer
 	[NSThread detachNewThreadSelector:@selector(spawnAndBeginTimer:) toTarget:[TKTimer class] withObject:nil];
@@ -62,25 +68,6 @@
 	// start first component (if any)
 	[self attemptToStartNextComponent];
 }
-
--(void) componentDidFinish:(id) sender {
-  [components removeObject:sender];
-  [self attemptToStartNextComponent];
-}
-
--(void) event:(NSMutableDictionary *) eventInfo didOccurInComponent:(id) sender {
-  if([delegate respondsToSelector:@selector(event:didOccurInComponent:)]) {
-    // add session data to info
-    [eventInfo setValue:sessionID forKey:@"Session"];
-    [eventInfo setValue:subjectID forKey:@"Subject"];
-		NSDictionary *staticEventInfo = [[NSDictionary dictionaryWithDictionary:eventInfo] retain];
-    // send back to delegate
-    [delegate event:[staticEventInfo autorelease] didOccurInComponent:sender];
-  } else {
-    // . . . as needed
-  }
-}
-
 -(void) end {
 	// loop here while there is still logging to be done
 	do { sleep(1); } while ([TKLogging unwrittenItemCount] > 0);
@@ -97,17 +84,27 @@
 		[delegate sessionDidFinish: nil];
 	}
 }
-
 -(TKComponentController *) nextComponent {
   return [components objectAtIndex:0];
 }
-
--(void) attemptToStartNextComponent {
-  if([components count]>0) {
-    [[self nextComponent] begin];
+#pragma mark TKComponentControllerDelegate Methods
+-(void) breakWithMessage:(NSString *) errorDescription fromComponent:(id) sender {
+	// TODO: implement breakWithMesage:fromComponent:
+}
+-(void) componentDidFinish:(id) sender {
+  [components removeObject:sender];
+  [self attemptToStartNextComponent];
+}
+-(void) event:(NSMutableDictionary *) eventInfo didOccurInComponent:(id) sender {
+  if([delegate respondsToSelector:@selector(event:didOccurInComponent:)]) {
+    // add session data to info
+    [eventInfo setValue:sessionID forKey:@"Session"];
+    [eventInfo setValue:subjectID forKey:@"Subject"];
+		NSDictionary *staticEventInfo = [[NSDictionary dictionaryWithDictionary:eventInfo] retain];
+    // send back to delegate
+    [delegate event:[staticEventInfo autorelease] didOccurInComponent:sender];
   } else {
-    [self end];
+    // . . . as needed
   }
 }
-
 @end
