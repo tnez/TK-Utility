@@ -15,7 +15,6 @@
 
 #import "TKPreferences.h"
 
-
 @implementation TKPreferences
 @synthesize data, file, filename, filepath, isDirty, nibName, window;
 
@@ -67,7 +66,7 @@
 	if([self isDirty]) {
 		[self write];
 		[[NSNotificationCenter defaultCenter]
-		 postNotificationName:@"preferencesDidChange" object:self];
+		 postNotificationName:TKPreferencesDidChangeNotification object:self];
 	} else {
 
 	}
@@ -92,3 +91,6 @@
 }
 
 @end
+
+/** Notifications */
+NSString * const TKPreferencesDidChangeNotification = @"TKPreferencesDidChange";

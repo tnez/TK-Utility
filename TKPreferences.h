@@ -18,6 +18,9 @@
 #define TK_PREFS_DEFAULT_FILE_NAME @"preferences.plist"
 #define TK_PREFS_DEFAULT_NIB_NAME @"preferences"
 
+/** Notifications */
+extern NSString * const TKPreferencesDidChangeNotification;
+
 // singleton in which all application
 // parameters should be held as key-value-pairs
 @interface TKPreferences : NSObject {
