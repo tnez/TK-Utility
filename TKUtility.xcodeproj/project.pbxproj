@@ -44,8 +44,6 @@
 		40B4875711AF0309008C8CB5 /* TKLogQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874D11AF0309008C8CB5 /* TKLogQueueItem.m */; };
 		40B4875911AF0309008C8CB5 /* TKNotificationQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */; };
 		40B4875B11AF0309008C8CB5 /* TKTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4875111AF0309008C8CB5 /* TKTimer.m */; };
-		40C93F901221734E00820B6C /* TKSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 40C93F8E1221734D00820B6C /* TKSubject.h */; };
-		40C93F911221734E00820B6C /* TKSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C93F8F1221734D00820B6C /* TKSubject.m */; };
 		40E2B90012158F0800DBBB07 /* TKVsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E2B8FE12158F0800DBBB07 /* TKVsController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40E2B90112158F0800DBBB07 /* TKVsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E2B8FF12158F0800DBBB07 /* TKVsController.m */; };
 		40E2B90212158F0800DBBB07 /* TKVsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E2B8FF12158F0800DBBB07 /* TKVsController.m */; };
@@ -123,8 +121,6 @@
 		40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNotificationQueueItem.m; sourceTree = "<group>"; };
 		40B4875011AF0309008C8CB5 /* TKTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTimer.h; sourceTree = "<group>"; };
 		40B4875111AF0309008C8CB5 /* TKTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTimer.m; sourceTree = "<group>"; };
-		40C93F8E1221734D00820B6C /* TKSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSubject.h; sourceTree = "<group>"; };
-		40C93F8F1221734D00820B6C /* TKSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSubject.m; sourceTree = "<group>"; };
 		40E2B8FE12158F0800DBBB07 /* TKVsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKVsController.h; sourceTree = "<group>"; };
 		40E2B8FF12158F0800DBBB07 /* TKVsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKVsController.m; sourceTree = "<group>"; };
 		40E2B9B21215D69C00DBBB07 /* components.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
@@ -227,8 +223,6 @@
 				40A88DD611B53BD200C9FD1C /* TKQuestionSet.m */,
 				40A88DF511B57FF600C9FD1C /* TKSession.h */,
 				40A88DF611B57FF600C9FD1C /* TKSession.m */,
-				40C93F8E1221734D00820B6C /* TKSubject.h */,
-				40C93F8F1221734D00820B6C /* TKSubject.m */,
 				40A88DE511B5793A00C9FD1C /* TKTime.h */,
 				40A88DE611B5793A00C9FD1C /* TKTime.m */,
 				40B4875011AF0309008C8CB5 /* TKTimer.h */,
@@ -373,7 +367,6 @@
 				400CEF8611D3C1A90034C5D1 /* TKAppController.h in Headers */,
 				4071195211E5107800B7B59A /* TKPreferences.h in Headers */,
 				40E2B90012158F0800DBBB07 /* TKVsController.h in Headers */,
-				40C93F901221734E00820B6C /* TKSubject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +510,6 @@
 				400CEF8711D3C1A90034C5D1 /* TKAppController.m in Sources */,
 				4071195311E5107800B7B59A /* TKPreferences.m in Sources */,
 				40E2B90112158F0800DBBB07 /* TKVsController.m in Sources */,
-				40C93F911221734E00820B6C /* TKSubject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,83 +15,37 @@
 
 #import <Cocoa/Cocoa.h>
 #import "TKLibrary.h"
-#import "TKLogging.h"
-#import "TKSubject.h"
 #import "TKTime.h"
 
+#pragma mark Preference Keys
+#define TK_COMPONENT_TYPE_KEY @"TKComponentTypeKey"
+#define TK_COMPONENT_NIB_FILE_NAME_KEY @"TKComponentNibFileName"
+
 @interface TKComponentController : NSObject {
+	TKTime componentStartTime;
+	TKTime componentEndTime;
 	id delegate;
 	IBOutlet NSView *view;
     NSDictionary *definition;
-    NSString *dataDirectory;
-    NSWindow *sessionWindow;
-    TKLogging *mainLog;
-    TKLogging *crashLog;
-    TKSubject *subject;
-	TKTime componentStartTime;
-	TKTime componentEndTime;    
+    NSString *componentType;
 }
-@property (assign) id delegate;
-@property (nonatomic, copy) NSString *dataDirectory;
-@property (assign) IBOutlet NSView *view;
-@property (assign) NSWindow *sessionWindow;
-@property (assign) TKSubject *subject;
 @property (readonly) TKTime componentStartTime;
 @property (readonly) TKTime componentEndTime;
-
-/**
- This method actually begins the component, bringing the view up on the screen and starting the procedure.
- Should be overridden in subclass then passed to super.
- */
-- (void)begin;
-
-/**
- Ends the component, hiding view and releasing resources. Normally will not be called from outside the bundle except when early termination is required.
- Should be overridden in subclass then passed to super.
- */
-- (void)end;
-
-/**
- Preflight check. Called from outside bundle before sending begin message.
- Should be overridden in subclass then passed to super.Should be overriden in subclass then passed to super.
- */
-- (BOOL)isClearedToBegin;
-
-/**
- Way to load procedure bundle from the session. Normal instantiation will consist of this message, followed by a preflight check (isClearedToBegin) followed by the begin message.
- Will setup the definition dictionary for the component.
- This should not be overridden.
- */
-+ (id)loadFromDefinition: (NSDictionary *)newDefinition;
-
+@property (assign) id delegate;
+@property (assign) IBOutlet NSView *view;
+@property (nonatomic, copy) NSDictionary *definition;
+@property (nonatomic, retain) NSString *componentType;
+-(void) begin;					 // should be overridden in subclass
+-(void) end;					 // should be overridden in subclass, then passed to super
++(id) loadFromDefinition:(NSDictionary *) newDefinition sender:(id) sender;
+-(void) loadDefinition:(NSDictionary *) newDefinition;
+-(void) loadPreferences;		 // should be overridden in subclass
+-(void) loadView;
+-(void) throwError:(NSString *) errorDescription andBreak:(BOOL) shouldBreak;
 @end
-
-#pragma mark Preference Keys
-/** Preference Keys */
-extern NSString * const TKComponentTypeKey;
-extern NSString * const TKComponentNameKey;
-extern NSString * const TKComponentBundleIdentifierKey;
-extern NSString * const TKComponentViewNibNameKey;
-extern NSString * const TKComponentPreferencesNibNameKey;
-extern NSString * const TKComponentPreferencesFileNameKey;
-extern NSString * const TKComponentPreferencesFileTypeKey;
-
-#pragma mark Enumerations
-/** Enumerated Values */
-enum    TKComponentType {
-        TKComponentBundleType           = 0,
-        TKComponentCocoaAppType         = 1,
-        TKComponentFutureBasicAppType   = 2
-}       TKComponentType;
-
-#pragma mark Notifications
-/** Notifications */
-extern NSString * const TKComponentDidBeginNotification;
-extern NSString * const TKComponentDidFinishNotification;
-
-
-@interface TKComponentController(TKComponentControllerPrivate)
-- (void) loadView;
-- (void) setDefinition: (NSDictionary *)newDefinition;
-- (void) throwError: (NSError *)errorDescription andBreak: (BOOL)shouldBreak;
+// DELEGATE METHODS - These messages will be sent to delegate (if any)
+@interface NSObject (TKComponentControllerDelegate)
+-(void) componentDidFinish:(id) sender;
+-(void) event:(NSMutableDictionary *) eventInfo didOccurInComponent:(id) sender;
+-(void) breakWithMessage:(NSString *) errorDescription fromComponent:(id) sender;
 @end
