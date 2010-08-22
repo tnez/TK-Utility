@@ -29,4 +29,5 @@
 #import "TKTime.h"
 #import "TKTimer.h"
 #import "TKVasController.h"
+#import "TKVsController.h"
 #import "TKWaitController.h"

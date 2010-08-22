@@ -23,8 +23,7 @@
 -(void) addDefaultSessionHeaderIfNeeded {
 	NSString *datafile = [[preferences valueForKey:@"dataDirectory"] stringByAppendingPathComponent:[preferences valueForKey:@"dataFileName"]];
 	if(![self fileExistsAtPath:datafile]) {
-		NSString *header = [[NSString alloc] initWithFormat:@"Task:\t%@\tSubject ID:\t%@\tSession#:\t%@\tDate:\t%@",
-												[session task],[session subjectID],[session sessionID],[session date]];
+		NSString *header = [[NSString alloc] initWithFormat:@"Task:\t%@\tSubject ID:\t%@\tSession#:\t%@\tDate:\t%@",[session task],[session subjectID],[session sessionID],[session date]];
 		[[TKLogging mainLogger] logString: [header autorelease]];
 	} else {
 		// . . .
@@ -35,20 +34,14 @@
 -(void) addDefaultRunHeaderIfNeeded {
 	// get run count
 	NSInteger count = 0;
-	NSString *path = [[[preferences valueForKey:@"dataDirectory"]
-										 stringByAppendingPathComponent:[preferences valueForKey:@"dataFileName"]] retain];
-	TKDelimitedFileParser *pdf = [[TKDelimitedFileParser alloc]	initParserWithFile:path
-																																	 usingEncoding:TKDELIM_DEFAULT_ENCODING
-																														 withRecordDelimiter:@"\n"
-																															withFieldDelimiter:@"\t"];
+	NSString *path = [[[preferences valueForKey:@"dataDirectory"] stringByAppendingPathComponent:[preferences valueForKey:@"dataFileName"]] retain];
+	TKDelimitedFileParser *pdf = [[TKDelimitedFileParser alloc]	initParserWithFile:path usingEncoding:TKDELIM_DEFAULT_ENCODING withRecordDelimiter:@"\n" withFieldDelimiter:@"\t"];
 	for(id record in [pdf records]) {
 		if([[record objectAtIndex:0] isEqualToString:@"Run:"]) {
 			count++;
 		}
 	}
-	NSString *runHeader = [[NSString alloc] initWithFormat:@"Run:\t%d\t%@",
-												 count+1,
-												 [[NSDate date] description]];
+	NSString *runHeader = [[NSString alloc] initWithFormat:@"Run:\t%d\t%@",count+1,[[NSDate date] description]];
 	[[TKLogging mainLogger] insertGroupDelimiter];
 	[[TKLogging mainLogger] logString:[runHeader autorelease]];
 	[path release];
@@ -56,15 +49,11 @@
 }
 
 -(void) alertWithMessage:(NSString *) message {
-	[[NSAlert alertWithMessageText:@"Error:"
-									 defaultButton:nil
-								 alternateButton:nil
-										 otherButton:nil
-			 informativeTextWithFormat:message] runModal];
+	[[NSAlert alertWithMessageText:@"Error:" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:message] runModal];
 }
 
 -(void) applicationDidBecomeActive:(NSNotification *) notification {
-	
+	[[session window] makeKeyAndOrderFront:self];
 }
 
 -(void) applicationDidFinishLaunching:(NSNotification *) notification {
@@ -98,9 +87,7 @@
 
 -(BOOL) didLoadDefaultSetupInfo {
 	NSString *fullpath = [[preferences valueForKey:@"dataDirectory"] stringByAppendingPathComponent:[preferences valueForKey:@"setupFileName"]];
-	TKDelimitedFileParser *setup = [TKDelimitedFileParser parserWithFile:fullpath
-																									 withRecordDelimiter:@"\n"
-																										withFieldDelimiter:@"\t"];
+	TKDelimitedFileParser *setup = [TKDelimitedFileParser parserWithFile:fullpath withRecordDelimiter:@"\n" withFieldDelimiter:@"\t"];
 	if(setup) {
 		[setup setIsKeyValueSet:YES];
 		// load information into session
