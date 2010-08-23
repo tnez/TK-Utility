@@ -22,13 +22,12 @@
 
 #define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@",STUDY,SUBJECT_ID,SHORTDATE,TASK]
 #define LONGDATE [[NSDate date] description]
-#define PREFERENCE_NIB [dictionary valueForKey:TKComponentPreferencesNibNameKey]
 #define SESSION [subject session]
 #define SHORTDATE [self shortdate]
 #define STUDY [subject study]
 #define SUBJECT_ID [subject code]
 #define TASK [definition valueForKey:TKComponentNameKey]
-#define VIEW_NIB [dictionary valueForKey:TKComponentViewNibNameKey]
+#define NIB [definition valueForKey:TKComponentNibNameKey]
 
 @interface TKComponentController : NSObject {
 	id delegate;
@@ -92,8 +91,7 @@
 extern NSString * const TKComponentTypeKey;
 extern NSString * const TKComponentNameKey;
 extern NSString * const TKComponentBundleIdentifierKey;
-extern NSString * const TKComponentViewNibNameKey;
-extern NSString * const TKComponentPreferencesNibNameKey;
+extern NSString * const TKComponentNibNameKey;
 extern NSString * const TKComponentPreferencesFileNameKey;
 extern NSString * const TKComponentPreferencesFileTypeKey;
 

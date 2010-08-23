@@ -35,7 +35,7 @@
     switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) { 
         case TKComponentBundleType:
             // load nib resource
-            [NSBundle loadNibNamed:[definition valueForKey:TKComponentViewNibNameKey] owner:self];
+            [NSBundle loadNibNamed:NIB owner:self];
             [self loadView];
             break;
         case TKComponentCocoaAppType:
@@ -142,10 +142,7 @@
 NSString * const TKComponentTypeKey = @"TKComponentType";
 NSString * const TKComponentNameKey = @"TKComponentName";
 NSString * const TKComponentBundleIdentifierKey = @"TKComponentBundleIdentifier";
-NSString * const TKComponentViewNibNameKey = @"TKComponentViewNibName";
-NSString * const TKComponentPreferencesNibNameKey = @"TKComponentPreferencesNibName";
-NSString * const TKComponentPreferencesFileNameKey = @"TKComponentPreferencesFileName";
-NSString * const TKComponentPreferencesFileTypeKey = @"TKComponentPreferencesFileType";
+NSString * const TKComponentNibNameKey = @"TKComponentNibName";
 
 #pragma mark Notification Names
 NSString * const TKComponentDidBeginNotification = @"TKComponentDidBegin";
