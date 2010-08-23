@@ -16,36 +16,50 @@
 #import "TKComponentController.h"
 
 @implementation TKComponentController
-@synthesize delegate,dataDirectory,view,sessionWindow,subject,componentStartTime,componentEndTime;
+@synthesize definition,mainLog,crashLog,subject,view,sessionWindow,componentStartTime,componentEndTime;
 
 -(void) addHeadersAsNeeded {
-    NSInteger runCount = [self runCountForFile:DATAFILE inDirectory:dataDirectory];
+    NSInteger runCount = [self runCountForFile:DATAFILE inDirectory:DATADIRECTORY];
     if(runCount == 1) {
         // write general header
         NSString *generalHeader=[[NSString stringWithFormat:@"Task:\t%@\tSubject ID:\t%@\tSession#:\t%@\tDate:\t%@",
                                   TASK,SUBJECT_ID,SESSION,LONGDATE]retain];
-        [mainLog writeToDirectory:dataDirectory file:DATAFILE contentsOfString:[generalHeader autorelease] overWriteOnFirstWrite:YES];
+        [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[generalHeader autorelease] overWriteOnFirstWrite:YES];
     }
     // write run header
     NSString *runHeader=[[NSString stringWithFormat:@"Run:\t%d\t%@",runCount,LONGDATE] retain];
-    [mainLog writeToDirectory:dataDirectory file:DATAFILE contentsOfString:[runHeader autorelease] overWriteOnFirstWrite:NO];
+    [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[runHeader autorelease] overWriteOnFirstWrite:NO];
 }
 
 -(void) begin {
+    
+    // grab component start time
+    componentStartTime = current_time_marker();
+    
+    // begin component according to component type
     switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) { 
-        case TKComponentBundleType:
-            // load nib resource
-            [NSBundle loadNibNamed:NIB owner:self];
-            [self loadView];
+
+        case TKComponentTypeCocoaBundle:
+            // if the bundle loads
+            if([[NSBundle bundleWithIdentifier:BUNDLEIDENTIFIER] load]) { 
+                [self addHeadersAsNeeded];
+                [NSBundle loadNibNamed:NIB owner:self];
+                [self loadView];
+            } else { // the bundle did not load
+                [self throwError:@"Could not load specified bundle" andBreak:YES];
+            }
             break;
-        case TKComponentCocoaAppType:
+
+        case TKComponentTypeCocoaApplication:
             // TODO: load cocoa application
             [self throwError:@"Cannot load CoCoa applications (support is coming soon)" andBreak:YES];
             break;
-        case TKComponentFutureBasicAppType:
+
+        case TKComponentTypeFutureBasicApplication:
             // TODO: load future basic application
             [self throwError:@"Cannot load Future Basic applications (support is coming soon)" andBreak:YES];
             break;
+
         default:
             [self throwError:@"Specified component type is not recognized" andBreak:YES];
     }
@@ -54,7 +68,6 @@
 }
 
 -(void) dealloc {
-    [dataDirectory release];
     [definition release];
 	[super dealloc];
 }
@@ -65,9 +78,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidFinishNotification object:self];
 }
 
--(BOOL) isClearedToBegin {
+- (BOOL)isClearedToBegin {
     BOOL exists, isDirectory;
-    exists = [[NSFileManager defaultManager] fileExistsAtPath:dataDirectory isDirectory:&isDirectory];
+    exists = [[NSFileManager defaultManager] fileExistsAtPath:DATADIRECTORY isDirectory:&isDirectory];
     if(exists) {
         if(isDirectory) {
             return YES; // expected case (file exists and is directory)
@@ -78,7 +91,7 @@
     } else {
         // try to create directory
         NSError *creationError = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:dataDirectory withIntermediateDirectories:YES attributes:nil error:&creationError];
+        [[NSFileManager defaultManager] createDirectoryAtPath:DATADIRECTORY withIntermediateDirectories:YES attributes:nil error:&creationError];
         if(creationError) { // there was an error creating the directory
             [self throwError:@"Could not create Data Directory" andBreak:YES];
             return NO;
@@ -139,11 +152,14 @@
 @end
 
 #pragma mark Preference Keys
-NSString * const TKComponentTypeKey = @"TKComponentType";
-NSString * const TKComponentNameKey = @"TKComponentName";
-NSString * const TKComponentBundleIdentifierKey = @"TKComponentBundleIdentifier";
-NSString * const TKComponentNibNameKey = @"TKComponentNibName";
+NSString * const TKComponentTypeKey                     = @"TKComponentType";
+NSString * const TKComponentNameKey                     = @"TKComponentName";
+NSString * const TKComponentBundleIdentifierKey         = @"TKComponentBundleIdentifier";
+NSString * const TKComponentNibNameKey                  = @"TKComponentNibName";
+NSString * const TKComponentTaskNameKey                 = @"TKComponentTaskName";
+NSString * const TKComponentDataDirectoryKey            = @"TKComponentDataDirectory";
+NSString * const TKComponentCrashRecoveryFileNameKey    = @"TKComponentCrashRecoveryFileNameKey";
 
 #pragma mark Notification Names
-NSString * const TKComponentDidBeginNotification = @"TKComponentDidBegin";
-NSString * const TKComponentDidFinishNotification = @"TKComponentDidFinish";
+NSString * const TKComponentDidBeginNotification        = @"TKComponentDidBegin";
+NSString * const TKComponentDidFinishNotification       = @"TKComponentDidFinish";
