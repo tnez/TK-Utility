@@ -9,5 +9,14 @@
 #import "TKSubject.h"
 
 @implementation TKSubject
-@synthesize code,session,name,drug,dose;
+@synthesize code,dose,drug,name,session,study;
+-(void) dealloc {
+    [code release];
+    [dose release];
+    [drug release];
+    [name release];
+    [session release];
+    [study release];
+    [super dealloc];
+}
 @end

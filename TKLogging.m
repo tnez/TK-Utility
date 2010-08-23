@@ -18,7 +18,7 @@
 
 @implementation TKLogging
 
-@synthesize prefs,filesWrittenTo,logQueue,count,dataDirectory,fieldDelimiter,fileName,groupDelimiter,recordDelimiter,encoding;
+@synthesize filesWrittenTo,logQueue,count;
 
 -(void) writeToDirectory:(NSString *)directory file:(NSString *)file contentsOfString:(NSString *)string overWriteOnFirstWrite:(BOOL)shouldOverwrite withOffset:(NSNumber *)offset{
 	count++;
@@ -146,25 +146,12 @@
 
 -(id)init{
   if([super init]){
-		[self setFieldDelimiter:TKLOGGING_DEFAULT_FIELD_DELIMITER];
-		[self setGroupDelimiter:TKLOGGING_DEFAULT_GROUP_DELIMITER];
-		[self setRecordDelimiter:TKLOGGING_DEFAULT_RECORD_DELIMITER];
-		[self setEncoding:TKLOGGING_DEFAULT_ENCODING];
 		count = 0;
     filesWrittenTo = [[NSMutableDictionary alloc] init];
     logQueue = [[NSMutableArray alloc] init];
     return self;
   }
   return nil;
-}
-
--(void) insertGroupDelimiter {
-	[self queueLogMessage:dataDirectory file:fileName contentsOfString:groupDelimiter overWriteOnFirstWrite:NO];
-}
-
--(void) logString:(NSString *) string {
-	string = [string stringByAppendingString:recordDelimiter];
-	[self queueLogMessage:dataDirectory file:fileName contentsOfString:string overWriteOnFirstWrite:NO];
 }
 
 -(void)logLoop{

@@ -14,10 +14,21 @@
  ***************************************************************/
 
 #import <Cocoa/Cocoa.h>
+#import "TKDelimitedFileParser.h"
 #import "TKLibrary.h"
 #import "TKLogging.h"
 #import "TKSubject.h"
 #import "TKTime.h"
+
+#define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@",STUDY,SUBJECT_ID,SHORTDATE,TASK]
+#define LONGDATE [[NSDate date] description]
+#define PREFERENCE_NIB [dictionary valueForKey:TKComponentPreferencesNibNameKey]
+#define SESSION [subject session]
+#define SHORTDATE [self shortdate]
+#define STUDY [subject study]
+#define SUBJECT_ID [subject code]
+#define TASK [definition valueForKey:TKComponentNameKey]
+#define VIEW_NIB [dictionary valueForKey:TKComponentViewNibNameKey]
 
 @interface TKComponentController : NSObject {
 	id delegate;
@@ -38,6 +49,11 @@
 @property (assign) TKSubject *subject;
 @property (readonly) TKTime componentStartTime;
 @property (readonly) TKTime componentEndTime;
+
+/**
+ This method adds general header and run headers as needed. If a different header or run header is needed then override this method in the sub-class.
+ */
+-(void) addHeadersAsNeeded;
 
 /**
  This method actually begins the component, bringing the view up on the screen and starting the procedure.
@@ -64,6 +80,11 @@
  */
 + (id)loadFromDefinition: (NSDictionary *)newDefinition;
 
+/**
+ Run count for given file in directory. Returns 1 if file does not exist, otherwise looks for instances or previous runs and returns previous runs plus one.
+ */
+- (NSInteger)runCountForFile: (NSString *)dataFileName inDirectory: (NSString *)dataDirectory;
+
 @end
 
 #pragma mark Preference Keys
@@ -78,11 +99,11 @@ extern NSString * const TKComponentPreferencesFileTypeKey;
 
 #pragma mark Enumerations
 /** Enumerated Values */
-enum    TKComponentType {
-        TKComponentBundleType           = 0,
-        TKComponentCocoaAppType         = 1,
-        TKComponentFutureBasicAppType   = 2
-}       TKComponentType;
+enum {
+    TKComponentBundleType           = 0,
+    TKComponentCocoaAppType         = 1,
+    TKComponentFutureBasicAppType   = 2
+}   TKComponentType;
 
 #pragma mark Notifications
 /** Notifications */
@@ -91,7 +112,8 @@ extern NSString * const TKComponentDidFinishNotification;
 
 
 @interface TKComponentController(TKComponentControllerPrivate)
-- (void) loadView;
-- (void) setDefinition: (NSDictionary *)newDefinition;
-- (void) throwError: (NSError *)errorDescription andBreak: (BOOL)shouldBreak;
+- (void)loadView;
+- (void)setDefinition: (NSDictionary *)newDefinition;
+- (NSString *)shortdate;
+- (void)throwError: (NSString *)errorDescription andBreak: (BOOL)shouldBreak;
 @end
