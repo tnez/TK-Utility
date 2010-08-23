@@ -15,7 +15,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "TKAppController.h"
 #import "TKComponentController.h"
 #import "TKDelimitedFileParser.h"
 #import "TKLibrary.h"
@@ -25,9 +24,6 @@
 #import "TKPreferences.h"
 #import "TKQuestion.h"
 #import "TKQuestionSet.h"
-#import "TKSession.h"
+#import "TKSubject.h"
 #import "TKTime.h"
 #import "TKTimer.h"
-#import "TKVasController.h"
-#import "TKVsController.h"
-#import "TKWaitController.h"

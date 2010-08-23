@@ -25,7 +25,7 @@
 #define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@",STUDY,SUBJECT_ID,SHORTDATE,TASK]
 #define LONGDATE [[NSDate date] description]
 #define SESSION [subject session]
-#define SHORTDATE [self shortdate]
+#define SHORTDATE [TKComponentController shortdate]
 #define STUDY [subject study]
 #define SUBJECT_ID [subject code]
 #define TASK [definition valueForKey:TKComponentNameKey]
@@ -131,6 +131,6 @@ extern NSString * const TKComponentDidFinishNotification;
 - (void)loadView;
 
 - (void)setDefinition: (NSDictionary *)newDefinition;
-- (NSString *)shortdate;
++ (NSString *)shortdate;
 - (void)throwError: (NSString *)errorDescription andBreak: (BOOL)shouldBreak;
 @end
