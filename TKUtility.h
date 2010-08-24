@@ -15,6 +15,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "TKComponentBundleDelegate.h"
 #import "TKComponentController.h"
 #import "TKDelimitedFileParser.h"
 #import "TKLibrary.h"
