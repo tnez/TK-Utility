@@ -5,7 +5,7 @@
  TKComponentBundleDelegate: Denotes ability to perform delegate functions for the a loadable cocoa bundle known as TKComponentBundle
  */
 
-@protocol TKComponentBundleDelegate
+@protocol TKComponentBundleDelegate <NSObject>
 /**
  Component should send this method to delegate when it has finished
  */

@@ -169,7 +169,7 @@ extern NSString * const TKComponentDidFinishNotification;
 #pragma mark Protocols
 
 /** Component Protocol - Component Bundles must implement this protocol */
-@protocol TKComponentBundleLoading
+@protocol TKComponentBundleLoading <NSObject>
 /** Required Methods */
 @required
 /**
