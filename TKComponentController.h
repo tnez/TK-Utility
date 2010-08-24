@@ -183,7 +183,7 @@ extern NSString * const TKComponentDidFinishNotification;
 /**
  Perform any and all error checking required by the component - return YES if passed
  */
-- (BOOL)isclearedToBegin;
+- (BOOL)isClearedToBegin;
 /**
  Accept assignment for the component definition
  */
