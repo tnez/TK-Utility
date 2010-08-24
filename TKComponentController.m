@@ -16,10 +16,10 @@
 #import "TKComponentController.h"
 
 @implementation TKComponentController
-@synthesize definition,mainLog,crashLog,subject,view,sessionWindow,componentStartTime,componentEndTime;
+@synthesize delegate,definition,subject,componentStartTime,componentEndTime;
 
 -(void) addHeadersAsNeeded {
-    NSInteger runCount = [self runCountForFile:DATAFILE inDirectory:DATADIRECTORY];
+    NSInteger runCount = [self runCount];
     if(runCount == 1) {
         // write general header
         NSString *generalHeader=[[NSString stringWithFormat:@"Task:\t%@\tSubject ID:\t%@\tSession#:\t%@\tDate:\t%@",
@@ -32,19 +32,25 @@
 }
 
 -(void) begin {
-    
-    // grab component start time
-    componentStartTime = current_time_marker();
+
+    if(![self isClearedToBegin]) { return; }
     
     // begin component according to component type
     switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) { 
 
         case TKComponentTypeCocoaBundle:
-            // if the bundle loads
-            if([[NSBundle bundleWithIdentifier:BUNDLEIDENTIFIER] load]) { 
-                [self addHeadersAsNeeded];
-                [NSBundle loadNibNamed:NIB owner:self];
-                [self loadView];
+            // load bundle and get instantiate principal class
+            component = [[[[NSBundle bundleWithIdentifier:BUNDLEIDENTIFIER] principalClass] alloc] init];
+            if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
+                [component setDefinition:definition];   // 1) set definition for comp
+                [component setup];                      // 2) internal setup for comp
+                if([component isClearedToBegin]) {      // -  if component is good to go...
+                    [component setDelegate:self];       // 3) register self as delegate
+                    [self loadView:[delegate mainView]];// 4) pull up the view in session window
+                    [component begin];                  // 5) begin component
+                } else {
+                    [self throwError:[component errorLog] andBreak:YES];
+                }
             } else { // the bundle did not load
                 [self throwError:@"Could not load specified bundle" andBreak:YES];
             }
@@ -67,14 +73,48 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidBeginNotification object:self];
 }
 
+- (void)componentDidFinish: (id)sender {
+    // if this is a loadable component bundle that just finished
+    if([sender conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
+        // append header and summary info to datafile
+        [[sender mainView] removeFromSuperview];        // remove the components view from window
+        [sender tearDown];                              // let the component finalize
+        if([self runCount] == 1) {
+            if([sender respondsToSelector:@selector(sessionHeader)]) {
+                [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[sender sessionHeader] overWriteOnFirstWrite:NO];
+            } else { // use default session header
+                [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:DEFAULT_SESSION_HEADER overWriteOnFirstWrite:NO];
+            }
+        } else {}
+        if([sender respondsToSelector:@selector(runHeader)]) { // custom run header
+            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[sender runHeader] overWriteOnFirstWrite:NO];
+        } else { // use default run heaer
+            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:DEFAULT_RUN_HEADER overWriteOnFirstWrite:NO];
+        }
+        if([sender respondsToSelector:@selector(summary)]) {
+            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[sender summary] overWriteOnFirstWrite:NO];
+        } else {}
+        // wait for log queue to clear
+        while([TKLogging unwrittenItemCount] > 0) {
+            NSLog(@"TKComponentController waiting for log queue to clear before finalizing data file");
+        }
+        // transfer raw data from temp file to datafile
+        NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:TEMPFILE]];
+        [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
+        [rawData release];
+    } else {
+        // this is where anything would go if an application component is sending this message
+    }
+}
+    
 -(void) dealloc {
     [definition release];
+    [TKSubject release];
 	[super dealloc];
 }
 
 -(void) end {
     componentEndTime = current_time_marker();
-    [view exitFullScreenModeWithOptions:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidFinishNotification object:self];
 }
 
@@ -100,8 +140,8 @@
         }
     }
 }
-                
-+(id) loadFromDefinition:(NSDictionary *) newDefinition {
+
++ (id)loadFromDefinition: (NSDictionary *)newDefinition {
     // create new instance
     TKComponentController *newComponent = [[TKComponentController alloc] init];
     // configure new component
@@ -109,13 +149,52 @@
     return [newComponent autorelease];
 }
 
--(void) loadView {
+- (void)logString: (NSString *)theString {
+    [mainLog queueLogMessage:TEMPDIRECTORY file:TEMPFILE contentsOfString:[theString stringByAppendingString:@"\n"] overWriteOnFirstWrite:NO];
+}
+
+- (void)loadView: (NSView *)view {
     [[TKLibrary sharedLibrary] centerView:view inWindow:sessionWindow];
 }
 
--(NSInteger) runCountForFile: (NSString *)file inDirectory: (NSString *)directory {
+- (NSString *)preflightAndReturnErrorAsString {
+ switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) {
+
+     case TKComponentTypeCocoaBundle:
+         // load bundle and get instantiate principal class
+         component = [[[[NSBundle bundleWithIdentifier:BUNDLEIDENTIFIER] principalClass] alloc] init];
+         if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
+             [component setDefinition:definition];   // 1) set definition for comp
+             [component setup];                      // 2) internal setup for comp
+             if([component isClearedToBegin]) {      // -  if component is good to go...
+                 return nil;
+             } else {
+                 return [component errorLog];
+             }
+         } else { // component does not conform to required protocol
+             return @"Bundle does not conform to required protocol";
+         }
+         break;
+     case TKComponentTypeCocoaApplication:
+         // TODO: implement preflight for cocoa app
+         return nil;
+         break;
+     case TKComponentTypeFutureBasicApplication:
+         // TODO: implement preflight for future basic app
+         return nil;
+         break;
+     default:
+         return @"Invalid component type";
+         break;
+ }
+}
+
+- (NSInteger) runCount {
     NSInteger count = 0;
-    TKDelimitedFileParser *parser = [[TKDelimitedFileParser alloc] initParserWithFile:[directory stringByAppendingPathComponent:file] usingEncoding:NSUTF8StringEncoding withRecordDelimiter:@"\n" withFieldDelimiter:@"\t"];
+    TKDelimitedFileParser *parser = [[TKDelimitedFileParser alloc] initParserWithFile:[DATADIRECTORY stringByAppendingPathComponent:DATAFILE] 
+                                                                        usingEncoding:NSUTF8StringEncoding
+                                                                  withRecordDelimiter:@"\n"
+                                                                   withFieldDelimiter:@"\t"];
     if(parser) {    // if the file was parsed
         for(id record in [parser records]) {
             if([[record objectAtIndex:0] isEqualToString:@"Run:"]) {
@@ -138,14 +217,27 @@
     return [formatter stringFromDate:[NSDate date]];
 }
 
+- (NSString *)session {
+    return SESSION;
+}
+
+- (TKTime)startTime {
+    return componentStartTime;
+}
+
+- (NSString *)task {
+    return TASK;
+}
+
 -(void) throwError:(NSString *) errorDesc andBreak:(BOOL) shouldBreak {
-   NSLog(@"%@: %@",[self class],errorDesc);
+   NSLog(@"%@",errorDesc);
 	if(shouldBreak) {
         if([[NSApp delegate] respondsToSelector:@selector(throwError:)]) {
             [[NSApp delegate] performSelector:@selector(throwError:) withObject:errorDesc];
 		} else {
             [NSApp presentError:[NSError errorWithDomain:[self className] code:101 userInfo:nil]];
         }
+        // TODO: impement breaking procedure (tearDown,end,etc.)
 	}
 }
 
@@ -155,10 +247,8 @@
 NSString * const TKComponentTypeKey                     = @"TKComponentType";
 NSString * const TKComponentNameKey                     = @"TKComponentName";
 NSString * const TKComponentBundleIdentifierKey         = @"TKComponentBundleIdentifier";
-NSString * const TKComponentNibNameKey                  = @"TKComponentNibName";
 NSString * const TKComponentTaskNameKey                 = @"TKComponentTaskName";
 NSString * const TKComponentDataDirectoryKey            = @"TKComponentDataDirectory";
-NSString * const TKComponentCrashRecoveryFileNameKey    = @"TKComponentCrashRecoveryFileNameKey";
 
 #pragma mark Notification Names
 NSString * const TKComponentDidBeginNotification        = @"TKComponentDidBegin";

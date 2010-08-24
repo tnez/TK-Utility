@@ -32,6 +32,7 @@
 		4013150611B753B5003264DE /* TKSessionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4013150511B753B5003264DE /* TKSessionWindow.xib */; };
 		404F3D221191B2BB00C32CB8 /* TKDelimitedFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */; };
 		405D390511A416B9009ED54A /* TKDelimitedFileParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */; };
+		40690A2B122413EB0032DCE6 /* TKComponentBundleDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4071195211E5107800B7B59A /* TKPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 4071195011E5107800B7B59A /* TKPreferences.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4071195311E5107800B7B59A /* TKPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 4071195111E5107800B7B59A /* TKPreferences.m */; };
 		40A88DE811B5793A00C9FD1C /* TKTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DE611B5793A00C9FD1C /* TKTime.m */; };
@@ -84,6 +85,7 @@
 		404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParser.m; sourceTree = "<group>"; };
 		405D390311A416B9009ED54A /* TKDelimitedFileParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDelimitedFileParserTest.h; sourceTree = "<group>"; };
 		405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParserTest.m; sourceTree = "<group>"; };
+		40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentBundleDelegate.h; sourceTree = "<group>"; };
 		4071195011E5107800B7B59A /* TKPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPreferences.h; sourceTree = "<group>"; };
 		4071195111E5107800B7B59A /* TKPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPreferences.m; sourceTree = "<group>"; };
 		40A65D7811A2DBFA00D984C8 /* TKUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKUtility.h; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */,
 				40A88DD111B53BD100C9FD1C /* TKComponentController.h */,
 				40A88DD211B53BD200C9FD1C /* TKComponentController.m */,
 				404F3D1F1191B2BB00C32CB8 /* TKDelimitedFileParser.h */,
@@ -338,6 +341,7 @@
 				4013132C11B6C8D3003264DE /* TKQuestionSet.h in Headers */,
 				4071195211E5107800B7B59A /* TKPreferences.h in Headers */,
 				40C93F901221734E00820B6C /* TKSubject.h in Headers */,
+				40690A2B122413EB0032DCE6 /* TKComponentBundleDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
