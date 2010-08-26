@@ -18,19 +18,6 @@
 @implementation TKComponentController
 @synthesize delegate,definition,subject,componentStartTime,componentEndTime;
 
--(void) addHeadersAsNeeded {
-    NSInteger runCount = [self runCount];
-    if(runCount == 1) {
-        // write general header
-        NSString *generalHeader=[[NSString stringWithFormat:@"Task:\t%@\tSubject ID:\t%@\tSession#:\t%@\tDate:\t%@",
-                                  TASK,SUBJECT_ID,SESSION,LONGDATE]retain];
-        [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[generalHeader autorelease] overWriteOnFirstWrite:YES];
-    }
-    // write run header
-    NSString *runHeader=[[NSString stringWithFormat:@"Run:\t%d\t%@",runCount,LONGDATE] retain];
-    [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[runHeader autorelease] overWriteOnFirstWrite:NO];
-}
-
 -(void) begin {
 
     if(![self isClearedToBegin]) { return; }
@@ -42,8 +29,12 @@
             // load bundle and get instantiate principal class
             component = [[[[NSBundle bundleWithIdentifier:BUNDLEIDENTIFIER] principalClass] alloc] init];
             if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
-                [component setDefinition:definition];   // 1) set definition for comp
-                [component setup];                      // 2) internal setup for comp
+                [component setDefinition:definition];   // set definition for comp
+                if([component shouldRecover]) {         // if component needs to recover
+                    [component recover];                // ...recover
+                } else {                                // otherwise,
+                    [component setup];                  // ...perform normal setup
+                }
                 if([component isClearedToBegin]) {      // -  if component is good to go...
                     [component setDelegate:self];       // 3) register self as delegate
                     [self loadView:[delegate mainView]];// 4) pull up the view in session window
@@ -99,9 +90,12 @@
             NSLog(@"TKComponentController waiting for log queue to clear before finalizing data file");
         }
         // transfer raw data from temp file to datafile
-        NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:TEMPFILE]];
+        NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[sender rawDataFile]]];
         [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
         [rawData release];
+        // clean up sender -- it is the sender's responsibility to remove it's temporary files (raw data file included)
+        [sender tearDown];
+        [sender release]; 
     } else {
         // this is where anything would go if an application component is sending this message
     }
@@ -109,11 +103,15 @@
     
 -(void) dealloc {
     [definition release];
-    [TKSubject release];
 	[super dealloc];
 }
 
+- (NSString *)defaultTempFile {
+    return TEMPFILE;
+}
+
 -(void) end {
+    component = nil;
     componentEndTime = current_time_marker();
     [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidFinishNotification object:self];
 }
@@ -149,10 +147,13 @@
     return [newComponent autorelease];
 }
 
-- (void)logString: (NSString *)theString {
-    [mainLog queueLogMessage:TEMPDIRECTORY file:TEMPFILE contentsOfString:[theString stringByAppendingString:@"\n"] overWriteOnFirstWrite:NO];
+- (void)logStringToDefaultTempFile: (NSString *)theString {
+    [self logString:theString toDirectory:[self tempDirectory] toFile:[self defaultTempFile]];
 }
 
+- (void)logString: (NSString *)theString toDirectory: (NSString *)theDirectory toFile: (NSString *)theFile {
+    [mainLog queueLogMessage:[theDirectory stringByStandardizingPath] file:theFile contentsOfString:[theString stringByAppendingString:@"\n"] overWriteOnFirstWrite:NO];
+}
 - (void)loadView: (NSView *)view {
     [[TKLibrary sharedLibrary] centerView:view inWindow:sessionWindow];
 }
@@ -227,6 +228,10 @@
 
 - (NSString *)task {
     return TASK;
+}
+
+- (NSString *) tempDirectory {
+    return TEMPDIRECTORY;
 }
 
 -(void) throwError:(NSString *) errorDesc andBreak:(BOOL) shouldBreak {

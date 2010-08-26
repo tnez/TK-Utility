@@ -50,7 +50,7 @@
 }
 @property (assign)              id              delegate;
 @property (readonly)            NSDictionary    *definition;
-@property (nonatomic, retain)   TKSubject       *subject;
+@property (assign)              TKSubject       *subject;
 @property (readonly)            TKTime          componentStartTime;
 @property (readonly)            TKTime          componentEndTime;
 
@@ -65,6 +65,11 @@
  Note: only sent by loadable bundle types
  */
 - (void)componentDidFinish: (id)sender;
+
+/**
+ Returns name of default temporary file as string
+ */
+- (NSString *) defaultTempFile;
 
 /**
  Ends the component, hiding view and releasing resources. Normally will not be called from outside the bundle except when early termination is required.
@@ -88,8 +93,13 @@
 /**
  Logs string to temporary file (also appends newline at end of string) - string should be sent in format desired for final data file
  */
-- (void)logString: (NSString *)theString;
+- (void)logStringToDefaultTempFile: (NSString *)theString;
 
+/**
+ Log string to given directory and file (also appends newline at end of string)
+ */
+- (void)logString: (NSString *)theString toDirectory: (NSString *)theDirectory toFile: (NSString *)theFile;
+ 
 /**
  Validate the component without actually running - becuase the component is not run, this is only able to check setup errors
  Return: A string representation of all errors that occured in the component
@@ -115,6 +125,11 @@
  Returns current task name for component
  */
 - (NSString *)task;
+
+/**
+ Returns full path to temporary directory as string
+ */
+- (NSString *)tempDirectory;
 
 /**
  Run count for given file in directory. Returns 1 if file does not exist, otherwise looks for instances or previous runs and returns previous runs plus one.
@@ -151,15 +166,6 @@ extern NSString * const TKComponentDidFinishNotification;
 
 
 @interface TKComponentController(TKComponentControllerPrivate)
-
-/**
- This method adds general header and run headers as needed. If a different header or run header is needed then override this method in the sub-class.
- */
--(void) addHeadersAsNeeded;
-
-/**
- Load view of a Cocoa bundle. View must be connected to file's owner in the nib file of the component
- */
 - (void)loadView: (NSView *)theView;
 - (void)setDefinition: (NSDictionary *)newDefinition;
 - (NSString *)shortdate;
@@ -185,6 +191,14 @@ extern NSString * const TKComponentDidFinishNotification;
  */
 - (BOOL)isClearedToBegin;
 /**
+ Returns the file name containing the raw data that will be appended to the data file
+ */
+- (NSString *)rawDataFile;
+/**
+ Perform actions required to recover from crash using the given raw data passed as string
+ */
+- (void)recover;
+/**
  Accept assignment for the component definition
  */
 - (void)setDefinition: (NSDictionary *)aDictionary;
@@ -194,9 +208,13 @@ extern NSString * const TKComponentDidFinishNotification;
  */
 - (void)setDelegate: (id <TKComponentBundleDelegate> )aDelegate;
 /**
- Perform any and all initialization required by component - this is where the nib file should be loaded
+ Perform any and all initialization required by component - load any nib files and perform all required initialization
  */
 - (void)setup;
+/**
+ Return YES if component should perform recovery actions
+ */
+- (BOOL) shouldRecover;
 /**
  Perform any and all finalization required by component
  */
