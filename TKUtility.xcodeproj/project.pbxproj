@@ -17,7 +17,6 @@
 		401311DA11B67721003264DE /* TKComponentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DD211B53BD200C9FD1C /* TKComponentController.m */; };
 		401311DB11B67721003264DE /* TKQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DD411B53BD200C9FD1C /* TKQuestion.m */; };
 		401311DC11B67721003264DE /* TKQuestionSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A88DD611B53BD200C9FD1C /* TKQuestionSet.m */; };
-		401311DE11B67735003264DE /* TKSessionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 401311CD11B672F0003264DE /* TKSessionTest.m */; };
 		4013132011B6C8D3003264DE /* TKDelimitedFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 404F3D1F1191B2BB00C32CB8 /* TKDelimitedFileParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4013132111B6C8D3003264DE /* TKUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A65D7811A2DBFA00D984C8 /* TKUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4013132211B6C8D3003264DE /* TKLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B4874811AF0309008C8CB5 /* TKLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,7 +72,6 @@
 		4006602811AECAAF00FE4924 /* keys.tab */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = keys.tab; path = SAMPLE/keys.tab; sourceTree = "<group>"; };
 		4006602911AECAAF00FE4924 /* regular.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = regular.csv; path = SAMPLE/regular.csv; sourceTree = "<group>"; };
 		4006602A11AECAAF00FE4924 /* regular.tab */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = regular.tab; path = SAMPLE/regular.tab; sourceTree = "<group>"; };
-		401311CD11B672F0003264DE /* TKSessionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSessionTest.m; sourceTree = "<group>"; };
 		404F3D1F1191B2BB00C32CB8 /* TKDelimitedFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDelimitedFileParser.h; sourceTree = "<group>"; };
 		404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParser.m; sourceTree = "<group>"; };
 		405D390311A416B9009ED54A /* TKDelimitedFileParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDelimitedFileParserTest.h; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 			children = (
 				405D390311A416B9009ED54A /* TKDelimitedFileParserTest.h */,
 				405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */,
-				401311CD11B672F0003264DE /* TKSessionTest.m */,
 			);
 			name = TestCases;
 			sourceTree = "<group>";
@@ -409,7 +406,6 @@
 			files = (
 				405D390511A416B9009ED54A /* TKDelimitedFileParserTest.m in Sources */,
 				4006601811AEC94300FE4924 /* GTMSenTestCase.m in Sources */,
-				401311DE11B67735003264DE /* TKSessionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

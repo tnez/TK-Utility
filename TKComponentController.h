@@ -18,7 +18,7 @@
 #import "TKDelimitedFileParser.h"
 #import "TKLibrary.h"
 #import "TKLogging.h"
-#import "TKSubjects.h"
+#import "TKSubject.h"
 #import "TKTime.h"
 
 #define BUNDLEIDENTIFIER [definition valueForKey:TKComponentBundleIdentifierKey]
@@ -51,6 +51,7 @@
 @property (assign)              id              delegate;
 @property (readonly)            NSDictionary    *definition;
 @property (assign)              TKSubject       *subject;
+@property (assign)              NSWindow        *sessionWindow;
 @property (readonly)            TKTime          componentStartTime;
 @property (readonly)            TKTime          componentEndTime;
 

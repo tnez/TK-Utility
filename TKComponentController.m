@@ -16,7 +16,7 @@
 #import "TKComponentController.h"
 
 @implementation TKComponentController
-@synthesize delegate,definition,subject,componentStartTime,componentEndTime;
+@synthesize delegate,definition,subject,sessionWindow,componentStartTime,componentEndTime;
 
 -(void) begin {
 
