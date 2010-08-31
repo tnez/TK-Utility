@@ -44,16 +44,9 @@
 		40E26778122C59BF004B8D31 /* TKSubjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E26776122C59BF004B8D31 /* TKSubjects.m */; };
 		40E2678E122C5E3A004B8D31 /* TKSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E2678C122C5E3A004B8D31 /* TKSubject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40E2678F122C5E3A004B8D31 /* TKSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E2678D122C5E3A004B8D31 /* TKSubject.m */; };
-		40E2B9B31215D69C00DBBB07 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E2B9B21215D69C00DBBB07 /* components.plist */; };
-		40E2B9B41215D69C00DBBB07 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E2B9B21215D69C00DBBB07 /* components.plist */; };
-		40E2B9BD1215DB7600DBBB07 /* TKVasDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E2B9BC1215DB7600DBBB07 /* TKVasDefaults.plist */; };
-		40E2B9BE1215DB7600DBBB07 /* TKVasDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40E2B9BC1215DB7600DBBB07 /* TKVasDefaults.plist */; };
 		40E99C4111A4557200189D88 /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TKUtility.framework */; };
-		40F1FDE911BD83AB00F8D38A /* TKWaitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F1FDE811BD83AB00F8D38A /* TKWaitView.xib */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
-		915E9F141200C8FB005B6718 /* TKVasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F291551200AC380080F6D2 /* TKVasView.xib */; };
-		91F291561200AC380080F6D2 /* TKVasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F291551200AC380080F6D2 /* TKVasView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,12 +107,8 @@
 		40E26776122C59BF004B8D31 /* TKSubjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSubjects.m; sourceTree = "<group>"; };
 		40E2678C122C5E3A004B8D31 /* TKSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSubject.h; sourceTree = "<group>"; };
 		40E2678D122C5E3A004B8D31 /* TKSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSubject.m; sourceTree = "<group>"; };
-		40E2B9B21215D69C00DBBB07 /* components.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
-		40E2B9BC1215DB7600DBBB07 /* TKVasDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TKVasDefaults.plist; sourceTree = "<group>"; };
-		40F1FDE811BD83AB00F8D38A /* TKWaitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKWaitView.xib; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TKUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TKUtility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		91F291551200AC380080F6D2 /* TKVasView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKVasView.xib; sourceTree = "<group>"; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -177,7 +166,6 @@
 		089C1665FE841158C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				40E2B9B61215D98000DBBB07 /* Components */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 			);
@@ -276,41 +264,6 @@
 				4006601711AEC94300FE4924 /* GTMSenTestCase.m */,
 			);
 			name = GTMSupport;
-			sourceTree = "<group>";
-		};
-		40E2B9B51215D94D00DBBB07 /* NIBs */ = {
-			isa = PBXGroup;
-			children = (
-				91F291551200AC380080F6D2 /* TKVasView.xib */,
-				40F1FDE811BD83AB00F8D38A /* TKWaitView.xib */,
-			);
-			name = NIBs;
-			sourceTree = "<group>";
-		};
-		40E2B9B61215D98000DBBB07 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				40E2B9B81215D9C100DBBB07 /* Defaults */,
-				40E2B9B71215D9A600DBBB07 /* Preference Windows */,
-				40E2B9B21215D69C00DBBB07 /* components.plist */,
-				40E2B9B51215D94D00DBBB07 /* NIBs */,
-			);
-			name = Components;
-			sourceTree = "<group>";
-		};
-		40E2B9B71215D9A600DBBB07 /* Preference Windows */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Preference Windows";
-			sourceTree = "<group>";
-		};
-		40E2B9B81215D9C100DBBB07 /* Defaults */ = {
-			isa = PBXGroup;
-			children = (
-				40E2B9BC1215DB7600DBBB07 /* TKVasDefaults.plist */,
-			);
-			name = Defaults;
 			sourceTree = "<group>";
 		};
 		40E99D1D11A4720F00189D88 /* Testing */ = {
@@ -420,9 +373,6 @@
 				4006602E11AECAAF00FE4924 /* keys.tab in Resources */,
 				4006602F11AECAAF00FE4924 /* regular.csv in Resources */,
 				4006603011AECAAF00FE4924 /* regular.tab in Resources */,
-				91F291561200AC380080F6D2 /* TKVasView.xib in Resources */,
-				40E2B9B41215D69C00DBBB07 /* components.plist in Resources */,
-				40E2B9BE1215DB7600DBBB07 /* TKVasDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,10 +381,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
-				40F1FDE911BD83AB00F8D38A /* TKWaitView.xib in Resources */,
-				915E9F141200C8FB005B6718 /* TKVasView.xib in Resources */,
-				40E2B9B31215D69C00DBBB07 /* components.plist in Resources */,
-				40E2B9BD1215DB7600DBBB07 /* TKVasDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
