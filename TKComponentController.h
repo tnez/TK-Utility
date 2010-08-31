@@ -18,7 +18,7 @@
 #import "TKDelimitedFileParser.h"
 #import "TKLibrary.h"
 #import "TKLogging.h"
-#import "TKSubject.h"
+#import "TKSubjects.h"
 #import "TKTime.h"
 
 #define BUNDLEIDENTIFIER [definition valueForKey:TKComponentBundleIdentifierKey]
@@ -31,7 +31,7 @@
 #define SESSION [subject session]
 #define SHORTDATE [self shortdate]
 #define STUDY [subject study]
-#define SUBJECT_ID [subject code]
+#define SUBJECT_ID [subject identifier]
 #define TASK [definition valueForKey:TKComponentNameKey]
 #define TEMPDIRECTORY [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"_TEMP"]
 #define TEMPFILE [DATAFILE stringByAppendingString:@"~"]
