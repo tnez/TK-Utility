@@ -15,7 +15,6 @@
 
 #import "TKLogging.h"
 
-
 @implementation TKLogging
 
 @synthesize filesWrittenTo,logQueue,count;

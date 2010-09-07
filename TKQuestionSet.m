@@ -16,7 +16,6 @@
 
 #import "TKQuestionSet.h"
 
-
 @implementation TKQuestionSet
 
 @synthesize uid,errorDescription,accessMethod;

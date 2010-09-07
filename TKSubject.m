@@ -9,60 +9,46 @@
 #import "TKSubject.h"
 
 @implementation TKSubject
-@synthesize info;
+@synthesize subject_id,study,session,drugDose,drugLevel,drugCode,drug;
 
 /** HOUSEKEEPING */
 - (void)dealloc {
-    [info release];
+    [subject_id release];
+    [study release];
+    [session release];
+    [drugDose release];
+    [drugLevel release];
+    [drugCode release];
+    [drug release];
     [super dealloc];
 }
-- (id)initWithDictionary: (NSDictionary *)subjectInformation {
+
+- (id)init {
     if(self=[super init]) {
-        info = [subjectInformation copy];
+        return self;
+    } return nil;
+}
+
+- (id)initWithDictionary: (NSDictionary *)subjectInformation {
+    if(self=[self init]) {
+        [self setSubject_id:[subjectInformation valueForKey:TKSubjectIdentifierKey]];
+        [self setStudy:[subjectInformation valueForKey:TKSubjectStudyKey]];
+        [self setSession:[subjectInformation valueForKey:TKSubjectSessionKey]];
+        [self setDrugDose:[subjectInformation valueForKey:TKSubjectDrugDoseKey]];
+        [self setDrugLevel:[subjectInformation valueForKey:TKSubjectDrugLevelKey]];
+        [self setDrugCode:[subjectInformation valueForKey:TKSubjectDrugCodeKey]];
+        [self setDrug:[subjectInformation valueForKey:TKSubjectDrugKey]];
         return self;
     }
     return nil;
 }
 
-/** ACCESSORS */
-- (NSString *)identifier {
-    return [info valueForKey:TKSubjectIdentifierKey];
-}
-- (NSString *)study {
-    return [info valueForKey:TKSubjectStudyKey];
-}
-- (NSString *)session {
-    return [info valueForKey:TKSubjectSessionKey];
-}
-- (NSString *)dose {
-    return [info valueForKey:TKSubjectDoseKey];
-}
-- (NSString *)level {
-    return [info valueForKey:TKSubjectLevelKey];
-}
-- (NSString *)code {
-    return [info valueForKey:TKSubjectCodeKey];
-}
-- (NSString *)name {
-    return [info valueForKey:TKSubjectNameKey];
-}
-- (NSString *)drug {
-    return [info valueForKey:TKSubjectDrugKey];
-}
-- (NSString *)lastRun {
-    return [info valueForKey:TKSubjectLastRunKey];
-}
-- (NSDictionary *)additionalInfo {
-    return info;
-}
 @end
 
 NSString * const TKSubjectIdentifierKey = @"TKSubjectIdentifier";
 NSString * const TKSubjectStudyKey = @"TKSubjectStudy";
 NSString * const TKSubjectSessionKey = @"TKSubjectSession";
-NSString * const TKSubjectDoseKey = @"TKSubjectDose";
-NSString * const TKSubjectLevelKey = @"TKSubjectLevel";
-NSString * const TKSubjectCodeKey = @"TKSubjectCode";
-NSString * const TKSubjectNameKey = @"TKSubjectName";
+NSString * const TKSubjectDrugDoseKey = @"TKSubjectDose";
+NSString * const TKSubjectDrugLevelKey = @"TKSubjectLevel";
+NSString * const TKSubjectDrugCodeKey = @"TKSubjectCode";
 NSString * const TKSubjectDrugKey = @"TKSubjectDrug";
-NSString * const TKSubjectLastRunKey = @"TKSubjectLastRun";

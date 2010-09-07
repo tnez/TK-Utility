@@ -39,10 +39,8 @@
 		40B4875711AF0309008C8CB5 /* TKLogQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874D11AF0309008C8CB5 /* TKLogQueueItem.m */; };
 		40B4875911AF0309008C8CB5 /* TKNotificationQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */; };
 		40B4875B11AF0309008C8CB5 /* TKTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4875111AF0309008C8CB5 /* TKTimer.m */; };
-		40E26777122C59BF004B8D31 /* TKSubjects.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E26775122C59BF004B8D31 /* TKSubjects.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		40E26778122C59BF004B8D31 /* TKSubjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E26776122C59BF004B8D31 /* TKSubjects.m */; };
-		40E2678E122C5E3A004B8D31 /* TKSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E2678C122C5E3A004B8D31 /* TKSubject.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		40E2678F122C5E3A004B8D31 /* TKSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E2678D122C5E3A004B8D31 /* TKSubject.m */; };
+		40E4D5DF1234482A0075E9D9 /* TKSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E4D5DD1234482A0075E9D9 /* TKSubject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		40E4D5E01234482A0075E9D9 /* TKSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E4D5DE1234482A0075E9D9 /* TKSubject.m */; };
 		40E99C4111A4557200189D88 /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TKUtility.framework */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
@@ -76,7 +74,7 @@
 		404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParser.m; sourceTree = "<group>"; };
 		405D390311A416B9009ED54A /* TKDelimitedFileParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDelimitedFileParserTest.h; sourceTree = "<group>"; };
 		405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParserTest.m; sourceTree = "<group>"; };
-		40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentBundleDelegate.h; sourceTree = "<group>"; };
+		40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = TKComponentBundleDelegate.h; sourceTree = "<group>"; };
 		4071195011E5107800B7B59A /* TKPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPreferences.h; sourceTree = "<group>"; };
 		4071195111E5107800B7B59A /* TKPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPreferences.m; sourceTree = "<group>"; };
 		40A65D7811A2DBFA00D984C8 /* TKUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKUtility.h; sourceTree = "<group>"; };
@@ -101,10 +99,8 @@
 		40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNotificationQueueItem.m; sourceTree = "<group>"; };
 		40B4875011AF0309008C8CB5 /* TKTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTimer.h; sourceTree = "<group>"; };
 		40B4875111AF0309008C8CB5 /* TKTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTimer.m; sourceTree = "<group>"; };
-		40E26775122C59BF004B8D31 /* TKSubjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSubjects.h; sourceTree = "<group>"; };
-		40E26776122C59BF004B8D31 /* TKSubjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSubjects.m; sourceTree = "<group>"; };
-		40E2678C122C5E3A004B8D31 /* TKSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSubject.h; sourceTree = "<group>"; };
-		40E2678D122C5E3A004B8D31 /* TKSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSubject.m; sourceTree = "<group>"; };
+		40E4D5DD1234482A0075E9D9 /* TKSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSubject.h; sourceTree = "<group>"; };
+		40E4D5DE1234482A0075E9D9 /* TKSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSubject.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TKUtility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TKUtility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -192,10 +188,8 @@
 				40A88DD411B53BD200C9FD1C /* TKQuestion.m */,
 				40A88DD511B53BD200C9FD1C /* TKQuestionSet.h */,
 				40A88DD611B53BD200C9FD1C /* TKQuestionSet.m */,
-				40E2678C122C5E3A004B8D31 /* TKSubject.h */,
-				40E2678D122C5E3A004B8D31 /* TKSubject.m */,
-				40E26775122C59BF004B8D31 /* TKSubjects.h */,
-				40E26776122C59BF004B8D31 /* TKSubjects.m */,
+				40E4D5DD1234482A0075E9D9 /* TKSubject.h */,
+				40E4D5DE1234482A0075E9D9 /* TKSubject.m */,
 				40A88DE511B5793A00C9FD1C /* TKTime.h */,
 				40A88DE611B5793A00C9FD1C /* TKTime.m */,
 				40B4875011AF0309008C8CB5 /* TKTimer.h */,
@@ -294,8 +288,7 @@
 				4013132C11B6C8D3003264DE /* TKQuestionSet.h in Headers */,
 				4071195211E5107800B7B59A /* TKPreferences.h in Headers */,
 				40690A2B122413EB0032DCE6 /* TKComponentBundleDelegate.h in Headers */,
-				40E26777122C59BF004B8D31 /* TKSubjects.h in Headers */,
-				40E2678E122C5E3A004B8D31 /* TKSubject.h in Headers */,
+				40E4D5DF1234482A0075E9D9 /* TKSubject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,8 +417,7 @@
 				401311DB11B67721003264DE /* TKQuestion.m in Sources */,
 				401311DC11B67721003264DE /* TKQuestionSet.m in Sources */,
 				4071195311E5107800B7B59A /* TKPreferences.m in Sources */,
-				40E26778122C59BF004B8D31 /* TKSubjects.m in Sources */,
-				40E2678F122C5E3A004B8D31 /* TKSubject.m in Sources */,
+				40E4D5E01234482A0075E9D9 /* TKSubject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
