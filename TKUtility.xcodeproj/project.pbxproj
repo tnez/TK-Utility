@@ -39,6 +39,11 @@
 		40B4875711AF0309008C8CB5 /* TKLogQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874D11AF0309008C8CB5 /* TKLogQueueItem.m */; };
 		40B4875911AF0309008C8CB5 /* TKNotificationQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */; };
 		40B4875B11AF0309008C8CB5 /* TKTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4875111AF0309008C8CB5 /* TKTimer.m */; };
+		40DB669D1239340F003722F9 /* BooleanOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB66981239340F003722F9 /* BooleanOption.xib */; };
+		40DB669E1239340F003722F9 /* EnumOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB66991239340F003722F9 /* EnumOption.xib */; };
+		40DB669F1239340F003722F9 /* NumberOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB669A1239340F003722F9 /* NumberOption.xib */; };
+		40DB66A01239340F003722F9 /* PathOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB669B1239340F003722F9 /* PathOption.xib */; };
+		40DB66A11239340F003722F9 /* StringOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB669C1239340F003722F9 /* StringOption.xib */; };
 		40E4D5DF1234482A0075E9D9 /* TKSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 40E4D5DD1234482A0075E9D9 /* TKSubject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40E4D5E01234482A0075E9D9 /* TKSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E4D5DE1234482A0075E9D9 /* TKSubject.m */; };
 		40E99C4111A4557200189D88 /* TKUtility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TKUtility.framework */; };
@@ -99,6 +104,11 @@
 		40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKNotificationQueueItem.m; sourceTree = "<group>"; };
 		40B4875011AF0309008C8CB5 /* TKTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKTimer.h; sourceTree = "<group>"; };
 		40B4875111AF0309008C8CB5 /* TKTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKTimer.m; sourceTree = "<group>"; };
+		40DB66981239340F003722F9 /* BooleanOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BooleanOption.xib; sourceTree = "<group>"; };
+		40DB66991239340F003722F9 /* EnumOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnumOption.xib; sourceTree = "<group>"; };
+		40DB669A1239340F003722F9 /* NumberOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberOption.xib; sourceTree = "<group>"; };
+		40DB669B1239340F003722F9 /* PathOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PathOption.xib; sourceTree = "<group>"; };
+		40DB669C1239340F003722F9 /* StringOption.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StringOption.xib; sourceTree = "<group>"; };
 		40E4D5DD1234482A0075E9D9 /* TKSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKSubject.h; sourceTree = "<group>"; };
 		40E4D5DE1234482A0075E9D9 /* TKSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKSubject.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,6 +172,11 @@
 			children = (
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+				40DB66981239340F003722F9 /* BooleanOption.xib */,
+				40DB66991239340F003722F9 /* EnumOption.xib */,
+				40DB669A1239340F003722F9 /* NumberOption.xib */,
+				40DB669B1239340F003722F9 /* PathOption.xib */,
+				40DB669C1239340F003722F9 /* StringOption.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -371,6 +386,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+				40DB669D1239340F003722F9 /* BooleanOption.xib in Resources */,
+				40DB669E1239340F003722F9 /* EnumOption.xib in Resources */,
+				40DB669F1239340F003722F9 /* NumberOption.xib in Resources */,
+				40DB66A01239340F003722F9 /* PathOption.xib in Resources */,
+				40DB66A11239340F003722F9 /* StringOption.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
