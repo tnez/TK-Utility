@@ -27,9 +27,10 @@
 
         case TKComponentTypeCocoaBundle:
             // load bundle and get instantiate principal class
-            component = [[[[NSBundle bundleWithIdentifier:BUNDLEIDENTIFIER] principalClass] alloc] init];
+            component = [[[BUNDLE principalClass] alloc] init];
             if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
                 [component setDefinition:definition];   // set definition for comp
+                [component setDelegate:self];           // register as delegate for new component
                 if([component shouldRecover]) {         // if component needs to recover
                     [component recover];                // ...recover
                 } else {                                // otherwise,
@@ -141,10 +142,11 @@
 
 + (id)loadFromDefinition: (NSDictionary *)newDefinition {
     // create new instance
-    TKComponentController *newComponent = [[TKComponentController alloc] init];
-    // configure new component
-    [newComponent setDefinition:newDefinition];
-    return [newComponent autorelease];
+    TKComponentController *newInstance = [[TKComponentController alloc] init];
+    // give component definition
+    [newInstance setDefinition:newDefinition];
+    // return component
+    return [newInstance autorelease];
 }
 
 - (void)logStringToDefaultTempFile: (NSString *)theString {
@@ -159,35 +161,35 @@
 }
 
 - (NSString *)preflightAndReturnErrorAsString {
- switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) {
 
-     case TKComponentTypeCocoaBundle:
-         // load bundle and get instantiate principal class
-         component = [[[[NSBundle bundleWithIdentifier:BUNDLEIDENTIFIER] principalClass] alloc] init];
-         if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
-             [component setDefinition:definition];   // 1) set definition for comp
-             [component setup];                      // 2) internal setup for comp
-             if([component isClearedToBegin]) {      // -  if component is good to go...
-                 return nil;
-             } else {
-                 return [component errorLog];
-             }
-         } else { // component does not conform to required protocol
-             return @"Bundle does not conform to required protocol";
-         }
-         break;
-     case TKComponentTypeCocoaApplication:
-         // TODO: implement preflight for cocoa app
-         return nil;
-         break;
-     case TKComponentTypeFutureBasicApplication:
-         // TODO: implement preflight for future basic app
-         return nil;
-         break;
-     default:
-         return @"Invalid component type";
-         break;
- }
+    switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) {
+        case TKComponentTypeCocoaBundle:
+            // load component
+            component = [[[BUNDLE principalClass] alloc] init];
+            if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
+                [component setDefinition:definition];   // 1) set definition for comp
+                [component setup];                      // 2) internal setup for comp
+                if([component isClearedToBegin]) {      // -  if component is good to go...
+                    return @"Bundle Successfully Loaded (No Errors Reported)\n";
+                } else {
+                    return [component errorLog];
+                }
+            } else { // component does not conform to required protocol
+                return @"Bundle does not conform to required protocol\n";
+            }
+            break;
+        case TKComponentTypeCocoaApplication:
+            // TODO: implement preflight for cocoa app
+            return nil;
+            break;
+        case TKComponentTypeFutureBasicApplication:
+            // TODO: implement preflight for future basic app
+            return nil;
+            break;
+        default:
+            return @"Invalid component type\n";
+            break;
+    }
 }
 
 - (NSInteger) runCount {
@@ -251,6 +253,7 @@
 #pragma mark Preference Keys
 NSString * const TKComponentTypeKey                     = @"TKComponentType";
 NSString * const TKComponentNameKey                     = @"TKComponentName";
+NSString * const TKComponentBundleNameKey               = @"TKComponentBundleName";
 NSString * const TKComponentBundleIdentifierKey         = @"TKComponentBundleIdentifier";
 NSString * const TKComponentTaskNameKey                 = @"TKComponentTaskName";
 NSString * const TKComponentDataDirectoryKey            = @"TKComponentDataDirectory";

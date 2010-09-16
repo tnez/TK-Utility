@@ -36,10 +36,10 @@
 {
   if(self=[super init])
   {
-    fullPathToFile = [_fullpath copy];
-    accessMethod = _accessMethod;
-    questions = [[NSMutableArray alloc] init];
-		if([self questionsHaveLoaded]) { return self; }
+      fullPathToFile = [[_fullpath stringByStandardizingPath] retain];
+      accessMethod = _accessMethod;
+      questions = [[NSMutableArray alloc] init];
+      if([self questionsHaveLoaded]) { return self; }
   }
   return nil;
 }
@@ -84,9 +84,9 @@
 
 -(BOOL) questionsHaveLoaded {
 	TKDelimitedFileParser *parser = [[TKDelimitedFileParser parserWithFile:fullPathToFile
-																													 usingEncoding:DEFAULT_ENCODING
-																										 withRecordDelimiter:DEFAULT_RECORD_DELIM
-																											withFieldDelimiter:DEFAULT_FIELD_DELIM] retain];
+															 usingEncoding:DEFAULT_ENCODING
+                                                       withRecordDelimiter:DEFAULT_RECORD_DELIM
+                                                        withFieldDelimiter:DEFAULT_FIELD_DELIM] retain];
 	// if question file was parsed successfully...
 	if(parser) {
 		// for each record in set . . .

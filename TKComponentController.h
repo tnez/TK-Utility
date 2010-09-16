@@ -14,6 +14,7 @@
  ***************************************************************/
 
 #import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "TKComponentBundleDelegate.h"
 #import "TKDelimitedFileParser.h"
 #import "TKLibrary.h"
@@ -21,7 +22,10 @@
 #import "TKSubject.h"
 #import "TKTime.h"
 
+#define BUNDLE [NSBundle bundleWithPath:BUNDLEPATH]
 #define BUNDLEIDENTIFIER [definition valueForKey:TKComponentBundleIdentifierKey]
+#define BUNDLENAME [definition valueForKey:TKComponentBundleNameKey]
+#define BUNDLEPATH [[[[NSBundle mainBundle] builtInPlugInsPath] stringByAppendingPathComponent:BUNDLENAME] stringByAppendingString:@".bundle"]
 #define DATADIRECTORY [[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]
 #define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@.@",STUDY,SUBJECT_ID,SHORTDATE,TASK,DATAFILE_EXTENSION]
 #define DATAFILE_EXTENSION @"tsv"
@@ -148,6 +152,7 @@
 /** Preference Keys */
 extern NSString * const TKComponentTypeKey;
 extern NSString * const TKComponentNameKey;
+extern NSString * const TKComponentBundleNameKey;
 extern NSString * const TKComponentBundleIdentifierKey;
 extern NSString * const TKComponentTaskNameKey;
 extern NSString * const TKComponentDataDirectoryKey;
