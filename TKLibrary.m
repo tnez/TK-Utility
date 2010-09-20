@@ -1,16 +1,16 @@
 /***************************************************************
- 
+
  TKLibrary.m
  TKUtility
- 
+
  Author: Scott Southerland
  Maintainer: Travis Nesland <tnesland@gmail.com>
- 
+
  Copyright 2010 Residential Research Facility
  (University of Kentucky). All rights reserved.
- 
+
  LastMod: 20100803 - tn
- 
+
  ***************************************************************/
 
 #import "TKLibrary.h"
@@ -20,9 +20,9 @@
 
 
 + (TKLibrary *)sharedLibrary
-{	
+{
 	static TKLibrary *sharedInstance;
-	
+
 	@synchronized(self)
     {
 		if (sharedInstance == NULL){
@@ -36,7 +36,7 @@
 	if([super init]){
 		return self;
 	}
-	return nil;	
+	return nil;
 }
 
 -(void) centerView:(NSView *) theView inWindow:(NSWindow *) theWindow {
@@ -51,13 +51,12 @@
 }
 
 -(void) enterFullScreenWithWindow:(NSWindow*)theWindow{
-	
+
 	[NSMenu setMenuBarVisible:NO];
 	[theWindow
 	 setFrame:[theWindow frameRectForContentRect:[[theWindow screen] frame]]
 	 display:YES
 	 animate:YES];
-	
 }
 
 -(void) exitFullScreenWithWindow:(NSWindow *) theWindow {

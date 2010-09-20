@@ -1,29 +1,39 @@
 /***************************************************************
- 
+
  TKComponentController.m
  TKUtility
- 
+
  Author: Travis Nesland <tnesland@gmail.com>
  Maintainer: Travis Nesland <tnesland@gmail.com>
- 
+
  Copyright 2010 Residential Research Facility
  (University of Kentucky). All rights reserved.
- 
+
  LastMod: 20100803 - tn
- 
+
  ***************************************************************/
 
 #import "TKComponentController.h"
 
 @implementation TKComponentController
-@synthesize delegate,definition,subject,sessionWindow,componentStartTime,componentEndTime;
+@synthesize delegate,definition,timer,mainLog,crashLog,subject,sessionWindow,componentStartTime,componentEndTime;
 
 -(void) begin {
 
+    // if we are not cleared to begin, then exit
     if(![self isClearedToBegin]) { return; }
-    
+    // ...else proceed
+
+    // grab references to logs and timers
+    [self setTimer:[TKTimer appTimer]];
+    [self setMainLog:[TKLogging mainLogger]];
+    [self setCrashLog:[TKLogging crashRecoveryLogger]];
+
+    // send notification that we are about to begin
+    [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentWillBeginNotification object:self];
+
     // begin component according to component type
-    switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) { 
+    switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) {
 
         case TKComponentTypeCocoaBundle:
             // load bundle and get instantiate principal class
@@ -36,12 +46,11 @@
                 } else {                                // otherwise,
                     [component setup];                  // ...perform normal setup
                 }
-                if([component isClearedToBegin]) {      // -  if component is good to go...
-                    [component setDelegate:self];       // 3) register self as delegate
-                    [self loadView:[delegate mainView]];// 4) pull up the view in session window
-                    [component begin];                  // 5) begin component
+                if([component isClearedToBegin]) {          // if component is good to go...
+                    [self loadView:[component mainView]];   // - pull up the view in session window
+                    [component begin];                      // - begin component
                 } else {
-                    [self throwError:[component errorLog] andBreak:YES];
+                    [self throwError:@"Component does not conform to bundle loading protocol" andBreak:YES];
                 }
             } else { // the bundle did not load
                 [self throwError:@"Could not load specified bundle" andBreak:YES];
@@ -70,7 +79,6 @@
     if([sender conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
         // append header and summary info to datafile
         [[sender mainView] removeFromSuperview];        // remove the components view from window
-        [sender tearDown];                              // let the component finalize
         if([self runCount] == 1) {
             if([sender respondsToSelector:@selector(sessionHeader)]) {
                 [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[sender sessionHeader] overWriteOnFirstWrite:NO];
@@ -96,12 +104,14 @@
         [rawData release];
         // clean up sender -- it is the sender's responsibility to remove it's temporary files (raw data file included)
         [sender tearDown];
-        [sender release]; 
+        [sender release];
     } else {
         // this is where anything would go if an application component is sending this message
     }
+    // send out the notification that the component did finish
+    [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidFinishNotification object:self];
 }
-    
+
 -(void) dealloc {
     [definition release];
 	[super dealloc];
@@ -118,26 +128,8 @@
 }
 
 - (BOOL)isClearedToBegin {
-    BOOL exists, isDirectory;
-    exists = [[NSFileManager defaultManager] fileExistsAtPath:DATADIRECTORY isDirectory:&isDirectory];
-    if(exists) {
-        if(isDirectory) {
-            return YES; // expected case (file exists and is directory)
-        } else {
-            [self throwError:@"Data Directory is not valid" andBreak:YES];
-            return NO;
-        }
-    } else {
-        // try to create directory
-        NSError *creationError = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:DATADIRECTORY withIntermediateDirectories:YES attributes:nil error:&creationError];
-        if(creationError) { // there was an error creating the directory
-            [self throwError:@"Could not create Data Directory" andBreak:YES];
-            return NO;
-        } else { // there was no error creating the directory
-            return YES;
-        }
-    }
+    // right now there is no error checking for the super class
+    return YES;
 }
 
 + (id)loadFromDefinition: (NSDictionary *)newDefinition {
@@ -157,6 +149,9 @@
     [mainLog queueLogMessage:[theDirectory stringByStandardizingPath] file:theFile contentsOfString:[theString stringByAppendingString:@"\n"] overWriteOnFirstWrite:NO];
 }
 - (void)loadView: (NSView *)view {
+    // go fullscreen with session window
+    [[TKLibrary sharedLibrary] enterFullScreenWithWindow:sessionWindow];
+    // load and center the view
     [[TKLibrary sharedLibrary] centerView:view inWindow:sessionWindow];
 }
 
@@ -194,7 +189,7 @@
 
 - (NSInteger) runCount {
     NSInteger count = 0;
-    TKDelimitedFileParser *parser = [[TKDelimitedFileParser alloc] initParserWithFile:[DATADIRECTORY stringByAppendingPathComponent:DATAFILE] 
+    TKDelimitedFileParser *parser = [[TKDelimitedFileParser alloc] initParserWithFile:[DATADIRECTORY stringByAppendingPathComponent:DATAFILE]
                                                                         usingEncoding:NSUTF8StringEncoding
                                                                   withRecordDelimiter:@"\n"
                                                                    withFieldDelimiter:@"\t"];
@@ -216,7 +211,7 @@
 
 - (NSString *)shortdate {
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-	[formatter setDateFormat:@"MM-dd-yy"];
+	[formatter setDateFormat:@"yyyy_MM_dd"];
     return [formatter stringFromDate:[NSDate date]];
 }
 
@@ -259,5 +254,6 @@ NSString * const TKComponentTaskNameKey                 = @"TKComponentTaskName"
 NSString * const TKComponentDataDirectoryKey            = @"TKComponentDataDirectory";
 
 #pragma mark Notification Names
+NSString * const TKComponentWillBeginNotification       = @"TKComponentWillBegin";
 NSString * const TKComponentDidBeginNotification        = @"TKComponentDidBegin";
 NSString * const TKComponentDidFinishNotification       = @"TKComponentDidFinish";

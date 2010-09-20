@@ -1,16 +1,16 @@
 /***************************************************************
- 
+
  TKComponentController.h
  TKUtility
- 
+
  Author: Travis Nesland <tnesland@gmail.com>
  Maintainer: Travis Nesland <tnesland@gmail.com>
- 
+
  Copyright 2010 Residential Research Facility
  (University of Kentucky). All rights reserved.
- 
+
  LastMod: 20100803 - tn
- 
+
  ***************************************************************/
 
 #import <Cocoa/Cocoa.h>
@@ -27,7 +27,7 @@
 #define BUNDLENAME [definition valueForKey:TKComponentBundleNameKey]
 #define BUNDLEPATH [[[[NSBundle mainBundle] builtInPlugInsPath] stringByAppendingPathComponent:BUNDLENAME] stringByAppendingString:@".bundle"]
 #define DATADIRECTORY [[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]
-#define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@.@",STUDY,SUBJECT_ID,SHORTDATE,TASK,DATAFILE_EXTENSION]
+#define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@.%@",STUDY,SUBJECT_ID,SHORTDATE,TASK,DATAFILE_EXTENSION]
 #define DATAFILE_EXTENSION @"tsv"
 #define DEFAULT_RUN_HEADER [NSString stringWithFormat:@"\nRun:\t%d\t%@\n",[self runCount],LONGDATE]
 #define DEFAULT_SESSION_HEADER [NSString stringWithFormat:@"Task:\t%@\tSubject ID:\t%@\tSession#:\t%@\tDate:\t%@\n",TASK,SUBJECT_ID,SESSION,LONGDATE]
@@ -42,18 +42,22 @@
 
 @interface TKComponentController : NSObject <TKComponentBundleDelegate> {
 
-    id                                          component;    
+    id                                          component;
     id                                          delegate;
     NSDictionary                                *definition;
+    TKTimer                                     *timer;
     TKLogging                                   *mainLog;
     TKLogging                                   *crashLog;
     TKSubject                                   *subject;
     NSWindow                                    *sessionWindow;
-	TKTime                                      componentStartTime;
-	TKTime                                      componentEndTime;    
+    TKTime                                      componentStartTime;
+    TKTime                                      componentEndTime;
 }
 @property (assign)              id              delegate;
 @property (readonly)            NSDictionary    *definition;
+@property (assign)              TKTimer         *timer;
+@property (assign)              TKLogging       *mainLog;
+@property (assign)              TKLogging       *crashLog;
 @property (assign)              TKSubject       *subject;
 @property (assign)              NSWindow        *sessionWindow;
 @property (readonly)            TKTime          componentStartTime;
@@ -104,7 +108,7 @@
  Log string to given directory and file (also appends newline at end of string)
  */
 - (void)logString: (NSString *)theString toDirectory: (NSString *)theDirectory toFile: (NSString *)theFile;
- 
+
 /**
  Validate the component without actually running - becuase the component is not run, this is only able to check setup errors
  Return: A string representation of all errors that occured in the component
@@ -163,10 +167,11 @@ enum {
     TKComponentTypeCocoaBundle              = 0,
     TKComponentTypeCocoaApplication         = 1,
     TKComponentTypeFutureBasicApplication   = 2
-}; typedef NSInteger TKComponentType;   
+}; typedef NSInteger TKComponentType;
 
 #pragma mark Notifications
 /** Notifications */
+extern NSString * const TKComponentWillBeginNotification;
 extern NSString * const TKComponentDidBeginNotification;
 extern NSString * const TKComponentDidFinishNotification;
 
