@@ -36,7 +36,7 @@
 #define SHORTDATE [self shortdate]
 #define STUDY [subject study]
 #define SUBJECT_ID [subject subject_id]
-#define TASK [definition valueForKey:TKComponentNameKey]
+#define TASK [definition valueForKey:TKComponentTaskNameKey]
 #define TEMPDIRECTORY [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"_TEMP"]
 #define TEMPFILE [DATAFILE stringByAppendingString:@"~"]
 
