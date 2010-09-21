@@ -24,13 +24,13 @@
     if(![self isClearedToBegin]) { return; }
     // ...else proceed
 
+    // send notification that we are about to begin
+    [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentWillBeginNotification object:self];
+
     // grab references to logs and timers
     [self setTimer:[TKTimer appTimer]];
     [self setMainLog:[TKLogging mainLogger]];
     [self setCrashLog:[TKLogging crashRecoveryLogger]];
-
-    // send notification that we are about to begin
-    [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentWillBeginNotification object:self];
 
     // begin component according to component type
     switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) {
@@ -101,15 +101,15 @@
         // transfer raw data from temp file to datafile
         NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[sender rawDataFile]]];
         [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
-        [rawData release];
+        [rawData autorelease];
         // clean up sender -- it is the sender's responsibility to remove it's temporary files (raw data file included)
         [sender tearDown];
         [sender release];
     } else {
         // this is where anything would go if an application component is sending this message
     }
-    // send out the notification that the component did finish
-    [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidFinishNotification object:self];
+    // best to clean up after ourself
+    [self end];
 }
 
 -(void) dealloc {
@@ -122,7 +122,6 @@
 }
 
 -(void) end {
-    component = nil;
     componentEndTime = current_time_marker();
     [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidFinishNotification object:self];
 }
@@ -172,6 +171,7 @@
             } else { // component does not conform to required protocol
                 return @"Bundle does not conform to required protocol\n";
             }
+            [component release]; component = nil;
             break;
         case TKComponentTypeCocoaApplication:
             // TODO: implement preflight for cocoa app
