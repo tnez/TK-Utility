@@ -1,16 +1,16 @@
 /***************************************************************
- 
+
  TKLogging.m
  TKUtility
- 
+
  Author: Scott Southerland
  Maintainer: Travis Nesland <tnesland@gmail.com>
- 
+
  Copyright 2010 Residential Research Facility
  (University of Kentucky). All rights reserved.
- 
+
  LastMod: 20100803 - tn
- 
+
  ***************************************************************/
 
 #import "TKLogging.h"
@@ -22,10 +22,10 @@
 -(void) writeToDirectory:(NSString *)directory file:(NSString *)file contentsOfString:(NSString *)string overWriteOnFirstWrite:(BOOL)shouldOverwrite withOffset:(NSNumber *)offset{
 	count++;
 	@synchronized(self){
-		NSString * fullPath=[directory stringByAppendingPathComponent:file];
-		if([filesWrittenTo valueForKey:fullPath]==nil){
+		NSString * fullPath=[[directory stringByAppendingPathComponent:file] stringByStandardizingPath];
+		if([filesWrittenTo valueForKey:fullPath]==nil||![TKLogging fileExists:fullPath]){
 			NSString * stringToWrite=[NSString stringWithString:@""];
-			[self createDirectoryIfNeeded:directory];
+			[self createDirectoryIfNeeded:[directory stringByStandardizingPath]];
 			if(shouldOverwrite||![TKLogging fileExists:fullPath]){
 				[stringToWrite writeToFile:fullPath atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 			}
@@ -44,8 +44,6 @@
 }
 
 -(void)writeToDirectory:(NSString *)directory file:(NSString *)file contentsOfString:(NSString *)string overWriteOnFirstWrite:(BOOL)shouldOverwrite{
-	// create directory if needed
-	[self createDirectoryIfNeeded:directory];
 	// create empty file if needed
 	if(![[NSFileManager defaultManager] fileExistsAtPath:[directory stringByAppendingPathComponent:file]]) {
 		[[NSFileManager defaultManager] createFileAtPath:[directory stringByAppendingPathComponent:file] contents:nil attributes:nil];
@@ -172,7 +170,7 @@
 		nanosleep(&ts, NULL);
 	}
 }
-	
+
 +(NSInteger) unwrittenItemCount {
 	return [[TKLogging mainLogger] count] + [[TKLogging crashRecoveryLogger] count];
 }
