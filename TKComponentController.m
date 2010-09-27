@@ -101,7 +101,6 @@
         // transfer raw data from temp file to datafile
         NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[sender rawDataFile]]];
         [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
-        [rawData autorelease];
         // clean up sender -- it is the sender's responsibility to remove it's temporary files (raw data file included)
         [sender tearDown];
         [sender release];
