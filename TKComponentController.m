@@ -249,8 +249,8 @@ NSString * const TKComponentTypeKey                     = @"TKComponentType";
 NSString * const TKComponentNameKey                     = @"TKComponentName";
 NSString * const TKComponentBundleNameKey               = @"TKComponentBundleName";
 NSString * const TKComponentBundleIdentifierKey         = @"TKComponentBundleIdentifier";
-NSString * const TKComponentTaskNameKey                 = @"TKComponentTaskName";
-NSString * const TKComponentDataDirectoryKey            = @"TKComponentDataDirectory";
+
+
 
 #pragma mark Notification Names
 NSString * const TKComponentWillBeginNotification       = @"TKComponentWillBegin";

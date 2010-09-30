@@ -26,7 +26,7 @@
 #define BUNDLEIDENTIFIER [definition valueForKey:TKComponentBundleIdentifierKey]
 #define BUNDLENAME [definition valueForKey:TKComponentBundleNameKey]
 #define BUNDLEPATH [[[[NSBundle mainBundle] builtInPlugInsPath] stringByAppendingPathComponent:BUNDLENAME] stringByAppendingString:@".bundle"]
-#define DATADIRECTORY [[definition valueForKey:TKComponentDataDirectoryKey] stringByStandardizingPath]
+#define DATADIRECTORY [[component dataDirectory] stringByStandardizingPath]
 #define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@.%@",STUDY,SUBJECT_ID,TASK,SHORTDATE,DATAFILE_EXTENSION]
 #define DATAFILE_EXTENSION @"tsv"
 #define DEFAULT_RUN_HEADER [NSString stringWithFormat:@"\nRun:\t%d\t%@\n",[self runCount],LONGDATE]
@@ -36,7 +36,7 @@
 #define SHORTDATE [self shortdate]
 #define STUDY [subject study]
 #define SUBJECT_ID [subject subject_id]
-#define TASK [definition valueForKey:TKComponentTaskNameKey]
+#define TASK [component taskName]
 #define TEMPDIRECTORY [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"_TEMP"]
 #define TEMPFILE [DATAFILE stringByAppendingString:@"~"]
 
@@ -158,8 +158,8 @@ extern NSString * const TKComponentTypeKey;
 extern NSString * const TKComponentNameKey;
 extern NSString * const TKComponentBundleNameKey;
 extern NSString * const TKComponentBundleIdentifierKey;
-extern NSString * const TKComponentTaskNameKey;
-extern NSString * const TKComponentDataDirectoryKey;
+
+
 
 #pragma mark Enumerations
 /** Enumerated Values */
@@ -194,6 +194,10 @@ extern NSString * const TKComponentDidFinishNotification;
  */
 - (void)begin;
 /**
+ Return a string representing the data directory for the component
+ */
+- (NSString *)dataDirectory;
+/**
  Return a string object representing all current errors in log form
  */
 - (NSString *)errorLog;
@@ -226,6 +230,10 @@ extern NSString * const TKComponentDidFinishNotification;
  Return YES if component should perform recovery actions
  */
 - (BOOL) shouldRecover;
+/**
+ Return the name for the current task
+ */
+- (NSString *)taskName;
 /**
  Perform any and all finalization required by component
  */
