@@ -162,7 +162,7 @@
             if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
                 [component setDefinition:definition];   // 1) set definition for comp
                 [component setup];                      // 2) internal setup for comp
-                if([component isClearedToBegin]) {      // -  if component is good to go...
+                if([[component errorLog] isEqualToString:@""]) {      // -  if component is good to go...
                     return @"Bundle Successfully Loaded (No Errors Reported)\n";
                 } else {
                     return [component errorLog];
