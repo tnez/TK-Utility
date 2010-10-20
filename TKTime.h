@@ -22,7 +22,21 @@ typedef struct {
   NSUInteger microseconds;
 } TKTime;
 
+/** Returns a new time value using the given second and microsecond values */
 TKTime new_time_marker (NSUInteger sec, NSUInteger microsec);
+
+/** Returns a new time marker using the current second and mircrosecond values */
 TKTime current_time_marker ();
+
+/** Returns the difference of two time markers as a time */
 TKTime difference (TKTime startMarker, TKTime stopMarker);
+
+/** Returns the difference between the current time and a previous time
+    marker as a time */
 TKTime time_since (TKTime startMarker);
+
+/** Returns the count of microseconds in a given time */
+NSUInteger time_as_microseconds (TKTime timeMarker);
+
+/** Returns a new time marker created from microseconds value */
+TKTime time_from_microseconds (NSUInteger usecs);

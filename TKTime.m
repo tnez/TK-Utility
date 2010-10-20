@@ -45,3 +45,11 @@ TKTime difference (TKTime startMarker, TKTime stopMarker) {
 TKTime time_since (TKTime startMarker) {
   return difference(startMarker, current_time_marker());
 }
+
+NSUInteger time_as_microseconds (TKTime marker) {
+    return marker.seconds * 1000000 + marker.microseconds;
+}
+
+TKTime time_from_microseconds (NSUInteger usecs) {
+    return new_time_marker(usecs / 1000000, usecs % 1000000);
+}
