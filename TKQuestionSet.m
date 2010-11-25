@@ -117,7 +117,7 @@
          [TKQuestion questionWithUid:[rec objectAtIndex:0]
                             withText:[rec objectAtIndex:1]
                 withAdditionalFields:
-          [rec subarrayWithRange:NSMakeRange(2,[rec count]-1)]]];
+          [rec subarrayWithRange:NSMakeRange(2,[rec count]-2)]]];
       } else {
         // make a new question w/ no add. fields
         [self addQuestion:
