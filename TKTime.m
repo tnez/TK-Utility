@@ -53,3 +53,11 @@ NSUInteger time_as_microseconds (TKTime marker) {
 TKTime time_from_microseconds (NSUInteger usecs) {
     return new_time_marker(usecs / 1000000, usecs % 1000000);
 }
+
+NSUInteger time_as_milliseconds (TKTime marker) {
+    return marker.seconds * 1000 + marker.microseconds / 1000;
+}
+
+TKTime time_from_milliseconds (NSUInteger msecs) {
+  return new_time_marker(msecs / 1000, (msecs % 1000) * 1000);
+}

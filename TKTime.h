@@ -40,3 +40,9 @@ NSUInteger time_as_microseconds (TKTime timeMarker);
 
 /** Returns a new time marker created from microseconds value */
 TKTime time_from_microseconds (NSUInteger usecs);
+
+/** Returns the count of milliseconds for a given time marker */
+NSUInteger time_as_milliseconds (TKTime timeMarker);
+
+/** Returns a new time marker created from milliseconds value */
+TKTime time_from_milliseconds (NSUInteger msecs);
