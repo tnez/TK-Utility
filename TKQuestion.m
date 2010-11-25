@@ -19,13 +19,27 @@
 
 @implementation TKQuestion
 
-@synthesize uid,text,leftScaleOverride,rightScaleOverride;
+@synthesize uid,text,leftScaleOverride,rightScaleOverride,additionalFields;
 
 +(TKQuestion *)questionWithUid:(NSString *)_uid
                       withText:(NSString *)_text
 {
   TKQuestion *newQuestion = [TKQuestion alloc];
   if([newQuestion initWithUid:_uid withText:_text])
+  {
+    return [newQuestion autorelease];
+  }
+  [newQuestion release];
+  return nil;
+}
++(TKQuestion *)questionWithUid: (NSString *)_uid
+                      withText: (NSString *)_text
+          withAdditionalFields: (NSArray *)_addFields
+{
+  TKQuestion *newQuestion = [TKQuestion alloc];
+  if([newQuestion initWithUid:_uid
+                     withText:_text
+         withAdditionalFields:_addFields])
   {
     return [newQuestion autorelease];
   }
@@ -66,6 +80,23 @@
   {
     uid = [_uid copy];
     text = [_text copy];
+    leftScaleOverride = nil;
+    rightScaleOverride = nil;
+    return self;
+  }
+  return nil;
+}
+
+
+-(TKQuestion *) initWithUid:(NSString *)_uid
+                   withText:(NSString *)_text
+       withAdditionalFields:(NSArray *)_addFields
+{
+  if(self=[super init])
+  {
+    uid = [_uid copy];
+    text = [_text copy];
+    additionalFields = [_addFields copy];
     leftScaleOverride = nil;
     rightScaleOverride = nil;
     return self;

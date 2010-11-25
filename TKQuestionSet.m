@@ -49,6 +49,12 @@
   return [questions count] == 0;
 }
 
+-(BOOL)isValidQuestion: (NSArray *)_question {
+  // for now we are only going to check that this
+  // array has the min two fields expected
+  return [_question count] >= 2;
+}
+  
 -(id)nextQuestion
 {
   if(![self isEmpty])
@@ -73,9 +79,14 @@
   return nil;
 }
 
--(void)addQuestion:(TKQuestion *)newQuestion
+/* 
+ Description: Add a new question to the question set
+ Return: ptr to the new question
+*/
+-(id)addQuestion:(TKQuestion *)newQuestion
 {
 	[questions addObject:newQuestion];
+  return newQuestion;
 }
 
 -(NSInteger) count { // returns current count of question set
@@ -83,19 +94,36 @@
 }
 
 -(BOOL) questionsHaveLoaded {
-	TKDelimitedFileParser *parser = [[TKDelimitedFileParser parserWithFile:fullPathToFile
-															 usingEncoding:DEFAULT_ENCODING
-                                                       withRecordDelimiter:DEFAULT_RECORD_DELIM
-                                                        withFieldDelimiter:DEFAULT_FIELD_DELIM] retain];
+	TKDelimitedFileParser *parser = 
+  [[TKDelimitedFileParser parserWithFile:fullPathToFile
+                           usingEncoding:DEFAULT_ENCODING
+                     withRecordDelimiter:DEFAULT_RECORD_DELIM
+                      withFieldDelimiter:DEFAULT_FIELD_DELIM] retain];
 	// if question file was parsed successfully...
 	if(parser) {
 		// for each record in set . . .
 		for(NSArray *rec in [parser records]) {
+      // if this record is not a valid question...
+      if(![self isValidQuestion:rec]) {
+        // break from reading and return error
+        return NO;
+      }
 			// . . . create new question
-			// question fields as follows: id - text - (left override) - (right override)
-			[self addQuestion:
-			 [TKQuestion questionWithUid:[rec objectAtIndex:0]
-													withText:[rec objectAtIndex:1]]];
+			// question fields as follows: id - text - add. fields (variable)
+      // if the question has additional fields...
+      if([rec count]>2) {
+        // make a new question w/ add. fields
+        [self addQuestion:
+         [TKQuestion questionWithUid:[rec objectAtIndex:0]
+                            withText:[rec objectAtIndex:1]
+                withAdditionalFields:
+          [rec subarrayWithRange:NSMakeRange(2,[rec count]-1)]]];
+      } else {
+        // make a new question w/ no add. fields
+        [self addQuestion:
+         [TKQuestion questionWithUid:[rec objectAtIndex:0]
+                            withText:[rec objectAtIndex:1]]];
+      }
 		}
 		// release parser and retur
 		[parser release]; return YES;

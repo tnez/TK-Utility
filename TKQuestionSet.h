@@ -40,10 +40,11 @@ enum {TKQuestionSetSequentialAccess = 0,
 @property(readonly) NSString *errorDescription;
 @property(readwrite) NSUInteger accessMethod;
 
--(void) addQuestion:(TKQuestion *) newQuestion;
+-(id) addQuestion:(TKQuestion *) newQuestion;
 -(NSInteger) count;
 -(id) initFromFile:(NSString *) _fullpath usingAccessMethod:(NSUInteger) _accessMethod;
 -(BOOL) isEmpty;
+-(BOOL) isValidQuestion:(NSArray *)_question;
 -(id) nextQuestion;
 -(id) questionWithId:(NSString *) questionId;
 +(id) questionSetFromFile:(NSString *) _fullpath usingAccessMethod:(NSUInteger) _accessMethod;

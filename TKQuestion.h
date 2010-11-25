@@ -23,12 +23,16 @@
                                // default left slider prompt
   NSString *rightScaleOverride;// optional, if exists overrides
                                // default right slider prompt
+  NSArray  *additionalFields;  // additional fields which are not the
+                               // responsibility of the question data
+                               // type - this adds flexibility 
 }
 
 @property(readonly) NSString *uid;
 @property(readonly) NSString *text;
 @property(readonly) NSString *leftScaleOverride;
 @property(readonly) NSString *rightScaleOverride;
+@property(readonly) NSArray  *additionalFields;
 
 //
 // questionWithUid:withText:
@@ -38,6 +42,16 @@
                        withText:(NSString *)_text;
 -(TKQuestion *) initWithUid:(NSString *)_uid
                    withText:(NSString *)_text;
+//
+// questionWithUid:withText:withAdditionalFields
+// Standard way to instantiate a question providing the
+// unique id and question text and additional (flexible) fields
++(TKQuestion *) questionWithUid:(NSString *)_uid
+                       withText:(NSString *)_text
+           withAdditionalFields:(NSArray *)_addFields;
+-(TKQuestion *) initWithUid:(NSString *)_uid
+                   withText:(NSString *)_text
+       withAdditionalFields:(NSArray *)_addFields;
 //
 // questionWithUid:withText:withLeftOverride:withRightOverride:
 // Way to instantiate a question that will have a different
