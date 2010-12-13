@@ -170,6 +170,8 @@
             } else { // component does not conform to required protocol
                 return @"Bundle does not conform to required protocol\n";
             }
+            // we called setup... so we best call tear down
+            [component tearDown];
             [component release]; component = nil;
             break;
         case TKComponentTypeCocoaApplication:
