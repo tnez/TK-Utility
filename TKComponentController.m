@@ -14,6 +14,7 @@
  ***************************************************************/
 
 #import "TKComponentController.h"
+#import "TKComponentCocoaApp.h"
 
 @implementation TKComponentController
 @synthesize delegate,definition,timer,mainLog,crashLog,subject,sessionWindow,componentStartTime,componentEndTime;
@@ -57,10 +58,20 @@
             }
             break;
 
-        case TKComponentTypeCocoaApplication:
-            // TODO: load cocoa application
-            [self throwError:@"Cannot load CoCoa applications (support is coming soon)" andBreak:YES];
-            break;
+      case TKComponentTypeCocoaApplication:
+        // load the bundle
+        component = [[TKComponentCocoaApp alloc]
+                     initWithDefinition:definition];
+        [component setDelegate:self];
+        // if component is cleared to begin...
+        if([component isClearedToBegin]) {
+          // begin
+          [component begin];
+        } else { // throw error
+          [self throwError:@"Could not load specified cocoa application"
+                  andBreak:YES];
+        }
+        break; // end of begin cocoa application
 
         case TKComponentTypeFutureBasicApplication:
             // TODO: load future basic application
@@ -76,39 +87,44 @@
 
 - (void)componentDidFinish: (id)sender {
     // if this is a loadable component bundle that just finished
-    if([sender conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
+    if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
         // append header and summary info to datafile
-        [[sender mainView] removeFromSuperview];        // remove the components view from window
+        [[component mainView] removeFromSuperview];        // remove the components view from window
         if([self runCount] == 1) {
-            if([sender respondsToSelector:@selector(sessionHeader)]) {
-                [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[sender sessionHeader] overWriteOnFirstWrite:NO];
+            if([component respondsToSelector:@selector(sessionHeader)]) {
+                [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[component sessionHeader] overWriteOnFirstWrite:NO];
             } else { // use default session header
                 [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:DEFAULT_SESSION_HEADER overWriteOnFirstWrite:NO];
             }
         } else {}
-        if([sender respondsToSelector:@selector(runHeader)]) { // custom run header
-            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[sender runHeader] overWriteOnFirstWrite:NO];
+        if([component respondsToSelector:@selector(runHeader)]) { // custom run header
+            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[component runHeader] overWriteOnFirstWrite:NO];
         } else { // use default run heaer
             [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:DEFAULT_RUN_HEADER overWriteOnFirstWrite:NO];
         }
-        if([sender respondsToSelector:@selector(summary)]) {
-            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[sender summary] overWriteOnFirstWrite:NO];
+        if([component respondsToSelector:@selector(summary)]) {
+            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[component summary] overWriteOnFirstWrite:NO];
         } else {}
         // wait for log queue to clear
         while([TKLogging unwrittenItemCount] > 0) {
             NSLog(@"TKComponentController waiting for log queue to clear before finalizing data file");
         }
         // transfer raw data from temp file to datafile
-        NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[sender rawDataFile]]];
+        NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[component rawDataFile]]];
         [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
-        // clean up sender -- it is the sender's responsibility to remove it's temporary files (raw data file included)
-        [sender tearDown];
-        [sender release];
-    } else {
-        // this is where anything would go if an application component is sending this message
-    }
-    // best to clean up after ourself
-    [self end];
+        // clean up component -- it is the component's responsibility to remove it's temporary files (raw data file included)
+        [component tearDown];
+        [component release];
+    } 
+  // if this is a cocoa app that has finished...
+  if([[definition valueForKey:TKComponentTypeKey] integerValue] ==
+     TKComponentTypeCocoaApplication) {
+    // then it is time to tear down
+    [component tearDown];
+    [component release];
+  } // end of cocoa app cleanup
+    
+  [self end];
 }
 
 -(void) dealloc {

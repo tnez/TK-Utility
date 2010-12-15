@@ -29,6 +29,8 @@
 		4013132B11B6C8D3003264DE /* TKQuestion.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A88DD311B53BD200C9FD1C /* TKQuestion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4013132C11B6C8D3003264DE /* TKQuestionSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A88DD511B53BD200C9FD1C /* TKQuestionSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		404F3D221191B2BB00C32CB8 /* TKDelimitedFileParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */; };
+		405258D512B8EA8A0053F4E1 /* TKComponentCocoaApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 405258D312B8EA8A0053F4E1 /* TKComponentCocoaApp.h */; };
+		405258D612B8EA8A0053F4E1 /* TKComponentCocoaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 405258D412B8EA8A0053F4E1 /* TKComponentCocoaApp.m */; };
 		405D390511A416B9009ED54A /* TKDelimitedFileParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */; };
 		40690A2B122413EB0032DCE6 /* TKComponentBundleDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4071195211E5107800B7B59A /* TKPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 4071195011E5107800B7B59A /* TKPreferences.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -77,6 +79,8 @@
 		4006602A11AECAAF00FE4924 /* regular.tab */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = regular.tab; path = SAMPLE/regular.tab; sourceTree = "<group>"; };
 		404F3D1F1191B2BB00C32CB8 /* TKDelimitedFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDelimitedFileParser.h; sourceTree = "<group>"; };
 		404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParser.m; sourceTree = "<group>"; };
+		405258D312B8EA8A0053F4E1 /* TKComponentCocoaApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKComponentCocoaApp.h; sourceTree = "<group>"; };
+		405258D412B8EA8A0053F4E1 /* TKComponentCocoaApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKComponentCocoaApp.m; sourceTree = "<group>"; };
 		405D390311A416B9009ED54A /* TKDelimitedFileParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKDelimitedFileParserTest.h; sourceTree = "<group>"; };
 		405D390411A416B9009ED54A /* TKDelimitedFileParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKDelimitedFileParserTest.m; sourceTree = "<group>"; };
 		40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = TKComponentBundleDelegate.h; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */,
 				40A88DD111B53BD100C9FD1C /* TKComponentController.h */,
 				40A88DD211B53BD200C9FD1C /* TKComponentController.m */,
+				405258D312B8EA8A0053F4E1 /* TKComponentCocoaApp.h */,
+				405258D412B8EA8A0053F4E1 /* TKComponentCocoaApp.m */,
 				404F3D1F1191B2BB00C32CB8 /* TKDelimitedFileParser.h */,
 				404F3D201191B2BB00C32CB8 /* TKDelimitedFileParser.m */,
 				40B4874811AF0309008C8CB5 /* TKLibrary.h */,
@@ -304,6 +310,7 @@
 				4071195211E5107800B7B59A /* TKPreferences.h in Headers */,
 				40690A2B122413EB0032DCE6 /* TKComponentBundleDelegate.h in Headers */,
 				40E4D5DF1234482A0075E9D9 /* TKSubject.h in Headers */,
+				405258D512B8EA8A0053F4E1 /* TKComponentCocoaApp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +445,7 @@
 				401311DC11B67721003264DE /* TKQuestionSet.m in Sources */,
 				4071195311E5107800B7B59A /* TKPreferences.m in Sources */,
 				40E4D5E01234482A0075E9D9 /* TKSubject.m in Sources */,
+				405258D612B8EA8A0053F4E1 /* TKComponentCocoaApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
