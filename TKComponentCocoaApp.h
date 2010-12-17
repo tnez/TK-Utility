@@ -23,6 +23,7 @@
   NSString                                    *taskName;
   NSString                                    *inputDir;
   NSString                                    *outputDir;
+  NSString                                    *dataDir;
   NSArray                                     *inputFiles;  
   NSArray                                     *outputFilesToIgnore;
   BOOL                                        shouldRenameOutputFiles;
@@ -34,6 +35,7 @@
 @property (nonatomic, retain) NSString        *taskName;
 @property (nonatomic, retain) NSString        *inputDir;
 @property (nonatomic, retain) NSString        *outputDir;
+@property (nonatomic, retain) NSString        *dataDir;
 @property (nonatomic, retain) NSArray         *inputFiles;
 @property (nonatomic, retain) NSArray         *outputFilesToIgnore;
 @property (readwrite)         BOOL            shouldRenameOutputFiles;
@@ -101,6 +103,12 @@
  the operation of the Cocoa Application
  */
 #pragma mark PREFERENCE KEYS
+
+/**
+ The path to the directory which you intend as the destination for the
+ final data file
+ */
+extern NSString * const TKComponentDataDirectoryKey;
 
 /**
  The path to the application (same as you would launch from the Finder)

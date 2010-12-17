@@ -11,7 +11,7 @@
 
 
 @implementation TKComponentCocoaApp
-@synthesize delegate,appPath,taskName,inputDir,outputDir,inputFiles,
+@synthesize delegate,appPath,taskName,inputDir,outputDir,dataDir,inputFiles,
 outputFilesToIgnore,shouldRenameOutputFiles;
 
 /**
@@ -76,14 +76,13 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   if(newName) {
     [fm copyItemAtPath:[[outputDir stringByAppendingPathComponent:filename]
                         stringByStandardizingPath]
-                toPath:[[[delegate dataDirectory] 
-                         stringByAppendingPathComponent:newName]
+                toPath:[[dataDir stringByAppendingPathComponent:newName]
                         stringByStandardizingPath]
                  error:&copyError];
   } else { // same name version
     [fm copyItemAtPath:[[outputDir stringByAppendingPathComponent:filename]
                         stringByStandardizingPath]
-                toPath:[[delegate dataDirectory] stringByStandardizingPath]
+                toPath:[dataDir stringByStandardizingPath]
                  error:&copyError];
   }
   // if there was an error...
@@ -91,7 +90,7 @@ outputFilesToIgnore,shouldRenameOutputFiles;
     // log the error
     NSLog(@"Error copying: %@ to: %@... %@",
           [outputDir stringByAppendingPathComponent:filename],
-          [[delegate dataDirectory] stringByAppendingPathComponent:newName],
+          [dataDir stringByAppendingPathComponent:newName],
           [copyError localizedDescription]);
     // return no to represent failure
     return NO;
@@ -109,6 +108,7 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   [taskName release];
   [inputDir release];
   [outputDir release];
+  [dataDir release];
   [inputFiles release];
   [outputFilesToIgnore release];
   [pid release];
@@ -159,6 +159,10 @@ outputFilesToIgnore,shouldRenameOutputFiles;
     [self setOutputDir:
      [[definition valueForKey:TKComponentCocoaAppOutputDirKey]
       stringByStandardizingPath]];
+    // dataDir
+    [self setDataDir:
+     [[definition valueForKey:TKComponentDataDirectoryKey]
+      stringByStandardizingPath]];
     // inputFiles
     [self setInputFiles:
      [definition valueForKey:TKComponentCocoaAppSupportFilesKey]];
@@ -190,8 +194,10 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   // copy support files into input directory
   NSError *copyError = nil;
   for(NSString *file in inputFiles) {
+    NSString *nameComponent = [[file lastPathComponent] retain];
     [fm copyItemAtPath:[file stringByStandardizingPath]
-                toPath:inputDir error:&copyError];
+                toPath:[inputDir stringByAppendingPathComponent:nameComponent]
+                 error:&copyError];
     // if there was an error copying the file...
     if(copyError) {
       // log the error
@@ -202,6 +208,7 @@ outputFilesToIgnore,shouldRenameOutputFiles;
       [copyError release], copyError = nil;
       errorCount++;
     } // end of handle copy error
+    [nameComponent release];
   }   // end of copy input file to input dir
   
   // you might think to check that output dir exists as well, but
@@ -247,7 +254,8 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   // for every file path in our ignore list...
   for(NSString *ignoreFile in outputFilesToIgnore) {
     // if ignore path is equal to given path...
-    if([[ignoreFile stringByStandardizingPath] isEqualToString:pathToOutputFile]) {
+    if([[ignoreFile stringByStandardizingPath]
+        isEqualToString:pathToOutputFile]) {
       // ...then we should ignore
       return YES;
     }
@@ -307,6 +315,8 @@ outputFilesToIgnore,shouldRenameOutputFiles;
         // then remove the old file
         [self removeOutputFile:fname];
       }
+      // increment our move counter
+      movedCount++;
     }   // end of looping through output files
   } else { // beginning of same name copy / move
     // then for all found output files...
@@ -328,6 +338,7 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   
 @end
 
+NSString * const TKComponentDataDirectoryKey = @"TKComponentDataDirectory";
 NSString * const TKComponentCocoaAppPathKey = @"TKComponentCocoaAppPath";
 NSString * const TKComponentCocoaAppTaskNameKey = @"TKComponentCocoaAppTaskName";
 NSString * const TKComponentCocoaAppInputDirKey = @"TKComponentCocoaAppInputDir";
