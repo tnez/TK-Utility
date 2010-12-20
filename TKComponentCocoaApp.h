@@ -71,6 +71,11 @@
 - (void)checkIfApplicationIsDone: (NSNotification *)theNote;
 
 /**
+ Clean input directory (remove any support that we created)
+ */
+- (BOOL)cleanInputDirectory;
+
+/**
  Copy output file to target -- if a target name is given this method
  will attempt to rename the file upon copy
  If the copy fails the method logs the error and returns NO

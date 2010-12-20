@@ -60,6 +60,35 @@ outputFilesToIgnore,shouldRenameOutputFiles;
 }
 
 /**
+ Clean input directory (remove any support that we created)
+ */
+- (BOOL)cleanInputDirectory {
+  NSInteger errorCount = 0;  
+  // for each file in our input list
+  for(NSString *filePath in inputFiles) {
+    // get the filename
+    NSString *fileName = [filePath lastPathComponent];
+    // attempt to remove the file from the apps input dir
+    // and keep track of errors
+    NSError *removalError = nil;
+
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [fm removeItemAtPath:[inputDir stringByAppendingPathComponent:fileName]
+                   error:&removalError];
+    // if there was an error...
+    if(removalError) {
+      // log the error
+      NSLog(@"There was an error removing the support file: %@... %@",
+            fileName,[removalError localizedDescription]);
+      // inrement the error counter
+      errorCount++;
+    } // end of error handling
+  } // end of file processing loop
+  // return success YES|NO
+  return !(errorCount>0);
+}
+
+/**
  Copy output file to target -- if a target name is given this method
  will attempt to rename the file upon copy... can send nil if no rename
  is required
@@ -195,6 +224,22 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   NSError *copyError = nil;
   for(NSString *file in inputFiles) {
     NSString *nameComponent = [[file lastPathComponent] retain];
+    // if the file already exists at path...
+    if([fm fileExistsAtPath:
+        [inputDir stringByAppendingPathComponent:nameComponent]]) {
+      // ...attempt to remove the old file
+      NSError *deleteError = nil;
+      [fm removeItemAtPath:
+       [inputDir stringByAppendingPathComponent:nameComponent]
+                     error:&deleteError];
+      // if there was an error deleting the file...
+      if(deleteError) {
+        // ...log the error
+        NSLog(@"Error deleting the old support file: %@... %@",
+              [file stringByStandardizingPath],
+              [deleteError localizedDescription]);
+      } // end delete error handling
+    }   // end attempt delete old support files
     [fm copyItemAtPath:[file stringByStandardizingPath]
                 toPath:[inputDir stringByAppendingPathComponent:nameComponent]
                  error:&copyError];
@@ -204,8 +249,7 @@ outputFilesToIgnore,shouldRenameOutputFiles;
       NSLog(@"Error copying: %@ to: %@... %@",
             [file stringByStandardizingPath],
             inputDir,[copyError localizedDescription]);
-      // reset that last error
-      [copyError release], copyError = nil;
+      // increment the error counter
       errorCount++;
     } // end of handle copy error
     [nameComponent release];
@@ -215,9 +259,7 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   // it is possible that the application creates this dir on the fly
   
   // if we ran into any errors, we are not cleared to begin
-  if(errorCount > 0) return NO;
-  // otherwise, we are cleared to begin
-  return YES;
+  return !(errorCount>0);
 }
 
 /**
