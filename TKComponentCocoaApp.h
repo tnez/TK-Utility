@@ -84,6 +84,14 @@
 - (BOOL)copyOutputFile: (NSString *)filename asFileName: (NSString *)newName;
 
 /**
+ Copy specified support files into our support directory
+ - creates support directory if does not already exist
+ - logs any errors encountered during copy process
+ RETURN: YES upon success NO upon failure
+ */
+- (BOOL)copySupportFiles;
+
+/**
  If the specified support directory does not exist, create
  */
 - (void)createSupportDirectoryIfNeeded;

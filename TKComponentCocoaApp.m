@@ -129,6 +129,55 @@ outputFilesToIgnore,shouldRenameOutputFiles;
 }
 
 /**
+ Copy specified support files into our support directory
+ - creates support directory if does not already exist
+ - logs any errors encountered during copy process
+ RETURN: YES upon success NO upon failure
+ */
+- (BOOL)copySupportFiles {
+  // our local error flag
+  BOOL hadError = NO;
+  // create support directory if needed
+  [self createSupportDirectoryIfNeeded];
+  // copy support files into input directory
+  NSFileManager *fm = [NSFileManager defaultManager];
+  NSError *copyError = nil;
+  for(NSString *file in inputFiles) {
+    NSString *nameComponent = [[file lastPathComponent] retain];
+    // if the file already exists at path...
+    if([fm fileExistsAtPath:
+        [inputDir stringByAppendingPathComponent:nameComponent]]) {
+      // ...attempt to remove the old file
+      NSError *deleteError = nil;
+      [fm removeItemAtPath:
+       [inputDir stringByAppendingPathComponent:nameComponent]
+                     error:&deleteError];
+      // if there was an error deleting the file...
+      if(deleteError) {
+        // ...log the error
+        NSLog(@"Error deleting the old support file: %@... %@",
+              [file stringByStandardizingPath],
+              [deleteError localizedDescription]);
+      } // end delete error handling
+    }   // end attempt delete old support files
+    [fm copyItemAtPath:[file stringByStandardizingPath]
+                toPath:[inputDir stringByAppendingPathComponent:nameComponent]
+                 error:&copyError];
+    // if there was an error copying the file...
+    if(copyError) {
+      // log the error
+      NSLog(@"Error copying: %@ to: %@... %@",
+            [file stringByStandardizingPath],
+            inputDir,[copyError localizedDescription]);
+      // note error
+      hadError = YES;
+    } // end of handle copy error
+    [nameComponent release];
+  }   // end of copy input file to input dir
+  return !hadError;
+}
+
+/**
  If the specified support directory does not exist, create
  */
 - (void)createSupportDirectoryIfNeeded {
@@ -227,58 +276,23 @@ outputFilesToIgnore,shouldRenameOutputFiles;
 }
 
 - (BOOL)isClearedToBegin {
-  // initialize an empty error count
-  NSInteger errorCount = 0;
   // we will be moving files around, so lets grab a referene to the
   // default file manager
   NSFileManager *fm = [NSFileManager defaultManager];
   // is the app path valid
   if(![fm fileExistsAtPath:appPath]) {
     NSLog(@"No file is found at %@",appPath);
-    errorCount++;
+    return NO;
   }
-  // create support directory if needed
-  [self createSupportDirectoryIfNeeded];
-  // copy support files into input directory
-  NSError *copyError = nil;
-  for(NSString *file in inputFiles) {
-    NSString *nameComponent = [[file lastPathComponent] retain];
-    // if the file already exists at path...
-    if([fm fileExistsAtPath:
-        [inputDir stringByAppendingPathComponent:nameComponent]]) {
-      // ...attempt to remove the old file
-      NSError *deleteError = nil;
-      [fm removeItemAtPath:
-       [inputDir stringByAppendingPathComponent:nameComponent]
-                     error:&deleteError];
-      // if there was an error deleting the file...
-      if(deleteError) {
-        // ...log the error
-        NSLog(@"Error deleting the old support file: %@... %@",
-              [file stringByStandardizingPath],
-              [deleteError localizedDescription]);
-      } // end delete error handling
-    }   // end attempt delete old support files
-    [fm copyItemAtPath:[file stringByStandardizingPath]
-                toPath:[inputDir stringByAppendingPathComponent:nameComponent]
-                 error:&copyError];
-    // if there was an error copying the file...
-    if(copyError) {
-      // log the error
-      NSLog(@"Error copying: %@ to: %@... %@",
-            [file stringByStandardizingPath],
-            inputDir,[copyError localizedDescription]);
-      // increment the error counter
-      errorCount++;
-    } // end of handle copy error
-    [nameComponent release];
-  }   // end of copy input file to input dir
-  
+  // copy support files
+  if(![self copySupportFiles]) {
+    return NO;
+  }
   // you might think to check that output dir exists as well, but
   // it is possible that the application creates this dir on the fly
-  
-  // if we ran into any errors, we are not cleared to begin
-  return !(errorCount>0);
+  // ---------------------------------------------------------------
+  // if we made it here, we are good to go!!!
+  return YES;
 }
 
 /**
