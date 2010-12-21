@@ -111,7 +111,8 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   } else { // same name version
     [fm copyItemAtPath:[[outputDir stringByAppendingPathComponent:filename]
                         stringByStandardizingPath]
-                toPath:[dataDir stringByStandardizingPath]
+                toPath:[[dataDir stringByAppendingPathComponent:filename]
+                        stringByStandardizingPath]
                  error:&copyError];
   }
   // if there was an error...
