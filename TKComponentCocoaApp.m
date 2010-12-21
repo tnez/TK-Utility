@@ -128,6 +128,23 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   return YES;
 }
 
+/**
+ If the specified support directory does not exist, create
+ */
+- (void)createSupportDirectoryIfNeeded {
+  // if definition specifies support directory...
+  if(inputDir) {
+    NSFileManager *fm = [NSFileManager defaultManager];
+    // if said input directory does not exist...
+    BOOL isDirectory = NO;
+    if(!([fm fileExistsAtPath:inputDir isDirectory:&isDirectory]
+         && isDirectory)) {
+      // ...create the directory
+      [fm createDirectoryAtPath:inputDir attributes:nil];
+    }
+  }
+}
+
 - (void)dealloc {
   // remove our notifications
   [[[NSWorkspace sharedWorkspace] notificationCenter]
@@ -220,6 +237,8 @@ outputFilesToIgnore,shouldRenameOutputFiles;
     NSLog(@"No file is found at %@",appPath);
     errorCount++;
   }
+  // create support directory if needed
+  [self createSupportDirectoryIfNeeded];
   // copy support files into input directory
   NSError *copyError = nil;
   for(NSString *file in inputFiles) {

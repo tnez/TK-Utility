@@ -84,6 +84,11 @@
 - (BOOL)copyOutputFile: (NSString *)filename asFileName: (NSString *)newName;
 
 /**
+ If the specified support directory does not exist, create
+ */
+- (void)createSupportDirectoryIfNeeded;
+
+/**
  If the application that the workspace just did launch matches what
  we were expecting, then record critical info such as its process id
  */
