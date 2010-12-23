@@ -104,31 +104,43 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   NSString *appendTag;                                // the appending string
                                                       // in order to create
                                                       // unique name
+  NSString *currentExt;                               // the current extension
+                                                      // of the given filename
   NSString *targetName;                               // the total target name
   BOOL determinedTargetName = NO;                     // have we determined a
                                                       // valid target name?
 
+  // determine the current extension
+  // if new name provided...
+  if(newName) {
+    // we will take the extension from the new name
+    currentExt = [newName pathExtension];
+  } else {
+    // we will take the extension from the old name
+    currentExt = [filename pathExtension];
+  }
   // loop until we find a filename for our output file that does not currently
   // exist in the output directory
   while(!determinedTargetName) {
     // if first time...
     if(attemptCount==0) {
-      // ...simply append the file extension
-      appendTag = [NSString stringWithString:@".tsv"];
+      // do nothing...
     } else { // this is not our first attempt
       // ...append our unique integer followed by file extension
-      appendTag = [NSString stringWithFormat:@"_%d.tsv",attemptCount];
+      appendTag = [NSString stringWithFormat:@"_%d.%@",attemptCount,currentExt];
     }
     // create our target name
     // if we have a provided a target name base
     if(newName) {
       // ...then add append tag to new name
       targetName = [NSString stringWithString:
-                    [newName stringByAppendingString:appendTag]];
+                    [[newName stringByDeletingPathExtension]
+                     stringByAppendingString:appendTag]];
     } else { // keep same name base
       // ...then append tag to same name
       targetName = [NSString stringWithString:
-                    [filename stringByAppendingString:appendTag]];
+                    [[filename stringByDeletingPathExtension]
+                     stringByAppendingString:appendTag]];
     }
     // if the target name does not currently exist in the ouput directory
     // then we have successfully determined our target name
@@ -171,11 +183,12 @@ outputFilesToIgnore,shouldRenameOutputFiles;
                  [outputDir stringByStandardizingPath]
                                         error:nil];
   // populate our basename in the case we should rename
-  NSString *basename = [NSString stringWithFormat:@"%@_%@_%@_%@",
+  NSString *basename = [NSString stringWithFormat:@"%@_%@_%@_%@.%@",
                         [[delegate subject] study],
                         [[delegate subject] subject_id],
                         taskName,
-                        [delegate shortdate]];
+                        [delegate shortdate],
+                        @"tsv"];
   // then for all found output files...
   for(NSString *fname in outputFiles) {
     // if said file path is found in ignore list...
