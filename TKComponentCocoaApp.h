@@ -84,6 +84,14 @@
 - (BOOL)copyOutputFile: (NSString *)filename asFileName: (NSString *)newName;
 
 /**
+ Copy output files -- loop through all the output files and handle their
+ copying according to shouldRenameOutputFile and outputFilesToIgnore
+ parameters
+ RETURN: YES if all files were copied successfully - otherwise NO
+ */
+- (BOOL)copyOutputFiles;
+
+/**
  Copy specified support files into our support directory
  - creates support directory if does not already exist
  - logs any errors encountered during copy process

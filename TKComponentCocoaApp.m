@@ -96,25 +96,52 @@ outputFilesToIgnore,shouldRenameOutputFiles;
  RETURN: YES upon success NO upon failure
  */
 - (BOOL)copyOutputFile: (NSString *)filename asFileName: (NSString *)newName {
-  // grab ref to file manager
-  NSFileManager *fm = [NSFileManager defaultManager];
-  // initialize an empty error ptr
-  NSError *copyError = nil;
-  // attemp to copy and rename
-  // ...rename version
-  if(newName) {
-    [fm copyItemAtPath:[[outputDir stringByAppendingPathComponent:filename]
-                        stringByStandardizingPath]
-                toPath:[[dataDir stringByAppendingPathComponent:newName]
-                        stringByStandardizingPath]
-                 error:&copyError];
-  } else { // same name version
-    [fm copyItemAtPath:[[outputDir stringByAppendingPathComponent:filename]
-                        stringByStandardizingPath]
-                toPath:[[dataDir stringByAppendingPathComponent:filename]
-                        stringByStandardizingPath]
-                 error:&copyError];
+  // local variables used in rename process
+  NSFileManager *fm = [NSFileManager defaultManager]; // ref to file manager
+  NSError *copyError = nil;                           // error during copy  
+  NSInteger attemptCount = 0;                         // int used to append
+                                                      // unique name
+  NSString *appendTag;                                // the appending string
+                                                      // in order to create
+                                                      // unique name
+  NSString *targetName;                               // the total target name
+  BOOL determinedTargetName = NO;                     // have we determined a
+                                                      // valid target name?
+
+  // loop until we find a filename for our output file that does not currently
+  // exist in the output directory
+  while(!determinedTargetName) {
+    // if first time...
+    if(attemptCount==0) {
+      // ...simply append the file extension
+      appendTag = [NSString stringWithString:@".tsv"];
+    } else { // this is not our first attempt
+      // ...append our unique integer followed by file extension
+      appendTag = [NSString stringWithFormat:@"_%d.tsv",attemptCount];
+    }
+    // create our target name
+    // if we have a provided a target name base
+    if(newName) {
+      // ...then add append tag to new name
+      targetName = [NSString stringWithString:
+                    [newName stringByAppendingString:appendTag]];
+    } else { // keep same name base
+      // ...then append tag to same name
+      targetName = [NSString stringWithString:
+                    [filename stringByAppendingString:appendTag]];
+    }
+    // if the target name does not currently exist in the ouput directory
+    // then we have successfully determined our target name
+    determinedTargetName = ![fm fileExistsAtPath:
+                             [outputDir stringByAppendingPathComponent:
+                              targetName]];
+    // increment attempt count for next go (if needed)
+    attemptCount++;
   }
+  // copy the file
+  [fm copyItemAtPath:[outputDir stringByAppendingPathComponent:filename]
+                toPath:[dataDir stringByAppendingPathComponent:targetName]
+                 error:&copyError];
   // if there was an error...
   if(copyError) {
     // log the error
@@ -127,6 +154,60 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   }
   // else successful copy - return YES to indicate success
   return YES;
+}
+
+/**
+ Copy output files -- loop through all the output files and handle their
+ copying according to shouldRenameOutputFile and outputFilesToIgnore
+ parameters
+ RETURN: YES if all files were copied successfully - otherwise NO
+ */
+- (BOOL)copyOutputFiles {
+  NSFileManager *fm = [NSFileManager defaultManager]; // file manager ref
+  NSArray *outputFiles;                               // stack of output files
+  BOOL retValue = YES;                                // return value 
+  // populate our output file list
+  outputFiles = [fm contentsOfDirectoryAtPath:
+                 [outputDir stringByStandardizingPath]
+                                        error:nil];
+  // populate our basename in the case we should rename
+  NSString *basename = [NSString stringWithFormat:@"%@_%@_%@_%@",
+                        [[delegate subject] study],
+                        [[delegate subject] subject_id],
+                        taskName,
+                        [delegate shortdate]];
+  // then for all found output files...
+  for(NSString *fname in outputFiles) {
+    // if said file path is found in ignore list...
+    if([self shouldIgnoreOutputFile:fname]) {
+      // ...then do nothing and move to next file
+      continue;
+    }
+    // else... we're good to go...
+    // if this is a rename process
+    if(shouldRenameOutputFiles) {
+      // attempt to copy output file
+      // if attempt was successful...
+      if([self copyOutputFile:fname asFileName:basename]) {
+        // then remove the old file
+        [self removeOutputFile:fname];
+      } else { // there was some error
+        // adjust return value to indicate error
+        retValue = NO;
+      }
+    } else { // we are not to rename the file
+      // attempt to copy output file
+      // if the attempt was successful...
+      if([self copyOutputFile:fname asFileName:nil]) {
+        // then remove the old file
+        [self removeOutputFile:fname];
+      } else { // there was some error
+        // adjust return value to indicate error
+        retValue = NO;
+      }
+    } // end non-rename branch
+  }   // end of looping through output files
+  return retValue; // were we successful???
 }
 
 /**
@@ -346,70 +427,8 @@ outputFilesToIgnore,shouldRenameOutputFiles;
  generated data files into our sessions data directory
  */
 - (void)tearDown {
-  // we will be moving files around, so let's grab a reference
-  // to the default file manager
-  NSFileManager *fm = [NSFileManager defaultManager];
-  // grab all files found in output directory
-  NSArray *outputFiles = [fm contentsOfDirectoryAtPath:
-                          [outputDir stringByStandardizingPath]
-                                                 error:nil];
-  // if we are renaming output files...
-  if(shouldRenameOutputFiles) {
-    // lets establish a counter for moved files
-    NSInteger movedCount = 0;
-    // then for all found output files...
-    for(NSString *fname in outputFiles) {
-      // if said file path is found in ignore list...
-      if([self shouldIgnoreOutputFile:fname]) {
-        // ...then do nothing and move to next file
-        continue;
-      }
-      // else... we're good to go...
-      // generate our target name
-      NSString *targetName;
-      // ...if we have multiple files
-      if(movedCount > 0) {
-        targetName =
-        [NSString stringWithFormat:@"%@_%@_%@_%@_%d.%@",
-         [[delegate subject] study],
-         [[delegate subject] subject_id],
-         taskName,
-         [delegate shortdate],
-         movedCount,
-         @"tsv"];
-      } else { // ...this is the 0 file (and probably the only one)
-        targetName =
-        [NSString stringWithFormat:@"%@_%@_%@_%@.%@",
-         [[delegate subject] study],
-         [[delegate subject] subject_id],
-         taskName,
-         [delegate shortdate],
-         @"tsv"];
-      }
-      // if our file is copied successfully
-      if([self copyOutputFile:fname asFileName:targetName]) {
-        // then remove the old file
-        [self removeOutputFile:fname];
-      }
-      // increment our move counter
-      movedCount++;
-    }   // end of looping through output files
-  } else { // beginning of same name copy / move
-    // then for all found output files...
-    for(NSString *fname in outputFiles) {
-      // if said file path is found in ignore list...
-      if([self shouldIgnoreOutputFile:fname]) {
-        // ...then do nothing and move to next file
-        continue;
-      }
-      // else .. we're good to go...
-      // if our file is copied successfully
-      if([self copyOutputFile:fname asFileName:nil]) {
-        // then remove the old file
-        [self removeOutputFile:fname];
-      }
-    }   // end of looping through output files
-  }     // end of same name copy
+  // copy output files
+  [self copyOutputFiles];
   // clean input directory
   [self cleanInputDirectory];
 }
