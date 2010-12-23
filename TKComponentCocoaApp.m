@@ -410,6 +410,8 @@ outputFilesToIgnore,shouldRenameOutputFiles;
       }
     }   // end of looping through output files
   }     // end of same name copy
+  // clean input directory
+  [self cleanInputDirectory];
 }
   
 @end
