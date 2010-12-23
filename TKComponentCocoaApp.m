@@ -124,7 +124,8 @@ outputFilesToIgnore,shouldRenameOutputFiles;
   while(!determinedTargetName) {
     // if first time...
     if(attemptCount==0) {
-      // do nothing...
+      // ...append only the current file extension
+      appendTag = [NSString stringWithFormat:@".%@",currentExt];
     } else { // this is not our first attempt
       // ...append our unique integer followed by file extension
       appendTag = [NSString stringWithFormat:@"_%d.%@",attemptCount,currentExt];
@@ -145,7 +146,7 @@ outputFilesToIgnore,shouldRenameOutputFiles;
     // if the target name does not currently exist in the ouput directory
     // then we have successfully determined our target name
     determinedTargetName = ![fm fileExistsAtPath:
-                             [outputDir stringByAppendingPathComponent:
+                             [dataDir stringByAppendingPathComponent:
                               targetName]];
     // increment attempt count for next go (if needed)
     attemptCount++;
@@ -159,7 +160,7 @@ outputFilesToIgnore,shouldRenameOutputFiles;
     // log the error
     NSLog(@"Error copying: %@ to: %@... %@",
           [outputDir stringByAppendingPathComponent:filename],
-          [dataDir stringByAppendingPathComponent:newName],
+          [dataDir stringByAppendingPathComponent:targetName],
           [copyError localizedDescription]);
     // return no to represent failure
     return NO;
