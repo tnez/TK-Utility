@@ -204,6 +204,101 @@
     }
 }
 
+/**
+ Return registry corresponding to given task ID... returns nil if not found.
+ */
+- (NSDictionary *)registryForTask: (NSInteger)taskID {
+  // TODO: registryForTask (by ID)
+  //
+  // return the registryForTask returned by the session
+  // this de-coupling will allow for transparent change
+  // of the session file
+  // ...we are however expecting an NSDictionary object
+  // which will contain top-level key-values as well as
+  // an array of runs also containing key-values
+  return nil;
+}
+
+/**
+ Return registry for the last completed task
+ */
+- (NSDictionary *)registryForLastTask {
+  // TODO: registryForTask (last completed)
+  //
+  // return the registryForLastTask returned by the session
+  // this de-coupling will allow for transparent change
+  // of the session file
+  // ...we are however expecting an NSDictionary object
+  // which will contain top-level key-values as well as
+  // an array of runs also containing key-values
+  return nil;
+}
+
+/**
+ Return registry for the task using the given offset value
+ offset: -1 equals last task, less than -1 is offset from there, 1 equals
+ first task, greter than 1 is offset from there
+ */
+- (NSDictionary *)registryForTaskWithOffset: (NSInteger)offset {
+  // TODO: registryForTask (as per offset value)
+  //
+  // return the registryForTask returned by the session
+  // this de-coupling will allow for transparent change
+  // of the session file
+  // ...we are however expecting an NSDictionary object
+  // which will contain top-level key-values as well as
+  // an array of runs also containing key-values
+  return nil;
+}
+
+/**
+ Return registry for run with offset for a given task ID
+ offset: -1 equals last task, less than -1 is offset from there, 1 equals
+ first task, greter than 1 is offset from there 
+ */
+- (NSDictionary *)registryForRunWithOffset: (NSInteger)offset
+                                   forTask: (NSInteger)taskID {
+  // TODO: registryForRun (as per offset) forTask (per ID)
+  //
+  // the session will return the task by id, however it is our
+  // responsibility to parse the task registry for the desired run
+  return nil;  
+}
+
+/**
+ Return registry for run with offset for a given task registry
+ offset: -1 equals last task, less than -1 is offset from there, 1 equals
+ first task, greter than 1 is offset from there
+ */
+- (NSDictionary *)registryForRunWithOffset: (NSInteger)offset
+                           forTaskRegistry: (NSDictionary *)taskRegistry {
+  // TODO: registryForRun (as per offset) forTaskRegistry
+  //
+  // parse the task registry for the desired run (per offset)
+  return nil;  
+}
+
+/**
+ Return registry for last run of given task ID
+ */
+- (NSDictionary *)registryForLastRunForTask: (NSInteger)taskID {
+  // TODO: registryForRun (last completed) forTask (by ID)
+  //
+  // parse the task registry for the last run and return
+  return nil;
+}
+
+/**
+ Return registry for last run of given task registry
+ */
+- (NSDictionary *) registryForLastRunForTaskRegistry:
+                      (NSDictionary *)taskRegistry {
+  // TODO: registryForRun (last completed) forTaskRegistry
+  //
+  // parse the task registry for the last run and return
+  return nil;  
+}
+
 - (NSInteger) runCount {
     NSInteger count = 0;
     TKDelimitedFileParser *parser = [[TKDelimitedFileParser alloc] initParserWithFile:[DATADIRECTORY stringByAppendingPathComponent:DATAFILE]
@@ -234,6 +329,21 @@
 
 - (NSString *)session {
     return SESSION;
+}
+
+/**
+ Set value for given key for the current run
+ Return: YES upon success, NO upon failure
+ */
+- (BOOL)setValue: (id)newValue forRegistryKey: (NSString *)key {
+  // TODO: setValue:forRegistryKey:
+  //
+  // get reference to current run of current task from
+  // session
+  // w/ reference, setValue:forKey: and notify session
+  // that registry has changed
+  // return value returned from setValue:forKey: sent to session
+  return NO;
 }
 
 - (TKTime)startTime {
