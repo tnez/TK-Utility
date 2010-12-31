@@ -208,30 +208,14 @@
  Return registry corresponding to given task ID... returns nil if not found.
  */
 - (NSDictionary *)registryForTask: (NSString *)taskID {
-  // TODO: registryForTask (by ID)
-  //
-  // return the registryForTask returned by the session
-  // this de-coupling will allow for transparent change
-  // of the session file
-  // ...we are however expecting an NSDictionary object
-  // which will contain top-level key-values as well as
-  // an array of runs also containing key-values
-  return nil;
+  return [delegate registryForTask:taskID];
 }
 
 /**
  Return registry for the last completed task
  */
 - (NSDictionary *)registryForLastTask {
-  // TODO: registryForTask (last completed)
-  //
-  // return the registryForLastTask returned by the session
-  // this de-coupling will allow for transparent change
-  // of the session file
-  // ...we are however expecting an NSDictionary object
-  // which will contain top-level key-values as well as
-  // an array of runs also containing key-values
-  return nil;
+  return [delegate registryForLastTask];
 }
 
 /**
@@ -240,15 +224,7 @@
  first task, greter than 1 is offset from there
  */
 - (NSDictionary *)registryForTaskWithOffset: (NSInteger)offset {
-  // TODO: registryForTask (as per offset value)
-  //
-  // return the registryForTask returned by the session
-  // this de-coupling will allow for transparent change
-  // of the session file
-  // ...we are however expecting an NSDictionary object
-  // which will contain top-level key-values as well as
-  // an array of runs also containing key-values
-  return nil;
+  return [delegate registryForTaskWithOffset:offset];
 }
 
 /**
@@ -258,11 +234,8 @@
  */
 - (NSDictionary *)registryForRunWithOffset: (NSInteger)offset
                                    forTask: (NSString *)taskID {
-  // TODO: registryForRun (as per offset) forTask (per ID)
-  //
-  // the session will return the task by id, however it is our
-  // responsibility to parse the task registry for the desired run
-  return nil;  
+  return [self registryForRunWithOffset:offset forTaskRegistry:
+          [delegate registryForTask:taskID]];
 }
 
 /**
@@ -272,20 +245,45 @@
  */
 - (NSDictionary *)registryForRunWithOffset: (NSInteger)offset
                            forTaskRegistry: (NSDictionary *)taskRegistry {
-  // TODO: registryForRun (as per offset) forTaskRegistry
-  //
-  // parse the task registry for the desired run (per offset)
-  return nil;  
+  NSDictionary *retValue = nil;
+  @try {
+    // create a target index value
+    NSInteger targetIdx;
+    // get runs dictionary
+    NSArray *allRuns = [taskRegistry valueForKey:TKComponentRunKey];
+    // if we're working recent to old...
+    if(offset < 0) {
+      // target index is runs count - 1 + offset
+      targetIdx = [allRuns count] - 1 + offset;
+    }
+    // if we're working old to recent...
+    if(offset > 0) {
+      // target index is equal to offset - 1
+      targetIdx = offset - 1;
+    }
+    // if offset is zero, then we want the current run
+    if(offset == 0) {
+      // target index is one less runs count
+      targetIdx = [allRuns count] - 1;
+    }
+    // now that we have determined our target index, we can grab out retValue
+    retValue = [allRuns objectAtIndex:targetIdx];
+  }
+  @catch (NSException * e) {
+    NSLog(@"Could not get run with offset: %d from task registry: %@",
+          offset,[taskRegistry description]);
+  }
+  @finally {
+    return retValue;
+  }
 }
 
 /**
  Return registry for last run of given task ID
  */
 - (NSDictionary *)registryForLastRunForTask: (NSString *)taskID {
-  // TODO: registryForRun (last completed) forTask (by ID)
-  //
-  // parse the task registry for the last run and return
-  return nil;
+  return [self registryForRunWithOffset:-1 forTaskRegistry:
+          [delegate registryForTask:taskID]];
 }
 
 /**
@@ -293,13 +291,11 @@
  */
 - (NSDictionary *) registryForLastRunForTaskRegistry:
                       (NSDictionary *)taskRegistry {
-  // TODO: registryForRun (last completed) forTaskRegistry
-  //
-  // parse the task registry for the last run and return
-  return nil;  
+  return [self registryForRunWithOffset:-1 forTaskRegistry:taskRegistry];
 }
 
 - (NSInteger) runCount {
+  // TODO: revise w/ reference to regfile
     NSInteger count = 0;
     TKDelimitedFileParser *parser = [[TKDelimitedFileParser alloc] initParserWithFile:[DATADIRECTORY stringByAppendingPathComponent:DATAFILE]
                                                                         usingEncoding:NSUTF8StringEncoding
@@ -376,6 +372,7 @@ NSString * const TKComponentTypeKey                     = @"TKComponentType";
 NSString * const TKComponentNameKey                     = @"TKComponentName";
 NSString * const TKComponentBundleNameKey               = @"TKComponentBundleName";
 NSString * const TKComponentBundleIdentifierKey         = @"TKComponentBundleIdentifier";
+NSString * const TKComponentRunKey                      = @"runs";
 
 
 

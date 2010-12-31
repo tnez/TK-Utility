@@ -211,6 +211,7 @@ extern NSString * const TKComponentTypeKey;
 extern NSString * const TKComponentNameKey;
 extern NSString * const TKComponentBundleNameKey;
 extern NSString * const TKComponentBundleIdentifierKey;
+extern NSString * const TKComponentRunKey;
 
 
 
