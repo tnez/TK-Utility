@@ -295,21 +295,18 @@
 }
 
 - (NSInteger) runCount {
-  // TODO: revise w/ reference to regfile
-    NSInteger count = 0;
-    TKDelimitedFileParser *parser = [[TKDelimitedFileParser alloc] initParserWithFile:[DATADIRECTORY stringByAppendingPathComponent:DATAFILE]
-                                                                        usingEncoding:NSUTF8StringEncoding
-                                                                  withRecordDelimiter:@"\n"
-                                                                   withFieldDelimiter:@"\t"];
-    if(parser) {    // if the file was parsed
-        for(id record in [parser records]) {
-            if([[record objectAtIndex:0] isEqualToString:@"Run:"]) {
-                count++;
-            }
-        }
-        [parser release];
-    }
-    return count + 1;
+  NSInteger retValue;
+  @try {
+  retValue = [[[delegate registryForTaskWithOffset:0]
+               valueForKey:TKComponentRunKey] count];
+  }
+  @catch (NSException * e) {
+    NSLog(@"Unable to determine the run count");
+    retValue = -1;
+  }
+  @finally {
+    return retValue;
+  }
 }
 
 - (void)setDefinition: (NSDictionary *)newDefinition {
