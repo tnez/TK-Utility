@@ -29,7 +29,7 @@
 /**
  Return registry corresponding to given task ID... returns nil if not found.
  */
-- (NSDictionary *)registryForTask: (NSInteger)taskID;
+- (NSDictionary *)registryForTask: (NSString *)taskID;
 /**
  Return registry for the last completed task
  */
@@ -46,7 +46,7 @@
  first task, greter than 1 is offset from there 
  */
 - (NSDictionary *)registryForRunWithOffset: (NSInteger)offset
-                                   forTask: (NSInteger)taskID;
+                                   forTask: (NSString *)taskID;
 /**
  Return registry for run with offset for a given task registry
  offset: -1 equals last task, less than -1 is offset from there, 1 equals
@@ -57,7 +57,7 @@
 /**
  Return registry for last run of given task ID
 */
-- (NSDictionary *)registryForLastRunForTask: (NSInteger)taskID;
+- (NSDictionary *)registryForLastRunForTask: (NSString *)taskID;
 /**
  Return registry for last run of given task registry
  */
@@ -71,10 +71,13 @@
  */
 - (NSString *)session;
 /**
- Set value for given key for the current run
- Return: YES upon success, NO upon failure
+ Set value for given global key for the current task
  */
-- (BOOL)setValue: (id)newValue forRegistryKey: (NSString *)key;
+- (void)setValue: (id)newValue forRegistryKey: (NSString *)key;
+/**
+ Set value for given key for current run of current task
+ */
+- (void)setValue: (id)newValue forRunRegistryKey: (NSString *)key;
 /**
  Start time of the component
  */

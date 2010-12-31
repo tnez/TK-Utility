@@ -207,7 +207,7 @@
 /**
  Return registry corresponding to given task ID... returns nil if not found.
  */
-- (NSDictionary *)registryForTask: (NSInteger)taskID {
+- (NSDictionary *)registryForTask: (NSString *)taskID {
   // TODO: registryForTask (by ID)
   //
   // return the registryForTask returned by the session
@@ -257,7 +257,7 @@
  first task, greter than 1 is offset from there 
  */
 - (NSDictionary *)registryForRunWithOffset: (NSInteger)offset
-                                   forTask: (NSInteger)taskID {
+                                   forTask: (NSString *)taskID {
   // TODO: registryForRun (as per offset) forTask (per ID)
   //
   // the session will return the task by id, however it is our
@@ -281,7 +281,7 @@
 /**
  Return registry for last run of given task ID
  */
-- (NSDictionary *)registryForLastRunForTask: (NSInteger)taskID {
+- (NSDictionary *)registryForLastRunForTask: (NSString *)taskID {
   // TODO: registryForRun (last completed) forTask (by ID)
   //
   // parse the task registry for the last run and return
@@ -332,18 +332,17 @@
 }
 
 /**
- Set value for given key for the current run
- Return: YES upon success, NO upon failure
+ Set value for given key for the global registry key of this current task
  */
-- (BOOL)setValue: (id)newValue forRegistryKey: (NSString *)key {
-  // TODO: setValue:forRegistryKey:
-  //
-  // get reference to current run of current task from
-  // session
-  // w/ reference, setValue:forKey: and notify session
-  // that registry has changed
-  // return value returned from setValue:forKey: sent to session
-  return NO;
+- (void)setValue: (id)newValue forRegistryKey: (NSString *)key {
+  [delegate setValue:newValue forRegistryKey:key];
+}
+
+/**
+ Set value for given key for the current run of the current task
+ */
+- (void)setValue: (id)newValue forRunRegistryKey: (NSString *)key {
+  [delegate setValue:newValue forRunRegistryKey:key];
 }
 
 - (TKTime)startTime {
