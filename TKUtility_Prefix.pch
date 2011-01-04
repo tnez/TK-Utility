@@ -5,3 +5,12 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 #endif
+
+// DEBUG LOGGING MACROS
+///////////////////////
+#define ELog(...) NSLog(@"%s %@",__PRETTY_FUNCTION__,[NSString stringWithFormat:__VA_ARGS__])
+#ifdef DEBUG 
+#define DLog(...) NSLog(@"%s %@",__PRETTY_FUNCTION__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+#define DLog(...) do { } while(0)
+#endif
