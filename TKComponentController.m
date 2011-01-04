@@ -328,7 +328,10 @@
  Set value for given key for the global registry key of this current task
  */
 - (void)setValue: (id)newValue forRegistryKey: (NSString *)key {
+  DLog(@"Sending:(setValue:%@ forRegistryKey:%@) to my delegate:%@",
+        newValue,key,delegate);
   [delegate setValue:newValue forRegistryKey:key];
+  
 }
 
 /**
