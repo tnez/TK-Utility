@@ -32,6 +32,10 @@
     [self setTimer:[TKTimer appTimer]];
     [self setMainLog:[TKLogging mainLogger]];
     [self setCrashLog:[TKLogging crashRecoveryLogger]];
+  
+    // reset counts for main and crash logs
+    [mainLog setCount:0];
+    [crashLog setCount:0];
 
     // begin component according to component type
     switch ([[definition valueForKey:TKComponentTypeKey] integerValue]) {
