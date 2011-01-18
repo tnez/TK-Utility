@@ -83,7 +83,7 @@
 					//printf(" Current Seconds :%u microseconds:%u    Event Seconds; %u microseconds: %u \n",seconds,microseconds,[queueItem secondsToRun],[queueItem microsecondsToRun]);
 					NSNotificationCenter * center=[NSNotificationCenter defaultCenter];
 					NSNotification * note = [queueItem notification];
-					[center postNotification:note];
+          [center performSelectorOnMainThread:@selector(postNotification:) withObject:note waitUntilDone:NO];
 					[notificationQueue removeObjectAtIndex:0];
 				}else{
 					keepSearching=NO;
