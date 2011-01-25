@@ -15,30 +15,36 @@
 
 
 #import <Cocoa/Cocoa.h>
+@class TKComponentController;
+@class TKFileMoveQueue;
 
 
 @interface TKComponentCocoaApp : NSObject {
-  id                                          delegate;
+  TKComponentController                       *delegate;
   NSString                                    *appPath;
   NSString                                    *taskName;
+  NSString                                    *dataDir;
   NSString                                    *inputDir;
   NSString                                    *outputDir;
-  NSString                                    *dataDir;
   NSArray                                     *inputFiles;  
-  NSArray                                     *outputFilesToIgnore;
+  NSArray                                     *outputFilesToCopy;
+  NSArray                                     *outputFileNamesAppendage;
   BOOL                                        shouldRenameOutputFiles;
   NSNumber                                    *pid;
+  TKFileMoveQueue                             *moveQueue;
 }
 
-@property (assign)            id              delegate;
+@property (assign)    TKComponentController   *delegate;
 @property (nonatomic, retain) NSString        *appPath;
 @property (nonatomic, retain) NSString        *taskName;
+@property (nonatomic, retain) NSString        *dataDir;
 @property (nonatomic, retain) NSString        *inputDir;
 @property (nonatomic, retain) NSString        *outputDir;
-@property (nonatomic, retain) NSString        *dataDir;
 @property (nonatomic, retain) NSArray         *inputFiles;
-@property (nonatomic, retain) NSArray         *outputFilesToIgnore;
+@property (nonatomic, retain) NSArray         *outputFilesToCopy;
+@property (nonatomic, retain) NSArray         *outputFileNamesAppendage;
 @property (readwrite)         BOOL            shouldRenameOutputFiles;
+@property (assign)            TKFileMoveQueue *moveQueue;
 
 #pragma mark API
 /**
@@ -76,20 +82,12 @@
 - (BOOL)cleanInputDirectory;
 
 /**
- Copy output file to target -- if a target name is given this method
- will attempt to rename the file upon copy
- If the copy fails the method logs the error and returns NO
- RETURN: YES upon success NO upon failure
- */
-- (BOOL)copyOutputFile: (NSString *)filename asFileName: (NSString *)newName;
-
-/**
  Copy output files -- loop through all the output files and handle their
- copying according to shouldRenameOutputFile and outputFilesToIgnore
+ copying according to shouldRenameOutputFile and outputFilesToCopy
  parameters
  RETURN: YES if all files were copied successfully - otherwise NO
  */
-- (BOOL)copyOutputFiles;
+- (BOOL)queueOutputFiles;
 
 /**
  Copy specified support files into our support directory
@@ -110,18 +108,6 @@
  */
 - (void)getApplicationInfo: (NSNotification *)theNote;
 
-/**
- Remove output file from output directory
- RETURN: YES upon success, NO upon failure
- NOTE: errors are logged w/in method
- */
-- (BOOL)removeOutputFile: (NSString *)filename;
-
-/**
- Return yes if this output file is found in our ignore list
- */
-- (BOOL)shouldIgnoreOutputFile: (NSString *)pathToOutputFile;
-
 @end
 
 /**
@@ -131,13 +117,9 @@
 #pragma mark PREFERENCE KEYS
 
 /**
- The path to the directory which you intend as the destination for the
- final data file
- */
-extern NSString * const TKComponentDataDirectoryKey;
-
-/**
- The path to the application (same as you would launch from the Finder)
+ The path to the application (same as you would launch from the Finder) -
+ If relative paths are being used this path is appended to the session
+ application bundle
  */
 extern NSString * const TKComponentCocoaAppPathKey;
 
@@ -145,6 +127,7 @@ extern NSString * const TKComponentCocoaAppPathKey;
  The task name to use when renaming the datafile
  */
 extern NSString * const TKComponentCocoaAppTaskNameKey;
+
 /**
  The full path to the directory in which support files should be
  placed before the application is launched
@@ -152,24 +135,42 @@ extern NSString * const TKComponentCocoaAppTaskNameKey;
 extern NSString * const TKComponentCocoaAppInputDirKey;
 
 /**
- An array of full paths to each support file that should be placed in
- the application's input directory
+ An array of paths to each support file that should be placed in
+ the application's input directory. The individual paths can be relative to the
+ session application bundle or absolute.
  */
 extern NSString * const TKComponentCocoaAppSupportFilesKey;
 
 /**
- The output directory of the application, i.e. where is the datafile
+ Directory containing output (data) files generated in the course of the
+ program
  */
 extern NSString * const TKComponentCocoaAppOutputDirKey;
 
 /**
- Array of filenames that should not be moved from the output directory
- This may include crash recovery files or files that are 'don't cares'
+ Array of filenames that should be moved from the output directory to the
+ data directory. Anything else will be ignored.
  */
-extern NSString * const TKComponentCocoaAppOutputFilesToIgnoreKey;
+extern NSString * const TKComponentCocoaAppOutputFilesToCopyKey;
+
+/**
+ (Optional) Array of target filenames that should be used in naming output
+ files. List should be in same order as FilesToCopy (i.e. index zero file
+ to copy is appended with index zero appendage)
+ */
+extern NSString * const TKComponentCocoaAppOutputFileNamesAppendageKey;
 
 /**
  Indicate whether we should rename the output file using the task name
  and the conventions established by component controller.
  */
 extern NSString * const TKComponentCocoaAppShouldRenameOutputFilesKey;
+
+/**
+ Indicate whether we should interpret all paths (with the exception of the 
+ application and support files) as relative to application path. If yes, any
+ given paths will be appended to the application path and then expanded.
+ Relative paths like: ../../DATA (DATA folder two levels up from the 
+ application path).
+ */
+extern NSString * const TKComponentCocoaAppShouldUseRelativePathsKey;

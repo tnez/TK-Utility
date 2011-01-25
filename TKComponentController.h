@@ -21,12 +21,13 @@
 #import "TKLogging.h"
 #import "TKSubject.h"
 #import "TKTime.h"
+@class TKSession;
 
 #define BUNDLE [NSBundle bundleWithPath:BUNDLEPATH]
 #define BUNDLEIDENTIFIER [definition valueForKey:TKComponentBundleIdentifierKey]
 #define BUNDLENAME [definition valueForKey:TKComponentBundleNameKey]
 #define BUNDLEPATH [[[[NSBundle mainBundle] builtInPlugInsPath] stringByAppendingPathComponent:BUNDLENAME] stringByAppendingString:@".bundle"]
-#define DATADIRECTORY [[component dataDirectory] stringByStandardizingPath]
+#define DATADIRECTORY [delegate dataDirectory]
 #define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@.%@",STUDY,SUBJECT_ID,SESSION,TASK,DATAFILE_EXTENSION]
 #define DATAFILE_EXTENSION @"tsv"
 #define DEFAULT_RUN_HEADER [NSString stringWithFormat:@"\nRun:\t%d\t%@\n",[self runCount],LONGDATE]
@@ -43,7 +44,7 @@
 @interface TKComponentController : NSObject <TKComponentBundleDelegate> {
 
     id                                          component;
-    id                                          delegate;
+    TKSession                                   *delegate;
     NSDictionary                                *definition;
     TKTimer                                     *timer;
     TKLogging                                   *mainLog;
@@ -53,7 +54,7 @@
     TKTime                                      componentStartTime;
     TKTime                                      componentEndTime;
 }
-@property (assign)              id              delegate;
+@property (assign)              TKSession       *delegate;
 @property (readonly)            NSDictionary    *definition;
 @property (assign)              TKTimer         *timer;
 @property (assign)              TKLogging       *mainLog;
@@ -74,6 +75,11 @@
  Note: only sent by loadable bundle types
  */
 - (void)componentDidFinish: (id)sender;
+
+/**
+ Return a path to the data directory as determined by the session
+ */
+- (NSString *)dataDirectory;
 
 /**
  Returns name of default temporary file as string

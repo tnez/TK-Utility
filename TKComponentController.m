@@ -15,6 +15,7 @@
 
 #import "TKComponentController.h"
 #import "TKComponentCocoaApp.h"
+#import "TKSession.h"
 
 @implementation TKComponentController
 @synthesize delegate,definition,timer,mainLog,crashLog,subject,sessionWindow,componentStartTime,componentEndTime;
@@ -96,18 +97,18 @@
         [[component mainView] removeFromSuperview];        // remove the components view from window
         if([self runCount] == 1) {
             if([component respondsToSelector:@selector(sessionHeader)]) {
-                [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[component sessionHeader] overWriteOnFirstWrite:NO];
+                [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:[component sessionHeader] overWriteOnFirstWrite:NO];
             } else { // use default session header
-                [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:DEFAULT_SESSION_HEADER overWriteOnFirstWrite:NO];
+                [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:DEFAULT_SESSION_HEADER overWriteOnFirstWrite:NO];
             }
         } else {}
         if([component respondsToSelector:@selector(runHeader)]) { // custom run header
-            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[component runHeader] overWriteOnFirstWrite:NO];
+            [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:[component runHeader] overWriteOnFirstWrite:NO];
         } else { // use default run heaer
-            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:DEFAULT_RUN_HEADER overWriteOnFirstWrite:NO];
+            [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:DEFAULT_RUN_HEADER overWriteOnFirstWrite:NO];
         }
         if([component respondsToSelector:@selector(summary)]) {
-            [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:[component summary] overWriteOnFirstWrite:NO];
+            [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:[component summary] overWriteOnFirstWrite:NO];
         } else {}
         // wait for log queue to clear
         while([TKLogging unwrittenItemCount] > 0) {
@@ -115,7 +116,7 @@
         }
         // transfer raw data from temp file to datafile
         NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[component rawDataFile]]];
-        [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
+        [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
         // clean up component -- it is the component's responsibility to remove it's temporary files (raw data file included)
         [component tearDown];
         [component release];
@@ -129,6 +130,10 @@
   } // end of cocoa app cleanup
     
   [self end];
+}
+
+- (NSString *)dataDirectory {
+  return [delegate dataDirectory];
 }
 
 -(void) dealloc {

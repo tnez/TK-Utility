@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4000D3CD12EF55350032E9B0 /* TKFileMoveQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 4000D3CC12EF55350032E9B0 /* TKFileMoveQueue.h */; };
+		4000D3D812EF6CCC0032E9B0 /* TKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 4000D3D712EF6CCC0032E9B0 /* TKSession.h */; };
 		4006601811AEC94300FE4924 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006601711AEC94300FE4924 /* GTMSenTestCase.m */; };
 		4006602B11AECAAF00FE4924 /* badheaders.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4006602511AECAAF00FE4924 /* badheaders.csv */; };
 		4006602C11AECAAF00FE4924 /* headers.csv in Resources */ = {isa = PBXBuildFile; fileRef = 4006602611AECAAF00FE4924 /* headers.csv */; };
@@ -68,6 +70,8 @@
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		4000D3CC12EF55350032E9B0 /* TKFileMoveQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKFileMoveQueue.h; path = ../../Session/TKFileMoveQueue.h; sourceTree = SOURCE_ROOT; };
+		4000D3D712EF6CCC0032E9B0 /* TKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TKSession.h; path = ../../Session/TKSession.h; sourceTree = SOURCE_ROOT; };
 		4006601511AEC94300FE4924 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		4006601611AEC94300FE4924 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMSenTestCase.h; sourceTree = "<group>"; };
 		4006601711AEC94300FE4924 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMSenTestCase.m; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4000D3CE12EF55410032E9B0 /* Session App Headers */,
 				40690A28122413EB0032DCE6 /* TKComponentBundleDelegate.h */,
 				40A88DD111B53BD100C9FD1C /* TKComponentController.h */,
 				40A88DD211B53BD200C9FD1C /* TKComponentController.m */,
@@ -244,6 +249,15 @@
 				40A65DF011A3118D00D984C8 /* TKUtility_Prefix.pch */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		4000D3CE12EF55410032E9B0 /* Session App Headers */ = {
+			isa = PBXGroup;
+			children = (
+				4000D3D712EF6CCC0032E9B0 /* TKSession.h */,
+				4000D3CC12EF55350032E9B0 /* TKFileMoveQueue.h */,
+			);
+			name = "Session App Headers";
 			sourceTree = "<group>";
 		};
 		4006602311AECA1A00FE4924 /* TestCases */ = {
@@ -311,6 +325,8 @@
 				40690A2B122413EB0032DCE6 /* TKComponentBundleDelegate.h in Headers */,
 				40E4D5DF1234482A0075E9D9 /* TKSubject.h in Headers */,
 				405258D512B8EA8A0053F4E1 /* TKComponentCocoaApp.h in Headers */,
+				4000D3CD12EF55350032E9B0 /* TKFileMoveQueue.h in Headers */,
+				4000D3D812EF6CCC0032E9B0 /* TKSession.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
