@@ -145,6 +145,10 @@
     return TEMPFILE;
 }
 
+- (TKSession *)delegate {
+  return delegate;
+}
+
 -(void) end {
     componentEndTime = current_time_marker();
     [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidFinishNotification object:self];

@@ -77,6 +77,11 @@
 - (void)componentDidFinish: (id)sender;
 
 /**
+ Return reference to our delegate
+ */
+- (TKSession *)delegate;
+
+/**
  Return a path to the data directory as determined by the session
  */
 - (NSString *)dataDirectory;

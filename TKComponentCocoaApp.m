@@ -32,6 +32,11 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
                  selector:@selector(checkIfApplicationIsDone:)
                      name:NSWorkspaceDidTerminateApplicationNotification
                    object:nil];
+  // set the data directory
+  [self setDataDir:[NSString stringWithString:[delegate dataDirectory]]];
+  // locate move queue
+  [self setMoveQueue:[[delegate delegate] moveQueue]];
+  DLog(@"Set Move Queue: %@",moveQueue);
   // launch the application
   if(![[NSWorkspace sharedWorkspace] launchApplication:appPath]) {
     // ...the application failed to launch...
@@ -97,9 +102,12 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
 - (BOOL)queueOutputFiles {
   NSUInteger errorCount = 0;
   @try {
+    DLog(@"%@",outputFilesToCopy);
+    DLog(@"%@",outputFileNamesAppendage);
     // incrementer for looping
     for(NSUInteger i=0; i<[outputFilesToCopy count]; i++) {
-      // ...if we are renaming the files
+      DLog(@"Attempting to queue file: %@",[outputFilesToCopy objectAtIndex:i]);
+      // if we are renaming the file...      
       if(shouldRenameOutputFiles) {
         // ... add output,input
         if(![moveQueue queueInputFile:[outputDir stringByAppendingPathComponent:
@@ -109,7 +117,7 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
                                         [[delegate subject] study],
                                         [[delegate subject] subject_id],
                                         [[delegate subject] session],
-                                        [outputFileNamesAppendage objectAtIndex:i++],
+                                        [outputFileNamesAppendage objectAtIndex:i],
                                         @"tsv"]]]) {
           // there was some error
           ELog(@"Could not add %@ to the move queue",
@@ -203,18 +211,7 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
 }
 
 - (void)dealloc {
-  // remove our notifications
-  [[[NSWorkspace sharedWorkspace] notificationCenter]
-   removeObserver:self];
-  // release our memory
-  [appPath release];
-  [taskName release];
-  [inputDir release];
-  [outputDir release];
-  [dataDir release];
-  [inputFiles release];
-  [outputFilesToCopy release];
-  [pid release];
+
   // obligatory super call
   [super dealloc];
 }
@@ -231,10 +228,10 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
     // lets grab the info we need
     pid = [[[theNote userInfo]
             valueForKey:@"NSApplicationProcessIdentifier"] retain];
-    NSLog(@"Cocoa App Component has latched on to %d",
+    DLog(@"Cocoa App Component has latched on to %d",
           [pid integerValue]);
   } else { // this is not the droid we are looking for
-    NSLog(@"Cocoa App has started, but no match... app:%@ pid:%d",
+    DLog(@"Cocoa App has started, but no match... app:%@ pid:%d",
           [[theNote userInfo] valueForKey:@"NSApplicationPath"],
           [[[theNote userInfo] valueForKey:@"NSApplicationProcessIdentifier"]
            integerValue]);
@@ -247,19 +244,21 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
 - (id)initWithDefinition: (NSDictionary *)definition {
   if(self=[super init]) {
     // taskName
-    [self setTaskName:
-     [definition valueForKey:TKComponentCocoaAppTaskNameKey]];
-    // dataDir
-    [self setDataDir:[delegate dataDirectory]];
+    [self setTaskName:[NSString stringWithString:
+                       [definition valueForKey:
+                        TKComponentCocoaAppTaskNameKey]]];
     // inputFiles
-    [self setInputFiles:
-     [definition valueForKey:TKComponentCocoaAppSupportFilesKey]];
+    [self setInputFiles:[NSArray arrayWithArray:
+                         [definition valueForKey:
+                          TKComponentCocoaAppSupportFilesKey]]];
     // outputFilesToCopy
-    [self setOutputFilesToCopy:
-     [definition valueForKey:TKComponentCocoaAppOutputFilesToCopyKey]];
+    [self setOutputFilesToCopy:[NSArray arrayWithArray:
+                                [definition valueForKey:
+                                 TKComponentCocoaAppOutputFilesToCopyKey]]];
     // outputFileNamesAppendage
-    [self setOutputFileNamesAppendage:
-     [definition valueForKey:TKComponentCocoaAppOutputFileNamesAppendageKey]];
+    [self setOutputFileNamesAppendage:[NSArray arrayWithArray:
+                                       [definition valueForKey:
+                                        TKComponentCocoaAppOutputFileNamesAppendageKey]]];
     // shouldRenameOutputFiles
     [self setShouldRenameOutputFiles:
      [[definition valueForKey:TKComponentCocoaAppShouldRenameOutputFilesKey]
@@ -294,8 +293,6 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
        [[definition valueForKey:TKComponentCocoaAppOutputDirKey]
         stringByStandardizingPath]];
     }
-    [self setMoveQueue:delegate.delegate.moveQueue];
-    DLog(@"Set Move Queue:%@",moveQueue);
     // return
     return self;
   }
@@ -309,7 +306,7 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
   NSFileManager *fm = [NSFileManager defaultManager];
   // is the app path valid
   if(![fm fileExistsAtPath:appPath]) {
-    NSLog(@"No file is found at %@",appPath);
+    ELog(@"No file is found at %@",appPath);
     return NO;
   }
   // copy support files
@@ -328,9 +325,28 @@ outputFilesToCopy,outputFileNamesAppendage,shouldRenameOutputFiles,moveQueue;
  generated data files into our sessions data directory
  */
 - (void)tearDown {
+  DLog(@"Run Count to Determine if we should queue files: %d",
+       [delegate runCount]);
   // if this is the first run... then queue the output files
-  if([delegate runCount]==1) [self queueOutputFiles];
-  [self cleanInputDirectory]; // clean input directory
+  if([delegate runCount]==1) {
+    DLog(@"Call to queue output files");
+    [self queueOutputFiles];
+  }
+  // clean input directory
+  [self cleanInputDirectory];
+  // remove our notifications
+  [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
+  // release our memory
+  [appPath release];appPath=nil;
+  [taskName release];taskName=nil;
+  [inputDir release];inputDir=nil;
+  [outputDir release];outputDir=nil;
+  [dataDir release];dataDir=nil;
+  [inputFiles release];inputFiles=nil;
+  [outputFilesToCopy release];outputFilesToCopy=nil;
+  [outputFileNamesAppendage release];outputFileNamesAppendage=nil;
+  [pid release];pid=nil;
+  
 }
   
 @end
