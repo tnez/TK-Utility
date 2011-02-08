@@ -133,7 +133,15 @@
 }
 
 - (NSString *)dataDirectory {
-  return [delegate dataDirectory];
+  if([component respondsToSelector:@selector(dataDirectory)] &&
+     [component dataDirectory]!=nil) {
+    return [component dataDirectory];   // if the component wishes to override
+                                        // the data directory, return the
+                                        // component's data directory
+  } else {
+    return [delegate dataDirectory];    // otherwise, return the delegate's
+                                        // data directory
+  }
 }
 
 -(void) dealloc {

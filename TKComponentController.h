@@ -27,7 +27,7 @@
 #define BUNDLEIDENTIFIER [definition valueForKey:TKComponentBundleIdentifierKey]
 #define BUNDLENAME [definition valueForKey:TKComponentBundleNameKey]
 #define BUNDLEPATH [[[[NSBundle mainBundle] builtInPlugInsPath] stringByAppendingPathComponent:BUNDLENAME] stringByAppendingString:@".bundle"]
-#define DATADIRECTORY [delegate dataDirectory]
+#define DATADIRECTORY [self dataDirectory]
 #define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@.%@",STUDY,SUBJECT_ID,SESSION,TASK,DATAFILE_EXTENSION]
 #define DATAFILE_EXTENSION @"tsv"
 #define DEFAULT_RUN_HEADER [NSString stringWithFormat:@"\nRun:\t%d\t%@\n",[self runCount],LONGDATE]
