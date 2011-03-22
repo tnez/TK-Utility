@@ -93,33 +93,66 @@
 - (void)componentDidFinish: (id)sender {
     // if this is a loadable component bundle that just finished
     if([component conformsToProtocol:@protocol(TKComponentBundleLoading)]) {
-        // append header and summary info to datafile
-        [[component mainView] removeFromSuperview];        // remove the components view from window
-        if([self runCount] == 1) {
-            if([component respondsToSelector:@selector(sessionHeader)]) {
-                [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:[component sessionHeader] overWriteOnFirstWrite:NO];
-            } else { // use default session header
-                [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:DEFAULT_SESSION_HEADER overWriteOnFirstWrite:NO];
-            }
-        } else {}
-        if([component respondsToSelector:@selector(runHeader)]) { // custom run header
-            [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:[component runHeader] overWriteOnFirstWrite:NO];
-        } else { // use default run heaer
-            [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:DEFAULT_RUN_HEADER overWriteOnFirstWrite:NO];
+      // remove UI from view
+      [[component mainView] removeFromSuperview];
+      // SESSION HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      if([self runCount] == 1) {
+        // get session header
+        NSString *_sessionHead = [self sessionHeader];
+        // get offset value for session header (jic we need it later)
+        sessionHeaderOffset = [_sessionHead lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+        // write the session header
+        [mainLog writeToDirectory:DATADIRECTORY file:DATAFILE contentsOfString:_sessionHead overWriteOnFirstWrite:NO];
+      } else {}
+      // SUMMARY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      NSString *_summary = [self summary];        // get summary
+      if(_summary)                                // if summary exists...
+      {                                           
+        // get length of summary in bytes  
+        NSUInteger _length = [_summary lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+        NSUInteger _offset = [self summaryOffset]; // get the offset value
+        // get last summary end offset
+        NSUInteger _lastSummaryEnd = [[[self registryForTaskWithOffset:0] valueForKey:TKComponentSummaryEndKey] unsignedIntegerValue];
+        // if this is not first run and new summary takes up more space than last...
+        if(![self runCount]==1 && _lastSummaryEnd != _length + _offset)
+        {
+          // get new offset value of where old content should be placed
+          NSNumber *shoveOffset = [NSNumber numberWithUnsignedInteger:_length + _offset];
+          // get comeplete old logfile
+          NSFileHandle *df = [NSFileHandle fileHandleForReadingAtPath:PATH_TO_DATAFILE];
+          // seek to old end of summary
+          [df seekToFileOffset:_lastSummaryEnd];
+          // read from old offset to eof
+          NSData *oldData = [df readDataToEndOfFile];
+          // get string from oldData
+          NSString *oldStr = [[NSString alloc] initWithData:oldData encoding:NSUTF8StringEncoding];
+          NSLog(@"Top of old string: %@",[oldStr substringToIndex:25]);
+          // re-write old string at new offset
+          [mainLog queueLogMessage:DATADIRECTORY file:DATAFILE contentsOfString:[oldStr autorelease] overWriteOnFirstWrite:NO withOffset:shoveOffset];
         }
-        if([component respondsToSelector:@selector(summary)]) {
-            [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:[component summary] overWriteOnFirstWrite:NO];
-        } else {}
-        // wait for log queue to clear
-        while([TKLogging unwrittenItemCount] > 0) {
-            NSLog(@"TKComponentController waiting for log queue to clear before finalizing data file");
-        }
-        // transfer raw data from temp file to datafile
-        NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[component rawDataFile]]];
-        [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
-        // clean up component -- it is the component's responsibility to remove it's temporary files (raw data file included)
-        [component tearDown];
-        [component release];
+        // now we can write the summary at offset point
+        NSNumber *offset = [NSNumber numberWithUnsignedInteger:_offset];
+        [mainLog queueLogMessage:DATADIRECTORY file:DATAFILE contentsOfString:_summary overWriteOnFirstWrite:NO withOffset:offset];
+        // record (new) last summary  start and end
+        [self setValue:[NSNumber numberWithUnsignedInteger:_offset] forRegistryKey:TKComponentSummaryStartKey];
+        [self setValue:[NSNumber numberWithUnsignedInteger:_length + _offset] forRegistryKey:TKComponentSummaryEndKey];
+      }
+      // RUN HEADER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      if([component respondsToSelector:@selector(runHeader)]) { // custom run header
+        [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:[component runHeader] overWriteOnFirstWrite:NO];
+      } else { // use default run heaer
+        [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:DEFAULT_RUN_HEADER overWriteOnFirstWrite:NO];
+      }
+      // wait for log queue to clear
+      while([TKLogging unwrittenItemCount] > 0) {
+        NSLog(@"TKComponentController waiting for log queue to clear before finalizing data file");
+      }
+      // DETAILED DATA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[component rawDataFile]]];
+      [mainLog writeToDirectory:[self dataDirectory] file:DATAFILE contentsOfString:rawData overWriteOnFirstWrite:NO];
+      // clean up component -- it is the component's responsibility to remove it's temporary files (raw data file included)
+      [component tearDown];
+      [component release];
     } 
   // if this is a cocoa app that has finished...
   if([[definition valueForKey:TKComponentTypeKey] integerValue] ==
@@ -160,6 +193,15 @@
 -(void) end {
     componentEndTime = current_time_marker();
     [[NSNotificationCenter defaultCenter] postNotificationName:TKComponentDidFinishNotification object:self];
+}
+
+- (id)init {
+  if(self=[super init]) {
+    sessionHeaderOffset = 0;
+    lastSummaryEnd = 0;
+    return self;
+  }
+  return nil;
 }
 
 - (BOOL)isClearedToBegin {
@@ -330,6 +372,13 @@
   }
 }
 
+- (NSString *)runHeader {
+  if([component respondsToSelector:@selector(runHeader)]) {
+    return [component runHeader];
+  }
+  return DEFAULT_RUN_HEADER;
+}
+
 - (void)setDefinition: (NSDictionary *)newDefinition {
     [definition release];
     definition = [[NSDictionary alloc] initWithDictionary:newDefinition];
@@ -343,6 +392,13 @@
 
 - (NSString *)session {
     return SESSION;
+}
+
+- (NSString *)sessionHeader {
+  if([component respondsToSelector:@selector(sessionHeader)]) {
+    return [component sessionHeader];
+  } // else, return default
+  return DEFAULT_SESSION_HEADER;
 }
 
 /**
@@ -364,6 +420,24 @@
 
 - (TKTime)startTime {
     return componentStartTime;
+}
+
+- (NSString *)summary {
+  if([component respondsToSelector:@selector(summary)]) {
+    return [component summary];
+  }
+  return nil;
+}
+
+- (NSUInteger)summaryOffset {
+  NSUInteger _offset = 0;
+  if([component respondsToSelector:@selector(summaryOffset)]) {
+    _offset = [component summaryOffset];
+  }
+  if(_offset == 0) {
+    _offset = sessionHeaderOffset;
+  }
+  return _offset;
 }
 
 - (NSString *)task {
@@ -394,6 +468,9 @@ NSString * const TKComponentNameKey                     = @"TKComponentName";
 NSString * const TKComponentBundleNameKey               = @"TKComponentBundleName";
 NSString * const TKComponentBundleIdentifierKey         = @"TKComponentBundleIdentifier";
 NSString * const TKComponentRunKey                      = @"runs";
+NSString * const TKComponentSummaryEndKey               = @"lastSummaryEndValue";
+NSString * const TKComponentSummaryOffsetKey            = @"summaryOffsetValue";
+NSString * const TKComponentSummaryStartKey             = @"lastSummaryStartValue";
 
 
 

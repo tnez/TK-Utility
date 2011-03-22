@@ -31,8 +31,9 @@
 #define DATAFILE [NSString stringWithFormat:@"%@_%@_%@_%@.%@",STUDY,SUBJECT_ID,SESSION,TASK,DATAFILE_EXTENSION]
 #define DATAFILE_EXTENSION @"tsv"
 #define DEFAULT_RUN_HEADER [NSString stringWithFormat:@"\nRun:\t%d\t%@\n",[self runCount],LONGDATE]
-#define DEFAULT_SESSION_HEADER [NSString stringWithFormat:@"Task:\t%@\tSubject ID:\t%@\tSession#:\t%@\tDate:\t%@\n",TASK,SUBJECT_ID,SESSION,LONGDATE]
+#define DEFAULT_SESSION_HEADER [NSString stringWithFormat:@"Task:\t%@\tSubject ID:\t%@\tSession#:\t%@\tDate:\t%@\n\n",TASK,SUBJECT_ID,SESSION,LONGDATE]
 #define LONGDATE [[NSDate date] description]
+#define PATH_TO_DATAFILE [DATADIRECTORY stringByAppendingPathComponent:DATAFILE]
 #define SESSION [subject session]
 #define SHORTDATE [self shortdate]
 #define STUDY [subject study]
@@ -43,16 +44,18 @@
 
 @interface TKComponentController : NSObject <TKComponentBundleDelegate> {
 
-    id                                          component;
-    TKSession                                   *delegate;
-    NSDictionary                                *definition;
-    TKTimer                                     *timer;
-    TKLogging                                   *mainLog;
-    TKLogging                                   *crashLog;
-    TKSubject                                   *subject;
-    NSWindow                                    *sessionWindow;
-    TKTime                                      componentStartTime;
-    TKTime                                      componentEndTime;
+  id                                          component;
+  TKSession                                   *delegate;
+  NSDictionary                                *definition;
+  TKTimer                                     *timer;
+  TKLogging                                   *mainLog;
+  TKLogging                                   *crashLog;
+  TKSubject                                   *subject;
+  NSWindow                                    *sessionWindow;
+  NSUInteger                                  sessionHeaderOffset;
+  NSUInteger                                  lastSummaryEnd;
+  TKTime                                      componentStartTime;
+  TKTime                                      componentEndTime;
 }
 @property (assign)              TKSession       *delegate;
 @property (readonly)            NSDictionary    *definition;
@@ -170,9 +173,19 @@
 - (NSDictionary *)registryForLastRunForTaskRegistry: (NSDictionary *)taskRegistry;
 
 /**
+ Return the run header for the component (either custom or default)
+ */
+- (NSString *)runHeader;
+
+/**
  Returns current session string
  */
 - (NSString *)session;
+
+/**
+ Return the session header for the component
+ */
+- (NSString *)sessionHeader;
 
 /**
  Set value for given key for the current task
@@ -193,6 +206,16 @@
  Returns current subject object for component
  */
 - (TKSubject *)subject;
+
+/**
+ Return the summary for the component (nil if not implemented by component)
+ */
+- (NSString *)summary;
+
+/**
+ Return the summary offset for the component
+ */
+- (NSUInteger)summaryOffset;
 
 /**
  Returns current task name for component
@@ -223,6 +246,9 @@ extern NSString * const TKComponentNameKey;
 extern NSString * const TKComponentBundleNameKey;
 extern NSString * const TKComponentBundleIdentifierKey;
 extern NSString * const TKComponentRunKey;
+extern NSString * const TKComponentSummaryEndKey;
+extern NSString * const TKComponentSummaryOffsetKey;
+extern NSString * const TKComponentSummaryStartKey;
 
 
 
