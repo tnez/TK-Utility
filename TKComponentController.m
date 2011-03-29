@@ -114,7 +114,10 @@
         // get last summary end offset
         NSUInteger _lastSummaryEnd = [[[self registryForTaskWithOffset:0] valueForKey:TKComponentSummaryEndKey] unsignedIntegerValue];
         // if this is not first run and new summary takes up more space than last...
-        if(![self runCount]==1 && _lastSummaryEnd != _length + _offset)
+        DLog(@"THIS IS THE NEW FRAMEWORK!!!");
+        DLog(@"Last summary end: %d",_lastSummaryEnd);
+        DLog(@"Length + Offset: %d",_length+_offset);
+        if([self runCount]!=1 && (_lastSummaryEnd != (_length + _offset)))
         {
           // get new offset value of where old content should be placed
           NSNumber *shoveOffset = [NSNumber numberWithUnsignedInteger:_length + _offset];
@@ -126,7 +129,8 @@
           NSData *oldData = [df readDataToEndOfFile];
           // get string from oldData
           NSString *oldStr = [[NSString alloc] initWithData:oldData encoding:NSUTF8StringEncoding];
-          NSLog(@"Top of old string: %@",[oldStr substringToIndex:25]);
+          DLog(@"Shoving offset for detailed data: %d",[shoveOffset intValue]);
+          DLog(@"Top of old string: %@",[oldStr substringToIndex:25]);
           // re-write old string at new offset
           [mainLog queueLogMessage:DATADIRECTORY file:DATAFILE contentsOfString:[oldStr autorelease] overWriteOnFirstWrite:NO withOffset:shoveOffset];
         }
@@ -145,7 +149,7 @@
       }
       // wait for log queue to clear
       while([TKLogging unwrittenItemCount] > 0) {
-        NSLog(@"TKComponentController waiting for log queue to clear before finalizing data file");
+        DLog(@"TKComponentController waiting for log queue to clear before finalizing data file");
       }
       // DETAILED DATA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       NSString *rawData = [NSString stringWithContentsOfFile:[TEMPDIRECTORY stringByAppendingPathComponent:[component rawDataFile]]];
