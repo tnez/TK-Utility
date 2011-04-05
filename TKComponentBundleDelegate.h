@@ -67,9 +67,13 @@
  */
 - (NSInteger)runCount;
 /**
- Current session value
+ Current session value as string
  */
 - (NSString *)session;
+/**
+ Main window of TKSession
+ */
+- (NSWindow *)sessionWindow;
 /**
  Set value for given global key for the current task
  */
