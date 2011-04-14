@@ -130,7 +130,6 @@
           // get string from oldData
           NSString *oldStr = [[NSString alloc] initWithData:oldData encoding:NSUTF8StringEncoding];
           DLog(@"Shoving offset for detailed data: %d",[shoveOffset intValue]);
-          DLog(@"Top of old string: %@",[oldStr substringToIndex:25]);
           // re-write old string at new offset
           [mainLog queueLogMessage:DATADIRECTORY file:DATAFILE contentsOfString:[oldStr autorelease] overWriteOnFirstWrite:NO withOffset:shoveOffset];
         }
