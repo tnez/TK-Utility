@@ -463,6 +463,11 @@
 	}
 }
 
+- (id)valueForRegistryKeyPath: (NSString *)aKeyPath {
+  // lets just go ahead and ask our delegate
+  return [delegate valueForRegistryKeyPath:aKeyPath];
+}
+
 @end
 
 #pragma mark Preference Keys
