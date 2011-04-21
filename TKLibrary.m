@@ -48,15 +48,22 @@
 	[theView setAutoresizesSubviews:NO];
 	[theWindow setContentView:theView];
 	[theView setFrameOrigin:newOrigin];
+        [theWindow makeKeyAndOrderFront:self];
 }
 
--(void) enterFullScreenWithWindow:(NSWindow*)theWindow{
+-(void) enterFullScreenWithWindow:(NSWindow*)theWindow {
 
-	[NSMenu setMenuBarVisible:NO];
-	[theWindow
-	 setFrame:[theWindow frameRectForContentRect:[[theWindow screen] frame]]
-	 display:YES
-	 animate:YES];
+  // hide the menu bar
+  [NSMenu setMenuBarVisible:NO];
+
+  // size the window and pop-up
+  [theWindow setFrame:[theWindow frameRectForContentRect:
+                                   [[theWindow screen] frame]]
+              display:YES
+              animate:YES];
+
+  // put the window in front and focus
+  [theWindow makeKeyAndOrderFront:self];
 }
 
 -(void) exitFullScreenWithWindow:(NSWindow *) theWindow {
