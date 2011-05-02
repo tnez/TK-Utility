@@ -10,7 +10,7 @@
  (University of Kentucky). All rights reserved.
  
  LastMod: 20100803 - tn
- 
+
  ***************************************************************/
 
 #import <Cocoa/Cocoa.h>
@@ -21,8 +21,15 @@
 /** Notifications */
 extern NSString * const TKPreferencesDidChangeNotification;
 
-// singleton in which all application
-// parameters should be held as key-value-pairs
+/**
+   Singleton in which all application parameters should be
+   held as key-value-pairs.
+
+   IMPORTANT! This class is only used in the Blood Pressure
+   controller. It really does not belong in the shared framework and
+   should be removed at some point. Do not use in anything going
+   forward.
+*/
 @interface TKPreferences : NSObject {
 	NSMutableDictionary *data;
 	NSString *file;

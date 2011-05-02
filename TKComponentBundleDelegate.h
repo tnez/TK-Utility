@@ -3,105 +3,203 @@
 
 
 /** 
- TKComponentBundleDelegate: Denotes ability to perform delegate functions for 
- the a loadable cocoa bundle known as TKComponentBundle
- */
+    TKComponentBundleDelegate: Denotes ability to perform delegate functions for 
+    the a loadable cocoa bundle known as TKComponentBundle
+*/
 
 @protocol TKComponentBundleDelegate <NSObject>
-/**
- Component should send this method to delegate when it has finished
- */
+/** 
+    The component bunle did finish
+
+    @param sender The component that has finished.
+
+    The component bundle should send this message to its delegate when
+    it has finished operation. After this, the tearDown message will
+    be sent to the component by this delegate.
+
+  */
 - (void)componentDidFinish: (id)sender;
+
 /**
- Returns name of default temporary file as string
- */
+   Returns name of default temporary file as string
+
+*/
 - (NSString *)defaultTempFile;
+
 /**
- Logs string to temporary file (also appends newline at end of string) - string
- should be sent in format desired for final data file
- */
+   Logs string to temporary file (also appends newline at end of
+   string) - string should be sent in format desired for final data
+   file.
+
+   @param theString The string to be logged to the default temp file.
+
+*/
 - (void)logStringToDefaultTempFile: (NSString *)theString;
+
 /**
- Logs string to given directory and file (also appends newline at end of string)
- */
+   Logs string to given directory and file (also appends newline at
+   end of string).
+
+   @param theString String to be logged
+   @param theDirectory Directory of the target file.
+   @param theFile Filename of the target file.
+
+*/
 - (void)logString: (NSString *)theString toDirectory: (NSString *)theDirectory
            toFile: (NSString *)theFile;
+
 /**
- Return registry corresponding to given task ID... returns nil if not found.
- */
+   Return registry corresponding to given task ID... returns nil if
+   not found.
+
+   @param taskID The ID of the target task as defined in the session
+   configuration file.
+
+*/
 - (NSDictionary *)registryForTask: (NSString *)taskID;
+
 /**
- Return registry for the last completed task
- */
+   Return registry for the last completed task
+
+*/
 - (NSDictionary *)registryForLastTask;
+
 /**
- Return registry for the task using the given offset value
- offset: -1 equals last task, less than -1 is offset from there, 1 equals
- first task, greter than 1 is offset from there
- */
+   Registry for the task using the given offset value.
+
+   @param offset How far offset is the target task from the current
+   task? -1 represents the last completed task, -n represents the task
+   completed n tasks-ago. 1 equals the first task, n represents nth
+   completed task starting at the beginning. 0 represents the current
+   task.
+
+*/
 - (NSDictionary *)registryForTaskWithOffset: (NSInteger)offset;
+
 /**
- Return registry for run with offset for a given task ID
- offset: -1 equals last task, less than -1 is offset from there, 1 equals
- first task, greter than 1 is offset from there 
- */
+   Registry for run with offset for a given task ID.
+
+   @param offset How far offset is the target task from the current
+   task? -1 represents the last completed task, -n represents the task
+   completed n tasks-ago. 1 equals the first task, n represents nth
+   completed task starting at the beginning. 0 represents the current
+   task.
+
+   @param taskID The ID of the target task as defined in the session
+   configuration file.
+
+*/
 - (NSDictionary *)registryForRunWithOffset: (NSInteger)offset
                                    forTask: (NSString *)taskID;
+
 /**
- Return registry for run with offset for a given task registry
- offset: -1 equals last task, less than -1 is offset from there, 1 equals
- first task, greter than 1 is offset from there
- */
+   Registry for run with offset for a given task registry.
+
+   @param offset How far offset is the target task from the current
+   task? -1 represents the last completed task, -n represents the task
+   completed n tasks-ago. 1 equals the first task, n represents nth
+   completed task starting at the beginning. 0 represents the current
+   task.
+
+   @param taskRegistry An existing task registry from which to query run.
+
+*/
 - (NSDictionary *)registryForRunWithOffset: (NSInteger)offset
                            forTaskRegistry: (NSDictionary *)taskRegistry;
+
 /**
- Return registry for last run of given task ID
+   Registry for last run of given task ID.
+
+   @param taskID The ID of the target task as defined in the session
+   configuration file.
+
 */
 - (NSDictionary *)registryForLastRunForTask: (NSString *)taskID;
+
 /**
- Return registry for last run of given task registry
- */
+   Registry for last run of a given registry.
+
+   @param taskRegistry The registry with which to query the last run.
+
+*/
 - (NSDictionary *)registryForLastRunForTaskRegistry: (NSDictionary *)taskRegistry;
+
 /**
- Returns the run count by evaluating the current data file
+   Run count of the current component.
+
+   This method determines the run count by querying its own registry
+   and counting the number of run registries in its run collection.
+
  */
 - (NSInteger)runCount;
+
 /**
- Current session value as string
- */
+   Session identifier as string.
+
+*/
 - (NSString *)session;
+
 /**
- Main window of TKSession
- */
+   The window with which the session runs components.
+
+*/
 - (NSWindow *)sessionWindow;
+
 /**
- Set value for given global key for the current task
- */
+   Set value for given global key for the current task
+
+   @param newValue The new value you wish to store.
+
+   @param key The key with which you would like to associate the new
+   value.
+
+  */
 - (void)setValue: (id)newValue forRegistryKey: (NSString *)key;
+
 /**
- Set value for given key for current run of current task
- */
+   Set value for given key for current run of current task
+
+   @param newValue The new value you wish to store.
+
+   @param key The key with which you would like to associate the new
+   value.
+
+*/
 - (void)setValue: (id)newValue forRunRegistryKey: (NSString *)key;
+
 /**
- Start time of the component
- */
+   Start time of the component as a TKTime marker.
+
+*/
 - (TKTime)startTime;
+
 /**
- Current subject object
- */
+   The current subject object.
+
+*/
 - (TKSubject *)subject;
+
 /**
- Current task name
- */
+   Current task name
+*/
 - (NSString *)task;
+
 /**
- Returns the full path of the temporary directory used for storing crash 
- recovery data and temporary raw data
- */
+   The full path of the temporary directory used for storing crash
+   recovery data and temporary raw data.
+
+*/
 - (NSString *)tempDirectory;
+
 /**
- Error handling method - when component encounters an error it should send this 
- message to delegate
+   Error handling method - when component encounters an error it
+   should send this message to delegate.
+
+   Currently this method is not hanlded in the delegate, but if we
+   pass all run-time errors here, it gives us one convenient place to
+   handle errors and error notifications.
+
  */
 - (void)throwError: (NSString *)errorDescription andBreak: (BOOL)shouldBreak;
+
 @end

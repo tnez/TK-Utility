@@ -1,4 +1,4 @@
-/***************************************************************
+/*******************************************************************
  
  TKUtility.h
  TKUtility
@@ -10,8 +10,13 @@
  (University of Kentucky). All rights reserved.
  
  LastMod: 20100803 - tn
+
+ -------------------------------------------------------------------
+
+ This simply provides the convenience of importing all the framework
+ files using one import line: #import <TKUtility/TKUtility.h>
  
- ***************************************************************/
+********************************************************************/
 
 #import <Cocoa/Cocoa.h>
 
