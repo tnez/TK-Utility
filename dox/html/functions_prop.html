@@ -2,10 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Class Members - Properties</title>
+<title>TK-Utility: Class Members - Properties</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript">
+$(document).ready(initResizable);
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -14,6 +21,18 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 --></script>
 <div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TK-Utility&#160;<span id="projectnumber">0.5.3</span></div>
+   <div id="projectbrief">Shared utility framework to help facilitate a plugin architecture as well as eliminate duplication of code.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
@@ -49,70 +68,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="functions.html"><span>All</span></a></li>
       <li><a href="functions_func.html"><span>Functions</span></a></li>
-      <li><a href="functions_vars.html"><span>Variables</span></a></li>
       <li class="current"><a href="functions_prop.html"><span>Properties</span></a></li>
     </ul>
   </div>
-  <div id="navrow4" class="tabs3">
-    <ul class="tablist">
-      <li><a href="#index_a"><span>a</span></a></li>
-      <li><a href="#index_c"><span>c</span></a></li>
-      <li><a href="#index_d"><span>d</span></a></li>
-      <li><a href="#index_e"><span>e</span></a></li>
-      <li><a href="#index_f"><span>f</span></a></li>
-      <li><a href="#index_h"><span>h</span></a></li>
-      <li><a href="#index_i"><span>i</span></a></li>
-      <li><a href="#index_l"><span>l</span></a></li>
-      <li><a href="#index_m"><span>m</span></a></li>
-      <li><a href="#index_n"><span>n</span></a></li>
-      <li><a href="#index_o"><span>o</span></a></li>
-      <li><a href="#index_p"><span>p</span></a></li>
-      <li><a href="#index_r"><span>r</span></a></li>
-      <li><a href="#index_s"><span>s</span></a></li>
-      <li><a href="#index_t"><span>t</span></a></li>
-      <li><a href="#index_u"><span>u</span></a></li>
-      <li><a href="#index_w"><span>w</span></a></li>
-    </ul>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
+<script type="text/javascript">
+  initNavTree('functions.html','');
+</script>
+<div id="doc-content">
 <div class="contents">
-&#160;
-
-<h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
-<li>accessMethod
-: <a class="el" href="interface_t_k_question_set.html#a0555ed5855f1b589005b68dcde8c0b8e">TKQuestionSet</a>
-</li>
-<li>additionalFields
-: <a class="el" href="interface_t_k_question.html#af80728919ab553d3bd36f38850804c94">TKQuestion</a>
-</li>
+&#160;<ul>
 <li>appPath
 : <a class="el" href="interface_t_k_component_cocoa_app.html#ac5e4bc37773e10b5ac0e1966e7b5acc0">TKComponentCocoaApp</a>
 </li>
-</ul>
-
-
-<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>componentEndTime
 : <a class="el" href="interface_t_k_component_controller.html#aa3d5066873d5c97ebbb04c08939fe5d9">TKComponentController</a>
 </li>
 <li>componentStartTime
 : <a class="el" href="interface_t_k_component_controller.html#a01fa5aed7544e5dd1f0cbd71613fbb6a">TKComponentController</a>
 </li>
-<li>continueTimer
-: <a class="el" href="interface_t_k_timer.html#a6f983f32d57682852efb8df6d26f025a">TKTimer</a>
-</li>
-<li>count
-: <a class="el" href="interface_t_k_logging.html#a9bf06650f1ecfa10c039cbb60d94feda">TKLogging</a>
-</li>
 <li>crashLog
 : <a class="el" href="interface_t_k_component_controller.html#a612a24a8eecc19ff0ea1a09070dd2f80">TKComponentController</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
-<li>data
-: <a class="el" href="interface_t_k_preferences.html#af924b70cba73e7b5ee6e3a271e202a7b">TKPreferences</a>
 </li>
 <li>dataDir
 : <a class="el" href="interface_t_k_component_cocoa_app.html#a024b5624e7b26bb209b5e3f5123d18b6">TKComponentCocoaApp</a>
@@ -121,120 +106,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="interface_t_k_component_controller.html#ab0b16e4ffac3879a75a9ff56fb0fbe24">TKComponentController</a>
 </li>
 <li>delegate
-: <a class="el" href="interface_t_k_component_controller.html">TKComponentController</a>
-, <a class="el" href="interface_t_k_component_cocoa_app.html#adf34ba644e9b7fac464f4243f6378c08">TKComponentCocoaApp</a>
-, <a class="el" href="interface_t_k_component_controller.html#a8684a4abf7c41aa661e87ed7ec0cbd69">TKComponentController</a>
+: <a class="el" href="interface_t_k_component_cocoa_app.html#adf34ba644e9b7fac464f4243f6378c08">TKComponentCocoaApp</a>
+, <a class="el" href="interface_t_k_component_controller.html#ac83715b7fd45effbdf94e902b513e152">TKComponentController</a>
 </li>
-<li>directory
-: <a class="el" href="interface_t_k_log_queue_item.html#a26fda414d850b9f76dad0a3d88ac8b11">TKLogQueueItem</a>
-</li>
-<li>drug
-: <a class="el" href="interface_t_k_subject.html#a9d76021d7e0920ccb6c9a6737f805889">TKSubject</a>
-</li>
-<li>drugCode
-: <a class="el" href="interface_t_k_subject.html#a44dc10ab9e5af167a289d9558f44f150">TKSubject</a>
-</li>
-<li>drugDose
-: <a class="el" href="interface_t_k_subject.html#add4ebf8699935abc6a0196216f0b619b">TKSubject</a>
-</li>
-<li>drugLevel
-: <a class="el" href="interface_t_k_subject.html#aeaebc5f63ece354a1535a1f383ef27ce">TKSubject</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
-<li>errorDescription
-: <a class="el" href="interface_t_k_question_set.html#ab9cf35254525ade232875e347eddb8cc">TKQuestionSet</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
-<li>file
-: <a class="el" href="interface_t_k_log_queue_item.html#aaf369d48993b7fbf31c5707e109a27b1">TKLogQueueItem</a>
-, <a class="el" href="interface_t_k_preferences.html#aa9f7040d50a4ac1e53caf09c03cc3e8a">TKPreferences</a>
-</li>
-<li>filename
-: <a class="el" href="interface_t_k_preferences.html#aade4c4775ed28a9c21c9c715109dd42c">TKPreferences</a>
-</li>
-<li>filepath
-: <a class="el" href="interface_t_k_preferences.html#a1275afe71a23c615575226dd8714fd26">TKPreferences</a>
-</li>
-<li>filesWrittenTo
-: <a class="el" href="interface_t_k_logging.html#a3e97e5b2a308802e55748da2b8cdf2bf">TKLogging</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
-<li>hasFieldsHeader
-: <a class="el" href="interface_t_k_delimited_file_parser.html#a851ef9624fb4917deb659848e3d54fd4">TKDelimitedFileParser</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
 <li>inputDir
 : <a class="el" href="interface_t_k_component_cocoa_app.html#a381787f7949fdab3d9c71ddf6d5ab87c">TKComponentCocoaApp</a>
 </li>
 <li>inputFiles
 : <a class="el" href="interface_t_k_component_cocoa_app.html#ae6552a79c2042192b73ae3e78d1a5b4d">TKComponentCocoaApp</a>
 </li>
-<li>isDirty
-: <a class="el" href="interface_t_k_preferences.html#a4329844c13745a4ab0ed3789c012f09d">TKPreferences</a>
-</li>
-<li>isKeyValueSet
-: <a class="el" href="interface_t_k_delimited_file_parser.html#ad0a3f475e6c38a0663cb8a30f2e65f94">TKDelimitedFileParser</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
-<li>leftScaleOverride
-: <a class="el" href="interface_t_k_question.html#a72fe22624d29acb4dc6f3398e87bb9b1">TKQuestion</a>
-</li>
-<li>logMessage
-: <a class="el" href="interface_t_k_log_queue_item.html#a65e9df3d0a085731276a38bb4c428362">TKLogQueueItem</a>
-</li>
-<li>logQueue
-: <a class="el" href="interface_t_k_logging.html#abbe55549df094bde8125fed0defb2c1f">TKLogging</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
 <li>mainLog
 : <a class="el" href="interface_t_k_component_controller.html#a245d34b575f5f57cf6596d05d2c43b9c">TKComponentController</a>
 </li>
-<li>microseconds
-: <a class="el" href="interface_t_k_timer.html#a798c5689ae35399a76939f8ab05dc595">TKTimer</a>
-</li>
-<li>microsecondsToRun
-: <a class="el" href="interface_t_k_notification_queue_item.html#afe3849c0ad6b68e48542dfa73e053973">TKNotificationQueueItem</a>
-</li>
 <li>moveQueue
 : <a class="el" href="interface_t_k_component_cocoa_app.html#a1c6b124743d5a95a191128ebd9d20a1d">TKComponentCocoaApp</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
-<li>nibName
-: <a class="el" href="interface_t_k_preferences.html#aa441d3d7fce0bfbc083b90065ed8bb8a">TKPreferences</a>
-</li>
-<li>notification
-: <a class="el" href="interface_t_k_notification_queue_item.html#acf5b8af07bb6ab7125162faf6b2aeb08">TKNotificationQueueItem</a>
-</li>
-<li>notificationQueue
-: <a class="el" href="interface_t_k_timer.html#a7e1b2594e1247abe90884d4d0d4b4e2c">TKTimer</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
-<li>offset
-: <a class="el" href="interface_t_k_log_queue_item.html#aeaba5f70727c0d4f6789ccc40eb9e569">TKLogQueueItem</a>
 </li>
 <li>outputDir
 : <a class="el" href="interface_t_k_component_cocoa_app.html#abae2421a6eb75d43ef7f46e03ce28df7">TKComponentCocoaApp</a>
@@ -245,96 +130,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>outputFilesToCopy
 : <a class="el" href="interface_t_k_component_cocoa_app.html#a71c5ddc5029e3e2b405cdcd32399ef99">TKComponentCocoaApp</a>
 </li>
-<li>overwrite
-: <a class="el" href="interface_t_k_log_queue_item.html#a4d64e25592dfbf981dce17e2c84c5919">TKLogQueueItem</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
-<li>p
-: <a class="el" href="interface_t_k_delimited_file_parser_test.html#a414a9b26f53d9e9ebb154a020ca4d254">TKDelimitedFileParserTest</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
-<li>records
-: <a class="el" href="interface_t_k_delimited_file_parser.html#afb34f714ec2ab6effa4a6e0cb2d2904e">TKDelimitedFileParser</a>
-</li>
-<li>rightScaleOverride
-: <a class="el" href="interface_t_k_question.html#acd93a41e2cd6edb06f60eb1866950555">TKQuestion</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
-<li>seconds
-: <a class="el" href="interface_t_k_timer.html#a79e047c50929b16a45beb29fa7500176">TKTimer</a>
-</li>
-<li>secondsToRun
-: <a class="el" href="interface_t_k_notification_queue_item.html#a95d06e62914e45ab08cc9f89906d2063">TKNotificationQueueItem</a>
-</li>
-<li>session
-: <a class="el" href="interface_t_k_subject.html#a04dd9d7f0666e0128e90b7ccaaf2e900">TKSubject</a>
-</li>
 <li>sessionWindow
 : <a class="el" href="interface_t_k_component_controller.html#a2e11062f621f26294c95729984a42e7f">TKComponentController</a>
 </li>
 <li>shouldRenameOutputFiles
 : <a class="el" href="interface_t_k_component_cocoa_app.html#aa804c91003476a234ab563346916d896">TKComponentCocoaApp</a>
 </li>
-<li>startTimeMicroSeconds
-: <a class="el" href="interface_t_k_timer.html#a323ead9bd211fe9536a636c546a472d8">TKTimer</a>
-</li>
-<li>startTimeSeconds
-: <a class="el" href="interface_t_k_timer.html#a27cbdcd8acf9171411b9d0098e564d54">TKTimer</a>
-</li>
-<li>study
-: <a class="el" href="interface_t_k_subject.html#a89ed8e55e2b52c443738850ad23f3941">TKSubject</a>
-</li>
 <li>subject
 : <a class="el" href="interface_t_k_component_controller.html#a74b98682b9b31a06b5b982b41b51801b">TKComponentController</a>
 </li>
-<li>subject_id
-: <a class="el" href="interface_t_k_subject.html#a91865c2adb1c432983b6426c976a18ce">TKSubject</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
 <li>taskName
 : <a class="el" href="interface_t_k_component_cocoa_app.html#a4f17b8aa4e5d5f34bc3c1721aa9432e5">TKComponentCocoaApp</a>
-</li>
-<li>text
-: <a class="el" href="interface_t_k_question.html#af728a0afd510fd154071737ae813ed12">TKQuestion</a>
 </li>
 <li>timer
 : <a class="el" href="interface_t_k_component_controller.html#af871cd32a9f5f041864b8c69d489944c">TKComponentController</a>
 </li>
 </ul>
-
-
-<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
-<li>uid
-: <a class="el" href="interface_t_k_question.html#a195a4041ab05b9c4b4d49503a287943c">TKQuestion</a>
-, <a class="el" href="interface_t_k_question_set.html#ae2e782a8b6b82b388b8418cb7231b979">TKQuestionSet</a>
-</li>
-</ul>
-
-
-<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
-<li>window
-: <a class="el" href="interface_t_k_preferences.html#a0068810f8f6386a99d37b3a6d1d555b8">TKPreferences</a>
-</li>
-</ul>
 </div>
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="footer">Generated on Fri May 6 2011 10:24:00 for TK-Utility by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -343,8 +169,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon May 2 2011 18:26:23 by&#160;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+
 </body>
 </html>

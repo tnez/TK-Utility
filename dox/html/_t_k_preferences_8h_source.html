@@ -2,10 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>TKPreferences.h Source File</title>
+<title>TK-Utility: TKPreferences.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript">
+$(document).ready(initResizable);
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -14,6 +21,18 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 --></script>
 <div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TK-Utility&#160;<span id="projectnumber">0.5.3</span></div>
+   <div id="projectbrief">Shared utility framework to help facilitate a plugin architecture as well as eliminate duplication of code.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
@@ -40,15 +59,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('_t_k_preferences_8h.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">TKPreferences.h</div>  </div>
 </div>
 <div class="contents">
-<a href="_t_k_preferences_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/***************************************************************</span>
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/***************************************************************</span>
 <a name="l00002"></a>00002 <span class="comment"> </span>
 <a name="l00003"></a>00003 <span class="comment"> TKPreferences.h</span>
 <a name="l00004"></a>00004 <span class="comment"> TKUtility</span>
@@ -65,19 +97,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00015"></a>00015 
 <a name="l00016"></a>00016 <span class="preprocessor">#import &lt;Cocoa/Cocoa.h&gt;</span>
 <a name="l00017"></a>00017 
-<a name="l00018"></a><a class="code" href="_t_k_preferences_8h.html#ae09dd150305af0b993ba11f790de6357">00018</a> <span class="preprocessor">#define TK_PREFS_DEFAULT_FILE_NAME @&quot;preferences.plist&quot;</span>
-<a name="l00019"></a><a class="code" href="_t_k_preferences_8h.html#a12c5a0a8cdadaa3a9f297befeeac5526">00019</a> <span class="preprocessor"></span><span class="preprocessor">#define TK_PREFS_DEFAULT_NIB_NAME @&quot;preferences&quot;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#define TK_PREFS_DEFAULT_FILE_NAME @&quot;preferences.plist&quot;</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span><span class="preprocessor">#define TK_PREFS_DEFAULT_NIB_NAME @&quot;preferences&quot;</span>
 <a name="l00020"></a>00020 <span class="preprocessor"></span>
-<a name="l00022"></a>00022 <span class="keyword">extern</span> NSString * <span class="keyword">const</span> <a class="code" href="build_2_debug_2_t_k_utility_8framework_2_versions_2_a_2_headers_2_t_k_preferences_8h.html#ad99516c80f91621cfae82f307eb369c2" title="Notifications.">TKPreferencesDidChangeNotification</a>;
+<a name="l00022"></a>00022 <span class="keyword">extern</span> NSString * <span class="keyword">const</span> TKPreferencesDidChangeNotification;
 <a name="l00023"></a>00023 
-<a name="l00033"></a>00033 <span class="keyword">@interface </span><a class="code" href="interface_t_k_preferences.html" title="Singleton in which all application parameters should be held as key-value-pairs.">TKPreferences</a> : NSObject {
-<a name="l00034"></a>00034         NSMutableDictionary *<a class="code" href="interface_t_k_preferences.html#af924b70cba73e7b5ee6e3a271e202a7b">data</a>;
-<a name="l00035"></a>00035         NSString *<a class="code" href="interface_t_k_preferences.html#aa9f7040d50a4ac1e53caf09c03cc3e8a">file</a>;
-<a name="l00036"></a>00036         NSString *<a class="code" href="interface_t_k_preferences.html#aade4c4775ed28a9c21c9c715109dd42c">filename</a>;
-<a name="l00037"></a>00037         NSString *<a class="code" href="interface_t_k_preferences.html#a1275afe71a23c615575226dd8714fd26">filepath</a>;
-<a name="l00038"></a>00038         BOOL <a class="code" href="interface_t_k_preferences.html#a4329844c13745a4ab0ed3789c012f09d">isDirty</a>;
-<a name="l00039"></a>00039         NSString *<a class="code" href="interface_t_k_preferences.html#aa441d3d7fce0bfbc083b90065ed8bb8a">nibName</a>;
-<a name="l00040"></a>00040         IBOutlet NSWindow *<a class="code" href="interface_t_k_preferences.html#a0068810f8f6386a99d37b3a6d1d555b8">window</a>;
+<a name="l00033"></a><a class="code" href="interface_t_k_preferences.html">00033</a> <span class="keyword">@interface </span><a class="code" href="interface_t_k_preferences.html" title="Singleton in which all application parameters should be held as key-value-pairs.">TKPreferences</a> : NSObject {
+<a name="l00034"></a>00034         NSMutableDictionary *data;
+<a name="l00035"></a>00035         NSString *file;
+<a name="l00036"></a>00036         NSString *filename;
+<a name="l00037"></a>00037         NSString *filepath;
+<a name="l00038"></a>00038         BOOL isDirty;
+<a name="l00039"></a>00039         NSString *nibName;
+<a name="l00040"></a>00040         IBOutlet NSWindow *window;
 <a name="l00041"></a>00041 }
 <a name="l00042"></a>00042 <span class="keyword">@property</span> (retain) NSMutableDictionary *data;
 <a name="l00043"></a>00043 <span class="keyword">@property</span> (readonly) NSString *file;
@@ -98,17 +130,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00058"></a>00058 <span class="keyword">@end</span>
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060 <span class="comment">// DELEGATE METHODS //</span>
-<a name="l00061"></a>00061 <span class="keyword">@interface </span><a class="code" href="interface_t_k_preferences_delegate.html">TKPreferencesDelegate</a> : NSObject
+<a name="l00061"></a><a class="code" href="interface_t_k_preferences_delegate.html">00061</a> <span class="keyword">@interface </span><a class="code" href="interface_t_k_preferences_delegate.html">TKPreferencesDelegate</a> : NSObject
 <a name="l00062"></a>00062 -(void) preferencesDidChage:(NSNotification *) notification;
 <a name="l00063"></a>00063 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>TKPreferences.h</b>      </li>
+      <li class="footer">Generated on Fri May 6 2011 10:24:00 for TK-Utility by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,8 +157,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon May 2 2011 18:26:22 by&#160;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+
 </body>
 </html>

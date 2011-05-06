@@ -2,10 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>TKLibrary Class Reference</title>
+<title>TK-Utility: TKLibrary Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript">
+$(document).ready(initResizable);
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -14,6 +21,18 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 --></script>
 <div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TK-Utility&#160;<span id="projectnumber">0.5.3</span></div>
+   <div id="projectbrief">Shared utility framework to help facilitate a plugin architecture as well as eliminate duplication of code.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
@@ -46,6 +65,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('interface_t_k_library.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -55,24 +87,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="TKLibrary" -->
-<p><code>#import &lt;<a class="el" href="build_2_debug_2_t_k_utility_8framework_2_versions_2_a_2_headers_2_t_k_library_8h_source.html">TKLibrary.h</a>&gt;</code></p>
-
 <p><a href="class_t_k_library-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_library.html#a821aecd27aa1b15b062d05adab5cc393">centerView:inWindow:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_library.html#adebd6483c6a8a4852f952986ab9d112e">enterFullScreenWithWindow:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_library.html#a93e56727f921352e3e3921220e4776d1">exitFullScreenWithWindow:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_library.html#a821aecd27aa1b15b062d05adab5cc393">centerView:inWindow:</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Center the given view in the given window.  <a href="#a821aecd27aa1b15b062d05adab5cc393"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_library.html#adebd6483c6a8a4852f952986ab9d112e">enterFullScreenWithWindow:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Make the given window go full-screen.  <a href="#adebd6483c6a8a4852f952986ab9d112e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adebd6483c6a8a4852f952986ab9d112e"></a><!-- doxytag: member="TKLibrary::enterFullScreenWithWindow:" ref="adebd6483c6a8a4852f952986ab9d112e" args="(NSWindow *theWindow)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_library.html#adebd6483c6a8a4852f952986ab9d112e">enterFullScreenWithWindow:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Make the given window go full-screen. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_library.html#a93e56727f921352e3e3921220e4776d1">exitFullScreenWithWindow:</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit full-screen with the window.  <a href="#a93e56727f921352e3e3921220e4776d1"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_library.html">TKLibrary</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_library.html#ac9cfa869cbd75662ea895bd3147ab653">sharedLibrary</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_library.html">TKLibrary</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_library.html#ac9cfa869cbd75662ea895bd3147ab653">sharedLibrary</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a singleton reference to the shared library.  <a href="#ac9cfa869cbd75662ea895bd3147ab653"></a><br/></td></tr>
 </table>
@@ -102,88 +129,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="a821aecd27aa1b15b062d05adab5cc393"></a><!-- doxytag: member="TKLibrary::centerView:inWindow:" ref="a821aecd27aa1b15b062d05adab5cc393" args="(NSView *theView,[inWindow] NSWindow *theWindow)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) centerView: </td>
-          <td></td>
-          <td class="paramtype">(NSView *)&#160;</td>
-          <td class="paramname"><em>theView</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">inWindow:</td>
-          <td></td>
-          <td class="paramtype">(NSWindow *)&#160;</td>
-          <td class="paramname"><em>theWindow</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
 <p>Center the given view in the given window. </p>
 <p>This is often called by the component controller when loading the component's main view. </p>
-
-</div>
-</div>
-<a class="anchor" id="adebd6483c6a8a4852f952986ab9d112e"></a><!-- doxytag: member="TKLibrary::enterFullScreenWithWindow:" ref="adebd6483c6a8a4852f952986ab9d112e" args="(NSWindow *theWindow)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) enterFullScreenWithWindow: </td>
-          <td></td>
-          <td class="paramtype">(NSWindow *)&#160;</td>
-          <td class="paramname"><em>theWindow</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Make the given window go full-screen. </p>
-
-</div>
-</div>
-<a class="anchor" id="adebd6483c6a8a4852f952986ab9d112e"></a><!-- doxytag: member="TKLibrary::enterFullScreenWithWindow:" ref="adebd6483c6a8a4852f952986ab9d112e" args="(NSWindow *theWindow)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) enterFullScreenWithWindow: </td>
-          <td></td>
-          <td class="paramtype">(NSWindow *)&#160;</td>
-          <td class="paramname"><em>theWindow</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a93e56727f921352e3e3921220e4776d1"></a><!-- doxytag: member="TKLibrary::exitFullScreenWithWindow:" ref="a93e56727f921352e3e3921220e4776d1" args="(NSWindow *theWindow)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) exitFullScreenWithWindow: </td>
-          <td></td>
-          <td class="paramtype">(NSWindow *)&#160;</td>
-          <td class="paramname"><em>theWindow</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
 
 </div>
 </div>
@@ -221,39 +168,31 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-</div>
-</div>
-<a class="anchor" id="ac9cfa869cbd75662ea895bd3147ab653"></a><!-- doxytag: member="TKLibrary::sharedLibrary" ref="ac9cfa869cbd75662ea895bd3147ab653" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="interface_t_k_library.html">TKLibrary</a> *) sharedLibrary </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
 <p>Return a singleton reference to the shared library. </p>
 <p>This was used originally by Scott, and is still in place in order to facilitate backwards compatibility with some pieces of the code that make use of it. </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>build/Debug/TKUtility.framework/Versions/A/Headers/<a class="el" href="build_2_debug_2_t_k_utility_8framework_2_versions_2_a_2_headers_2_t_k_library_8h_source.html">TKLibrary.h</a></li>
 <li><a class="el" href="_t_k_library_8h_source.html">TKLibrary.h</a></li>
-<li><a class="el" href="_t_k_library_8m.html">TKLibrary.m</a></li>
+<li>TKLibrary.m</li>
 </ul>
 </div>
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="interface_t_k_library.html">TKLibrary</a>      </li>
+      <li class="footer">Generated on Fri May 6 2011 10:24:01 for TK-Utility by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -262,8 +201,6 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon May 2 2011 18:26:23 by&#160;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+
 </body>
 </html>

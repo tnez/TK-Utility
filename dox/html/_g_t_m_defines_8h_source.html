@@ -2,10 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>GTMDefines.h Source File</title>
+<title>TK-Utility: GTMDefines.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript">
+$(document).ready(initResizable);
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -14,6 +21,18 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 --></script>
 <div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TK-Utility&#160;<span id="projectnumber">0.5.3</span></div>
+   <div id="projectbrief">Shared utility framework to help facilitate a plugin architecture as well as eliminate duplication of code.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
@@ -40,15 +59,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('_g_t_m_defines_8h.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">GTMDefines.h</div>  </div>
 </div>
 <div class="contents">
-<a href="_g_t_m_defines_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// </span>
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// </span>
 <a name="l00002"></a>00002 <span class="comment">// GTMDefines.h</span>
 <a name="l00003"></a>00003 <span class="comment">//</span>
 <a name="l00004"></a>00004 <span class="comment">//  Copyright 2008 Google Inc.</span>
@@ -82,7 +114,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00032"></a>00032 <span class="preprocessor"></span><span class="preprocessor"># define GTM_HTTPFETCHER_ENABLE_LOGGING 1</span>
 <a name="l00033"></a>00033 <span class="preprocessor"></span><span class="preprocessor">#endif // GTM_HTTPFETCHER_ENABLE_LOGGING</span>
 <a name="l00034"></a>00034 <span class="preprocessor"></span><span class="preprocessor">#ifndef GTM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING</span>
-<a name="l00035"></a><a class="code" href="_g_t_m_defines_8h.html#afdc0e152c3d4a667ee722f48be718223">00035</a> <span class="preprocessor"></span><span class="preprocessor"># define GTM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING 0</span>
+<a name="l00035"></a>00035 <span class="preprocessor"></span><span class="preprocessor"># define GTM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING 0</span>
 <a name="l00036"></a>00036 <span class="preprocessor"></span><span class="preprocessor">#endif // GTM_HTTPFETCHER_ENABLE_INPUTSTREAM_LOGGING</span>
 <a name="l00037"></a>00037 <span class="preprocessor"></span>
 <a name="l00038"></a>00038 
@@ -111,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00061"></a>00061 <span class="preprocessor">#ifdef DEBUG</span>
 <a name="l00062"></a>00062 <span class="preprocessor"></span><span class="preprocessor"> #define _GTMDevLog(...) NSLog(__VA_ARGS__)</span>
 <a name="l00063"></a>00063 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00064"></a><a class="code" href="_g_t_m_defines_8h.html#a883c6d3aaad454a0e8792a3ac0359c69">00064</a> <span class="preprocessor"></span><span class="preprocessor"> #define _GTMDevLog(...) do { } while (0)</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span><span class="preprocessor"> #define _GTMDevLog(...) do { } while (0)</span>
 <a name="l00065"></a>00065 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00066"></a>00066 <span class="preprocessor"></span>
 <a name="l00067"></a>00067 <span class="preprocessor">#endif // _GTMDevLog</span>
@@ -119,13 +151,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00069"></a>00069 <span class="comment">// Declared here so that it can easily be used for logging tracking if</span>
 <a name="l00070"></a>00070 <span class="comment">// necessary. See GTMUnitTestDevLog.h for details.</span>
 <a name="l00071"></a>00071 <span class="keyword">@class</span> NSString;
-<a name="l00072"></a>00072 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="_g_t_m_defines_8h.html#afe214ef4612dc0cc4b3d057522560186">_GTMUnittestDevLog</a>(NSString *format, ...);
+<a name="l00072"></a>00072 <span class="keyword">extern</span> <span class="keywordtype">void</span> _GTMUnittestDevLog(NSString *format, ...);
 <a name="l00073"></a>00073 
 <a name="l00074"></a>00074 <span class="preprocessor">#ifndef _GTMDevAssert</span>
 <a name="l00075"></a>00075 <span class="preprocessor"></span><span class="comment">// we directly invoke the NSAssert handler so we can pass on the varargs</span>
 <a name="l00076"></a>00076 <span class="comment">// (NSAssert doesn&#39;t have a macro we can use that takes varargs)</span>
 <a name="l00077"></a>00077 <span class="preprocessor">#if !defined(NS_BLOCK_ASSERTIONS)</span>
-<a name="l00078"></a><a class="code" href="_g_t_m_defines_8h.html#ac8b343dfb0b227a0620b8c868738db35">00078</a> <span class="preprocessor"></span><span class="preprocessor">#define _GTMDevAssert(condition, ...)                                    \</span>
+<a name="l00078"></a>00078 <span class="preprocessor"></span><span class="preprocessor">#define _GTMDevAssert(condition, ...)                                    \</span>
 <a name="l00079"></a>00079 <span class="preprocessor">  do {                                                                   \</span>
 <a name="l00080"></a>00080 <span class="preprocessor">    if (!(condition)) {                                                  \</span>
 <a name="l00081"></a>00081 <span class="preprocessor">      [[NSAssertionHandler currentHandler]                               \</span>
@@ -155,9 +187,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00105"></a>00105 <span class="preprocessor"></span><span class="comment">// We got this technique from here:</span>
 <a name="l00106"></a>00106 <span class="comment">// http://unixjunkie.blogspot.com/2007/10/better-compile-time-asserts_29.html</span>
 <a name="l00107"></a>00107 
-<a name="l00108"></a><a class="code" href="_g_t_m_defines_8h.html#a2258993ba98696904f244e3353de1d5b">00108</a> <span class="preprocessor">#define _GTMCompileAssertSymbolInner(line, msg) _GTMCOMPILEASSERT ## line ## __ ## msg</span>
-<a name="l00109"></a><a class="code" href="_g_t_m_defines_8h.html#afebe927f8ac0c1e20dd4efc2929f6089">00109</a> <span class="preprocessor"></span><span class="preprocessor">#define _GTMCompileAssertSymbol(line, msg) _GTMCompileAssertSymbolInner(line, msg)</span>
-<a name="l00110"></a><a class="code" href="_g_t_m_defines_8h.html#a21c493926a47b7a0e928bd0a1297e3c0">00110</a> <span class="preprocessor"></span><span class="preprocessor">#define _GTMCompileAssert(test, msg) \</span>
+<a name="l00108"></a>00108 <span class="preprocessor">#define _GTMCompileAssertSymbolInner(line, msg) _GTMCOMPILEASSERT ## line ## __ ## msg</span>
+<a name="l00109"></a>00109 <span class="preprocessor"></span><span class="preprocessor">#define _GTMCompileAssertSymbol(line, msg) _GTMCompileAssertSymbolInner(line, msg)</span>
+<a name="l00110"></a>00110 <span class="preprocessor"></span><span class="preprocessor">#define _GTMCompileAssert(test, msg) \</span>
 <a name="l00111"></a>00111 <span class="preprocessor">  typedef char _GTMCompileAssertSymbol(__LINE__, msg) [ ((test) ? 1 : -1) ]</span>
 <a name="l00112"></a>00112 <span class="preprocessor"></span><span class="preprocessor">#endif // _GTMCompileAssert</span>
 <a name="l00113"></a>00113 <span class="preprocessor"></span>
@@ -177,7 +209,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00127"></a>00127 <span class="preprocessor">  #define GTM_IPHONE_SDK 1</span>
 <a name="l00128"></a>00128 <span class="preprocessor"></span><span class="preprocessor">#else</span>
 <a name="l00129"></a>00129 <span class="preprocessor"></span>  <span class="comment">// For MacOS specific stuff</span>
-<a name="l00130"></a><a class="code" href="_g_t_m_defines_8h.html#aaed2e849604a319e441ce07cfeca8303">00130</a> <span class="preprocessor">  #define GTM_MACOS_SDK 1</span>
+<a name="l00130"></a>00130 <span class="preprocessor">  #define GTM_MACOS_SDK 1</span>
 <a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
 <a name="l00132"></a>00132 <span class="preprocessor"></span>
 <a name="l00133"></a>00133 <span class="comment">// To simplify support for 64bit (and Leopard in general), we provide the type</span>
@@ -186,42 +218,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00136"></a>00136 <span class="preprocessor"></span> <span class="comment">// NSInteger/NSUInteger and Max/Mins</span>
 <a name="l00137"></a>00137 <span class="preprocessor"> #ifndef NSINTEGER_DEFINED</span>
 <a name="l00138"></a>00138 <span class="preprocessor"></span><span class="preprocessor">  #if __LP64__ || NS_BUILD_32_LIKE_64</span>
-<a name="l00139"></a>00139 <span class="preprocessor"></span>   <span class="keyword">typedef</span> <span class="keywordtype">long</span> <a class="code" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">NSInteger</a>;
-<a name="l00140"></a>00140    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="_g_t_m_defines_8h.html#a9cf5fb54d9c1f9db0e7ae98b3b133cbc">NSUInteger</a>;
+<a name="l00139"></a>00139 <span class="preprocessor"></span>   <span class="keyword">typedef</span> <span class="keywordtype">long</span> NSInteger;
+<a name="l00140"></a>00140    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> NSUInteger;
 <a name="l00141"></a>00141 <span class="preprocessor">  #else</span>
-<a name="l00142"></a><a class="code" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">00142</a> <span class="preprocessor"></span>   <span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">NSInteger</a>;
-<a name="l00143"></a><a class="code" href="_g_t_m_defines_8h.html#a9cf5fb54d9c1f9db0e7ae98b3b133cbc">00143</a>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="_g_t_m_defines_8h.html#a9cf5fb54d9c1f9db0e7ae98b3b133cbc">NSUInteger</a>;
+<a name="l00142"></a>00142 <span class="preprocessor"></span>   <span class="keyword">typedef</span> <span class="keywordtype">int</span> NSInteger;
+<a name="l00143"></a>00143    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> NSUInteger;
 <a name="l00144"></a>00144 <span class="preprocessor">  #endif</span>
-<a name="l00145"></a><a class="code" href="_g_t_m_defines_8h.html#a162afc5b4860b2e07699e32b1ee7f8e8">00145</a> <span class="preprocessor"></span><span class="preprocessor">  #define NSIntegerMax    LONG_MAX</span>
-<a name="l00146"></a><a class="code" href="_g_t_m_defines_8h.html#ac45f211be6b784535439e20efcf7b40c">00146</a> <span class="preprocessor"></span><span class="preprocessor">  #define NSIntegerMin    LONG_MIN</span>
-<a name="l00147"></a><a class="code" href="_g_t_m_defines_8h.html#af0fd383cb63174ce95af12a483994abd">00147</a> <span class="preprocessor"></span><span class="preprocessor">  #define NSUIntegerMax   ULONG_MAX</span>
-<a name="l00148"></a><a class="code" href="_g_t_m_defines_8h.html#a644b3923ec31cfd9c9b7bdac5b0b975f">00148</a> <span class="preprocessor"></span><span class="preprocessor">  #define NSINTEGER_DEFINED 1</span>
+<a name="l00145"></a>00145 <span class="preprocessor"></span><span class="preprocessor">  #define NSIntegerMax    LONG_MAX</span>
+<a name="l00146"></a>00146 <span class="preprocessor"></span><span class="preprocessor">  #define NSIntegerMin    LONG_MIN</span>
+<a name="l00147"></a>00147 <span class="preprocessor"></span><span class="preprocessor">  #define NSUIntegerMax   ULONG_MAX</span>
+<a name="l00148"></a>00148 <span class="preprocessor"></span><span class="preprocessor">  #define NSINTEGER_DEFINED 1</span>
 <a name="l00149"></a>00149 <span class="preprocessor"></span><span class="preprocessor"> #endif  // NSINTEGER_DEFINED</span>
 <a name="l00150"></a>00150 <span class="preprocessor"></span> <span class="comment">// CGFloat</span>
 <a name="l00151"></a>00151 <span class="preprocessor"> #ifndef CGFLOAT_DEFINED</span>
 <a name="l00152"></a>00152 <span class="preprocessor"></span><span class="preprocessor">  #if defined(__LP64__) &amp;&amp; __LP64__</span>
 <a name="l00153"></a>00153 <span class="preprocessor"></span>   <span class="comment">// This really is an untested path (64bit on Tiger?)</span>
-<a name="l00154"></a>00154    <span class="keyword">typedef</span> <span class="keywordtype">double</span> <a class="code" href="_g_t_m_defines_8h.html#a18d4caed68adad61eb9fe96a613914a9">CGFloat</a>;
+<a name="l00154"></a>00154    <span class="keyword">typedef</span> <span class="keywordtype">double</span> CGFloat;
 <a name="l00155"></a>00155 <span class="preprocessor">   #define CGFLOAT_MIN DBL_MIN</span>
 <a name="l00156"></a>00156 <span class="preprocessor"></span><span class="preprocessor">   #define CGFLOAT_MAX DBL_MAX</span>
 <a name="l00157"></a>00157 <span class="preprocessor"></span><span class="preprocessor">   #define CGFLOAT_IS_DOUBLE 1</span>
 <a name="l00158"></a>00158 <span class="preprocessor"></span><span class="preprocessor">  #else </span><span class="comment">/* !defined(__LP64__) || !__LP64__ */</span>
-<a name="l00159"></a><a class="code" href="_g_t_m_defines_8h.html#a18d4caed68adad61eb9fe96a613914a9">00159</a>    <span class="keyword">typedef</span> <span class="keywordtype">float</span> <a class="code" href="_g_t_m_defines_8h.html#a18d4caed68adad61eb9fe96a613914a9">CGFloat</a>;
-<a name="l00160"></a><a class="code" href="_g_t_m_defines_8h.html#af79d188c10d5010d0d61217a1116f07e">00160</a> <span class="preprocessor">   #define CGFLOAT_MIN FLT_MIN</span>
-<a name="l00161"></a><a class="code" href="_g_t_m_defines_8h.html#a7f5584b2d119e5d96a13c972738e9cdb">00161</a> <span class="preprocessor"></span><span class="preprocessor">   #define CGFLOAT_MAX FLT_MAX</span>
-<a name="l00162"></a><a class="code" href="_g_t_m_defines_8h.html#a2db7461fdc719d2684e1e12ec97516df">00162</a> <span class="preprocessor"></span><span class="preprocessor">   #define CGFLOAT_IS_DOUBLE 0</span>
+<a name="l00159"></a>00159    <span class="keyword">typedef</span> <span class="keywordtype">float</span> CGFloat;
+<a name="l00160"></a>00160 <span class="preprocessor">   #define CGFLOAT_MIN FLT_MIN</span>
+<a name="l00161"></a>00161 <span class="preprocessor"></span><span class="preprocessor">   #define CGFLOAT_MAX FLT_MAX</span>
+<a name="l00162"></a>00162 <span class="preprocessor"></span><span class="preprocessor">   #define CGFLOAT_IS_DOUBLE 0</span>
 <a name="l00163"></a>00163 <span class="preprocessor"></span><span class="preprocessor">  #endif </span><span class="comment">/* !defined(__LP64__) || !__LP64__ */</span>
-<a name="l00164"></a><a class="code" href="_g_t_m_defines_8h.html#abd4a86dea530abc1d6fba5c353b4861f">00164</a> <span class="preprocessor">  #define CGFLOAT_DEFINED 1</span>
+<a name="l00164"></a>00164 <span class="preprocessor">  #define CGFLOAT_DEFINED 1</span>
 <a name="l00165"></a>00165 <span class="preprocessor"></span><span class="preprocessor"> #endif // CGFLOAT_DEFINED</span>
 <a name="l00166"></a>00166 <span class="preprocessor"></span><span class="preprocessor">#endif  // MAC_OS_X_VERSION_MAX_ALLOWED &lt;= MAC_OS_X_VERSION_10_4</span>
 </pre></div></div>
 </div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><b>GTMDefines.h</b>      </li>
+      <li class="footer">Generated on Fri May 6 2011 10:23:59 for TK-Utility by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -230,8 +270,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon May 2 2011 18:26:22 by&#160;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+
 </body>
 </html>

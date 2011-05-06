@@ -2,10 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>TKComponentCocoaApp Class Reference</title>
+<title>TK-Utility: TKComponentCocoaApp Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript">
+$(document).ready(initResizable);
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -14,6 +21,18 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 --></script>
 <div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TK-Utility&#160;<span id="projectnumber">0.5.3</span></div>
+   <div id="projectbrief">Shared utility framework to help facilitate a plugin architecture as well as eliminate duplication of code.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
@@ -46,6 +65,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('interface_t_k_component_cocoa_app.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -56,8 +88,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="TKComponentCocoaApp" -->
-<p><code>#import &lt;<a class="el" href="_t_k_component_cocoa_app_8h_source.html">TKComponentCocoaApp.h</a>&gt;</code></p>
-
 <p><a href="class_t_k_component_cocoa_app-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
@@ -72,43 +102,54 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform any clean up code nescesary - this will include moving generated data files into our sessions data directory.  <a href="#a1908396125d30b5b65ef6d766251c9d2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_component_cocoa_app.html#a824d9a488c063b6676cfbbe6a41c4689">checkIfApplicationIsDone:</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check that the application we recorded as our application of interest is the one that the workspace just terminated.  <a href="#a824d9a488c063b6676cfbbe6a41c4689"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_component_cocoa_app.html#adf9f755a58948887e1cc642db77ffbd3">cleanInputDirectory</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean input directory (remove any support that we created)  <a href="#adf9f755a58948887e1cc642db77ffbd3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf9f755a58948887e1cc642db77ffbd3"></a><!-- doxytag: member="TKComponentCocoaApp::cleanInputDirectory" ref="adf9f755a58948887e1cc642db77ffbd3" args="()" -->
+(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_component_cocoa_app.html#adf9f755a58948887e1cc642db77ffbd3">cleanInputDirectory</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clean input directory (remove any support that we created) <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_component_cocoa_app.html#a79d95479146d82fe2620f03d77bc9cb6">queueOutputFiles</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy output files - loop through all the output files and handle their copying according to shouldRenameOutputFile and outputFilesToCopy parameters.  <a href="#a79d95479146d82fe2620f03d77bc9cb6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_component_cocoa_app.html#a39635c4367770967ca2ca162d98175ce">copySupportFiles</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy specified support files into our support directory.  <a href="#a39635c4367770967ca2ca162d98175ce"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_component_cocoa_app.html#afb2998ebd5deee51b6bf903262d5ff51">createSupportDirectoryIfNeeded</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the specified support directory if it does not already exists.  <a href="#afb2998ebd5deee51b6bf903262d5ff51"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_component_cocoa_app.html#a5b85adc46ff59a07cee53e51fdfb73e7">getApplicationInfo:</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If the application that the workspace just did launch matches what we were expecting, then record critical info such as its process id.  <a href="#a5b85adc46ff59a07cee53e51fdfb73e7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b85adc46ff59a07cee53e51fdfb73e7"></a><!-- doxytag: member="TKComponentCocoaApp::getApplicationInfo:" ref="a5b85adc46ff59a07cee53e51fdfb73e7" args="(NSNotification *theNote)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_component_cocoa_app.html#a5b85adc46ff59a07cee53e51fdfb73e7">getApplicationInfo:</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">If the application that the workspace just did launch matches what we were expecting, then record critical info such as its process id. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSNumber *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a610cbaa320b0ebae1efa8293e29bbb27">pid</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a610cbaa320b0ebae1efa8293e29bbb27"></a><!-- doxytag: member="TKComponentCocoaApp::pid" ref="a610cbaa320b0ebae1efa8293e29bbb27" args="" -->
+NSNumber *&#160;</td><td class="memItemRight" valign="bottom"><b>pid</b></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_t_k_component_controller.html">TKComponentController</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#adf34ba644e9b7fac464f4243f6378c08">delegate</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Delegate of the abstract Cocoa App.  <a href="#adf34ba644e9b7fac464f4243f6378c08"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#ac5e4bc37773e10b5ac0e1966e7b5acc0">appPath</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Full-path to the application on disk.  <a href="#ac5e4bc37773e10b5ac0e1966e7b5acc0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a4f17b8aa4e5d5f34bc3c1721aa9432e5">taskName</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Task name of the component.  <a href="#a4f17b8aa4e5d5f34bc3c1721aa9432e5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a024b5624e7b26bb209b5e3f5123d18b6">dataDir</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Data directory if required.  <a href="#a024b5624e7b26bb209b5e3f5123d18b6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a381787f7949fdab3d9c71ddf6d5ab87c">inputDir</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The directory where required input files (dependencies of the Cocoa App) should be placed.  <a href="#a381787f7949fdab3d9c71ddf6d5ab87c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#abae2421a6eb75d43ef7f46e03ce28df7">outputDir</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The directory where the Cocoa App puts data files, etc.  <a href="#abae2421a6eb75d43ef7f46e03ce28df7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#ae6552a79c2042192b73ae3e78d1a5b4d">inputFiles</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">List of file dependencies for the Cocoa App.  <a href="#ae6552a79c2042192b73ae3e78d1a5b4d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a71c5ddc5029e3e2b405cdcd32399ef99">outputFilesToCopy</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">List of files that should be copied from the Cocoa App's output directory, to our defined data directory.  <a href="#a71c5ddc5029e3e2b405cdcd32399ef99"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5e4bc37773e10b5ac0e1966e7b5acc0"></a><!-- doxytag: member="TKComponentCocoaApp::appPath" ref="ac5e4bc37773e10b5ac0e1966e7b5acc0" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#ac5e4bc37773e10b5ac0e1966e7b5acc0">appPath</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Full-path to the application on disk. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f17b8aa4e5d5f34bc3c1721aa9432e5"></a><!-- doxytag: member="TKComponentCocoaApp::taskName" ref="a4f17b8aa4e5d5f34bc3c1721aa9432e5" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a4f17b8aa4e5d5f34bc3c1721aa9432e5">taskName</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Task name of the component. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a024b5624e7b26bb209b5e3f5123d18b6"></a><!-- doxytag: member="TKComponentCocoaApp::dataDir" ref="a024b5624e7b26bb209b5e3f5123d18b6" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a024b5624e7b26bb209b5e3f5123d18b6">dataDir</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Data directory if required. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a381787f7949fdab3d9c71ddf6d5ab87c"></a><!-- doxytag: member="TKComponentCocoaApp::inputDir" ref="a381787f7949fdab3d9c71ddf6d5ab87c" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a381787f7949fdab3d9c71ddf6d5ab87c">inputDir</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The directory where required input files (dependencies of the Cocoa App) should be placed. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abae2421a6eb75d43ef7f46e03ce28df7"></a><!-- doxytag: member="TKComponentCocoaApp::outputDir" ref="abae2421a6eb75d43ef7f46e03ce28df7" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#abae2421a6eb75d43ef7f46e03ce28df7">outputDir</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The directory where the Cocoa App puts data files, etc. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6552a79c2042192b73ae3e78d1a5b4d"></a><!-- doxytag: member="TKComponentCocoaApp::inputFiles" ref="ae6552a79c2042192b73ae3e78d1a5b4d" args="" -->
+NSArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#ae6552a79c2042192b73ae3e78d1a5b4d">inputFiles</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">List of file dependencies for the Cocoa App. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71c5ddc5029e3e2b405cdcd32399ef99"></a><!-- doxytag: member="TKComponentCocoaApp::outputFilesToCopy" ref="a71c5ddc5029e3e2b405cdcd32399ef99" args="" -->
+NSArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a71c5ddc5029e3e2b405cdcd32399ef99">outputFilesToCopy</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">List of files that should be copied from the Cocoa App's output directory, to our defined data directory. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">NSArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a0540e47566e0956985a49f53b4dbddfd">outputFileNamesAppendage</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">List of extensions that should be used when moving output files to data directory.  <a href="#a0540e47566e0956985a49f53b4dbddfd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#aa804c91003476a234ab563346916d896">shouldRenameOutputFiles</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Should the Cocoa App use renaming rules when copying files from output dir to data dir?  <a href="#aa804c91003476a234ab563346916d896"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">TKFileMoveQueue *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a1c6b124743d5a95a191128ebd9d20a1d">moveQueue</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Special purpose queue designed to help queue move files.  <a href="#a1c6b124743d5a95a191128ebd9d20a1d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c6b124743d5a95a191128ebd9d20a1d"></a><!-- doxytag: member="TKComponentCocoaApp::moveQueue" ref="a1c6b124743d5a95a191128ebd9d20a1d" args="" -->
+TKFileMoveQueue *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_component_cocoa_app.html#a1c6b124743d5a95a191128ebd9d20a1d">moveQueue</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Special purpose queue designed to help queue move files. <br/></td></tr>
 </table>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a38054f52169eff518ec3a475bb19dc24"></a><!-- doxytag: member="TKComponentCocoaApp::begin" ref="a38054f52169eff518ec3a475bb19dc24" args="()" -->
@@ -147,24 +188,6 @@ Properties</h2></td></tr>
 
 <p>Check that the application we recorded as our application of interest is the one that the workspace just terminated. </p>
 <p>If it is, then let our delegate know that we are done. </p>
-
-</div>
-</div>
-<a class="anchor" id="adf9f755a58948887e1cc642db77ffbd3"></a><!-- doxytag: member="TKComponentCocoaApp::cleanInputDirectory" ref="adf9f755a58948887e1cc642db77ffbd3" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (BOOL) cleanInputDirectory </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Clean input directory (remove any support that we created) </p>
 
 </div>
 </div>
@@ -208,25 +231,6 @@ Properties</h2></td></tr>
 
 <p>Create the specified support directory if it does not already exists. </p>
 <p>If the specified support directory does not exist, create. </p>
-
-</div>
-</div>
-<a class="anchor" id="a5b85adc46ff59a07cee53e51fdfb73e7"></a><!-- doxytag: member="TKComponentCocoaApp::getApplicationInfo:" ref="a5b85adc46ff59a07cee53e51fdfb73e7" args="(NSNotification *theNote)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) getApplicationInfo: </td>
-          <td></td>
-          <td class="paramtype">(NSNotification *)&#160;</td>
-          <td class="paramname"><em>theNote</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>If the application that the workspace just did launch matches what we were expecting, then record critical info such as its process id. </p>
 
 </div>
 </div>
@@ -311,51 +315,7 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a610cbaa320b0ebae1efa8293e29bbb27"></a><!-- doxytag: member="TKComponentCocoaApp::pid" ref="a610cbaa320b0ebae1efa8293e29bbb27" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSNumber*) <a class="el" href="interface_t_k_component_cocoa_app.html#a610cbaa320b0ebae1efa8293e29bbb27">pid</a><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <hr/><h2>Property Documentation</h2>
-<a class="anchor" id="ac5e4bc37773e10b5ac0e1966e7b5acc0"></a><!-- doxytag: member="TKComponentCocoaApp::appPath" ref="ac5e4bc37773e10b5ac0e1966e7b5acc0" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) appPath<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Full-path to the application on disk. </p>
-
-</div>
-</div>
-<a class="anchor" id="a024b5624e7b26bb209b5e3f5123d18b6"></a><!-- doxytag: member="TKComponentCocoaApp::dataDir" ref="a024b5624e7b26bb209b5e3f5123d18b6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) dataDir<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Data directory if required. </p>
-
-</div>
-</div>
 <a class="anchor" id="adf34ba644e9b7fac464f4243f6378c08"></a><!-- doxytag: member="TKComponentCocoaApp::delegate" ref="adf34ba644e9b7fac464f4243f6378c08" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -369,66 +329,6 @@ Properties</h2></td></tr>
 
 <p>Delegate of the abstract Cocoa App. </p>
 <p>This will most likely be the session. </p>
-
-</div>
-</div>
-<a class="anchor" id="a381787f7949fdab3d9c71ddf6d5ab87c"></a><!-- doxytag: member="TKComponentCocoaApp::inputDir" ref="a381787f7949fdab3d9c71ddf6d5ab87c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) inputDir<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The directory where required input files (dependencies of the Cocoa App) should be placed. </p>
-
-</div>
-</div>
-<a class="anchor" id="ae6552a79c2042192b73ae3e78d1a5b4d"></a><!-- doxytag: member="TKComponentCocoaApp::inputFiles" ref="ae6552a79c2042192b73ae3e78d1a5b4d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSArray *) inputFiles<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>List of file dependencies for the Cocoa App. </p>
-
-</div>
-</div>
-<a class="anchor" id="a1c6b124743d5a95a191128ebd9d20a1d"></a><!-- doxytag: member="TKComponentCocoaApp::moveQueue" ref="a1c6b124743d5a95a191128ebd9d20a1d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (TKFileMoveQueue *) moveQueue<code> [read, write, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Special purpose queue designed to help queue move files. </p>
-
-</div>
-</div>
-<a class="anchor" id="abae2421a6eb75d43ef7f46e03ce28df7"></a><!-- doxytag: member="TKComponentCocoaApp::outputDir" ref="abae2421a6eb75d43ef7f46e03ce28df7" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) outputDir<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The directory where the Cocoa App puts data files, etc. </p>
 
 </div>
 </div>
@@ -448,21 +348,6 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a71c5ddc5029e3e2b405cdcd32399ef99"></a><!-- doxytag: member="TKComponentCocoaApp::outputFilesToCopy" ref="a71c5ddc5029e3e2b405cdcd32399ef99" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSArray *) outputFilesToCopy<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>List of files that should be copied from the Cocoa App's output directory, to our defined data directory. </p>
-
-</div>
-</div>
 <a class="anchor" id="aa804c91003476a234ab563346916d896"></a><!-- doxytag: member="TKComponentCocoaApp::shouldRenameOutputFiles" ref="aa804c91003476a234ab563346916d896" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -478,32 +363,26 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4f17b8aa4e5d5f34bc3c1721aa9432e5"></a><!-- doxytag: member="TKComponentCocoaApp::taskName" ref="a4f17b8aa4e5d5f34bc3c1721aa9432e5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) taskName<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Task name of the component. </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_t_k_component_cocoa_app_8h_source.html">TKComponentCocoaApp.h</a></li>
-<li><a class="el" href="_t_k_component_cocoa_app_8m.html">TKComponentCocoaApp.m</a></li>
+<li>TKComponentCocoaApp.m</li>
 </ul>
 </div>
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="interface_t_k_component_cocoa_app.html">TKComponentCocoaApp</a>      </li>
+      <li class="footer">Generated on Fri May 6 2011 10:24:00 for TK-Utility by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -512,8 +391,6 @@ Properties</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon May 2 2011 18:26:23 by&#160;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+
 </body>
 </html>

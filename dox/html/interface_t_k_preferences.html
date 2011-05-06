@@ -2,10 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>TKPreferences Class Reference</title>
+<title>TK-Utility: TKPreferences Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript">
+$(document).ready(initResizable);
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -14,6 +21,18 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 --></script>
 <div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TK-Utility&#160;<span id="projectnumber">0.5.3</span></div>
+   <div id="projectbrief">Shared utility framework to help facilitate a plugin architecture as well as eliminate duplication of code.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
@@ -46,6 +65,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('interface_t_k_preferences.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -59,468 +91,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Singleton in which all application parameters should be held as key-value-pairs.  
  <a href="interface_t_k_preferences.html#details">More...</a></p>
 
-<p><code>#import &lt;<a class="el" href="build_2_debug_2_t_k_utility_8framework_2_versions_2_a_2_headers_2_t_k_preferences_8h_source.html">TKPreferences.h</a>&gt;</code></p>
+<p><code>#import &lt;<a class="el" href="_t_k_preferences_8h_source.html">TKPreferences.h</a>&gt;</code></p>
 
 <p><a href="class_t_k_preferences-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a5a1f069f54a46d56a48e06f39a7fc94b">init</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(IBAction)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#af634e6dbaef851c743f99de1ce2d2a32">open:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a5b216c22c809ac429f093c9ba5f8bb13">read</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(IBAction)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a36a3541d449ee3c56174d988601d76e2">save:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#addd32605d6947c020517e4aa50e9b017">setValue:forKey:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a76ea670d99fd9dace5882e7db29610ab">valueForKey:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a1ab598d760f8b72bcc2a6cfdad2a1c1c">windowWillClose:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a0a6afff7843da7225c170aded55ab71e">write</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a5a1f069f54a46d56a48e06f39a7fc94b">init</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(IBAction)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#af634e6dbaef851c743f99de1ce2d2a32">open:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a5b216c22c809ac429f093c9ba5f8bb13">read</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(IBAction)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a36a3541d449ee3c56174d988601d76e2">save:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#addd32605d6947c020517e4aa50e9b017">setValue:forKey:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(id)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a76ea670d99fd9dace5882e7db29610ab">valueForKey:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a1ab598d760f8b72bcc2a6cfdad2a1c1c">windowWillClose:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_preferences.html#a0a6afff7843da7225c170aded55ab71e">write</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a1f069f54a46d56a48e06f39a7fc94b"></a><!-- doxytag: member="TKPreferences::init" ref="a5a1f069f54a46d56a48e06f39a7fc94b" args="()" -->
+(<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <b>init</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af634e6dbaef851c743f99de1ce2d2a32"></a><!-- doxytag: member="TKPreferences::open:" ref="af634e6dbaef851c743f99de1ce2d2a32" args="(id sender)" -->
+(IBAction)&#160;</td><td class="memItemRight" valign="bottom">- <b>open:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b216c22c809ac429f093c9ba5f8bb13"></a><!-- doxytag: member="TKPreferences::read" ref="a5b216c22c809ac429f093c9ba5f8bb13" args="()" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>read</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36a3541d449ee3c56174d988601d76e2"></a><!-- doxytag: member="TKPreferences::save:" ref="a36a3541d449ee3c56174d988601d76e2" args="(id sender)" -->
+(IBAction)&#160;</td><td class="memItemRight" valign="bottom">- <b>save:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="addd32605d6947c020517e4aa50e9b017"></a><!-- doxytag: member="TKPreferences::setValue:forKey:" ref="addd32605d6947c020517e4aa50e9b017" args="(id theValue,[forKey] NSString *theKey)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>setValue:forKey:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76ea670d99fd9dace5882e7db29610ab"></a><!-- doxytag: member="TKPreferences::valueForKey:" ref="a76ea670d99fd9dace5882e7db29610ab" args="(NSString *key)" -->
+(id)&#160;</td><td class="memItemRight" valign="bottom">- <b>valueForKey:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ab598d760f8b72bcc2a6cfdad2a1c1c"></a><!-- doxytag: member="TKPreferences::windowWillClose:" ref="a1ab598d760f8b72bcc2a6cfdad2a1c1c" args="(NSNotification *notification)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>windowWillClose:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a6afff7843da7225c170aded55ab71e"></a><!-- doxytag: member="TKPreferences::write" ref="a0a6afff7843da7225c170aded55ab71e" args="()" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>write</b></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_preferences.html#a95dfe358119e2a1a4fa1a6efba52961b">defaultPrefs</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_preferences.html#a95dfe358119e2a1a4fa1a6efba52961b">defaultPrefs</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95dfe358119e2a1a4fa1a6efba52961b"></a><!-- doxytag: member="TKPreferences::defaultPrefs" ref="a95dfe358119e2a1a4fa1a6efba52961b" args="()" -->
+(<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <b>defaultPrefs</b></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSMutableDictionary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_preferences.html#af924b70cba73e7b5ee6e3a271e202a7b">data</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_preferences.html#aa9f7040d50a4ac1e53caf09c03cc3e8a">file</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_preferences.html#aade4c4775ed28a9c21c9c715109dd42c">filename</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_preferences.html#a1275afe71a23c615575226dd8714fd26">filepath</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_preferences.html#a4329844c13745a4ab0ed3789c012f09d">isDirty</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSString *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_preferences.html#aa441d3d7fce0bfbc083b90065ed8bb8a">nibName</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">IBOutlet NSWindow *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_preferences.html#a0068810f8f6386a99d37b3a6d1d555b8">window</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af924b70cba73e7b5ee6e3a271e202a7b"></a><!-- doxytag: member="TKPreferences::data" ref="af924b70cba73e7b5ee6e3a271e202a7b" args="" -->
+NSMutableDictionary *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9f7040d50a4ac1e53caf09c03cc3e8a"></a><!-- doxytag: member="TKPreferences::file" ref="aa9f7040d50a4ac1e53caf09c03cc3e8a" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>file</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aade4c4775ed28a9c21c9c715109dd42c"></a><!-- doxytag: member="TKPreferences::filename" ref="aade4c4775ed28a9c21c9c715109dd42c" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>filename</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1275afe71a23c615575226dd8714fd26"></a><!-- doxytag: member="TKPreferences::filepath" ref="a1275afe71a23c615575226dd8714fd26" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>filepath</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4329844c13745a4ab0ed3789c012f09d"></a><!-- doxytag: member="TKPreferences::isDirty" ref="a4329844c13745a4ab0ed3789c012f09d" args="" -->
+BOOL&#160;</td><td class="memItemRight" valign="bottom"><b>isDirty</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa441d3d7fce0bfbc083b90065ed8bb8a"></a><!-- doxytag: member="TKPreferences::nibName" ref="aa441d3d7fce0bfbc083b90065ed8bb8a" args="" -->
+NSString *&#160;</td><td class="memItemRight" valign="bottom"><b>nibName</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0068810f8f6386a99d37b3a6d1d555b8"></a><!-- doxytag: member="TKPreferences::window" ref="a0068810f8f6386a99d37b3a6d1d555b8" args="" -->
+IBOutlet NSWindow *&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Singleton in which all application parameters should be held as key-value-pairs. </p>
 <p>IMPORTANT! This class is only used in the Blood Pressure controller. It really does not belong in the shared framework and should be removed at some point. Do not use in anything going forward. </p>
-</div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a95dfe358119e2a1a4fa1a6efba52961b"></a><!-- doxytag: member="TKPreferences::defaultPrefs" ref="a95dfe358119e2a1a4fa1a6efba52961b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *) defaultPrefs </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a95dfe358119e2a1a4fa1a6efba52961b"></a><!-- doxytag: member="TKPreferences::defaultPrefs" ref="a95dfe358119e2a1a4fa1a6efba52961b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *) defaultPrefs </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5a1f069f54a46d56a48e06f39a7fc94b"></a><!-- doxytag: member="TKPreferences::init" ref="a5a1f069f54a46d56a48e06f39a7fc94b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *) init </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5a1f069f54a46d56a48e06f39a7fc94b"></a><!-- doxytag: member="TKPreferences::init" ref="a5a1f069f54a46d56a48e06f39a7fc94b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (<a class="el" href="interface_t_k_preferences.html">TKPreferences</a> *) init </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af634e6dbaef851c743f99de1ce2d2a32"></a><!-- doxytag: member="TKPreferences::open:" ref="af634e6dbaef851c743f99de1ce2d2a32" args="(id sender)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (IBAction) open: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>sender</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af634e6dbaef851c743f99de1ce2d2a32"></a><!-- doxytag: member="TKPreferences::open:" ref="af634e6dbaef851c743f99de1ce2d2a32" args="(id sender)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (IBAction) open: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>sender</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5b216c22c809ac429f093c9ba5f8bb13"></a><!-- doxytag: member="TKPreferences::read" ref="a5b216c22c809ac429f093c9ba5f8bb13" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) read </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5b216c22c809ac429f093c9ba5f8bb13"></a><!-- doxytag: member="TKPreferences::read" ref="a5b216c22c809ac429f093c9ba5f8bb13" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) read </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a36a3541d449ee3c56174d988601d76e2"></a><!-- doxytag: member="TKPreferences::save:" ref="a36a3541d449ee3c56174d988601d76e2" args="(id sender)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (IBAction) save: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>sender</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a36a3541d449ee3c56174d988601d76e2"></a><!-- doxytag: member="TKPreferences::save:" ref="a36a3541d449ee3c56174d988601d76e2" args="(id sender)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (IBAction) save: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>sender</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="addd32605d6947c020517e4aa50e9b017"></a><!-- doxytag: member="TKPreferences::setValue:forKey:" ref="addd32605d6947c020517e4aa50e9b017" args="(id theValue,[forKey] NSString *theKey)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) setValue: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>theValue</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">forKey:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>theKey</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="addd32605d6947c020517e4aa50e9b017"></a><!-- doxytag: member="TKPreferences::setValue:forKey:" ref="addd32605d6947c020517e4aa50e9b017" args="(id theValue,[forKey] NSString *theKey)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) setValue: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>theValue</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">forKey:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>theKey</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a76ea670d99fd9dace5882e7db29610ab"></a><!-- doxytag: member="TKPreferences::valueForKey:" ref="a76ea670d99fd9dace5882e7db29610ab" args="(NSString *key)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (id) valueForKey: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>key</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a76ea670d99fd9dace5882e7db29610ab"></a><!-- doxytag: member="TKPreferences::valueForKey:" ref="a76ea670d99fd9dace5882e7db29610ab" args="(NSString *key)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (id) valueForKey: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>key</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1ab598d760f8b72bcc2a6cfdad2a1c1c"></a><!-- doxytag: member="TKPreferences::windowWillClose:" ref="a1ab598d760f8b72bcc2a6cfdad2a1c1c" args="(NSNotification *notification)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) windowWillClose: </td>
-          <td></td>
-          <td class="paramtype">(NSNotification *)&#160;</td>
-          <td class="paramname"><em>notification</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1ab598d760f8b72bcc2a6cfdad2a1c1c"></a><!-- doxytag: member="TKPreferences::windowWillClose:" ref="a1ab598d760f8b72bcc2a6cfdad2a1c1c" args="(NSNotification *notification)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) windowWillClose: </td>
-          <td></td>
-          <td class="paramtype">(NSNotification *)&#160;</td>
-          <td class="paramname"><em>notification</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0a6afff7843da7225c170aded55ab71e"></a><!-- doxytag: member="TKPreferences::write" ref="a0a6afff7843da7225c170aded55ab71e" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) write </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0a6afff7843da7225c170aded55ab71e"></a><!-- doxytag: member="TKPreferences::write" ref="a0a6afff7843da7225c170aded55ab71e" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) write </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Property Documentation</h2>
-<a class="anchor" id="af924b70cba73e7b5ee6e3a271e202a7b"></a><!-- doxytag: member="TKPreferences::data" ref="af924b70cba73e7b5ee6e3a271e202a7b" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSMutableDictionary *) data<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aa9f7040d50a4ac1e53caf09c03cc3e8a"></a><!-- doxytag: member="TKPreferences::file" ref="aa9f7040d50a4ac1e53caf09c03cc3e8a" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) file<code> [read, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aade4c4775ed28a9c21c9c715109dd42c"></a><!-- doxytag: member="TKPreferences::filename" ref="aade4c4775ed28a9c21c9c715109dd42c" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) filename<code> [read, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1275afe71a23c615575226dd8714fd26"></a><!-- doxytag: member="TKPreferences::filepath" ref="a1275afe71a23c615575226dd8714fd26" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) filepath<code> [read, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a4329844c13745a4ab0ed3789c012f09d"></a><!-- doxytag: member="TKPreferences::isDirty" ref="a4329844c13745a4ab0ed3789c012f09d" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (BOOL) isDirty<code> [read, write, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aa441d3d7fce0bfbc083b90065ed8bb8a"></a><!-- doxytag: member="TKPreferences::nibName" ref="aa441d3d7fce0bfbc083b90065ed8bb8a" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSString *) nibName<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a0068810f8f6386a99d37b3a6d1d555b8"></a><!-- doxytag: member="TKPreferences::window" ref="a0068810f8f6386a99d37b3a6d1d555b8" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (IBOutlet NSWindow *) window<code> [read, write, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>build/Debug/TKUtility.framework/Versions/A/Headers/<a class="el" href="build_2_debug_2_t_k_utility_8framework_2_versions_2_a_2_headers_2_t_k_preferences_8h_source.html">TKPreferences.h</a></li>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_t_k_preferences_8h_source.html">TKPreferences.h</a></li>
-<li><a class="el" href="_t_k_preferences_8m.html">TKPreferences.m</a></li>
+<li>TKPreferences.m</li>
 </ul>
 </div>
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="interface_t_k_preferences.html">TKPreferences</a>      </li>
+      <li class="footer">Generated on Fri May 6 2011 10:24:01 for TK-Utility by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -529,8 +165,6 @@ Properties</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon May 2 2011 18:26:23 by&#160;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+
 </body>
 </html>

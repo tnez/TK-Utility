@@ -2,10 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>TKLogging Class Reference</title>
+<title>TK-Utility: TKLogging Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript">
+$(document).ready(initResizable);
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -14,6 +21,18 @@
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 --></script>
 <div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">TK-Utility&#160;<span id="projectnumber">0.5.3</span></div>
+   <div id="projectbrief">Shared utility framework to help facilitate a plugin architecture as well as eliminate duplication of code.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
@@ -46,6 +65,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('interface_t_k_logging.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -56,731 +88,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <!-- doxytag: class="TKLogging" -->
-<p><code>#import &lt;<a class="el" href="build_2_debug_2_t_k_utility_8framework_2_versions_2_a_2_headers_2_t_k_logging_8h_source.html">TKLogging.h</a>&gt;</code></p>
-
 <p><a href="class_t_k_logging-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#aeef52832329d673c31fc55f8cd170749">writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:withOffset:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#a96364f6b9d0e64346f68c37ef21c53e4">writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#a7cab0851110d0d8d723c3b91b6bec392">queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#adf5eb7b217cbaf558fe941ad41ec322d">queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:withOffset:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#a8f946448769465c60c312606d52598d6">createDirectoryIfNeeded:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#a846df30f2d997fc09a4f53aa1dc7a08b">logLoop</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#aeef52832329d673c31fc55f8cd170749">writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:withOffset:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#a96364f6b9d0e64346f68c37ef21c53e4">writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#a7cab0851110d0d8d723c3b91b6bec392">queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#adf5eb7b217cbaf558fe941ad41ec322d">queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:withOffset:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#a8f946448769465c60c312606d52598d6">createDirectoryIfNeeded:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_t_k_logging.html#a846df30f2d997fc09a4f53aa1dc7a08b">logLoop</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeef52832329d673c31fc55f8cd170749"></a><!-- doxytag: member="TKLogging::writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:withOffset:" ref="aeef52832329d673c31fc55f8cd170749" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite,[withOffset] NSNumber *offset)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:withOffset:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96364f6b9d0e64346f68c37ef21c53e4"></a><!-- doxytag: member="TKLogging::writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:" ref="a96364f6b9d0e64346f68c37ef21c53e4" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cab0851110d0d8d723c3b91b6bec392"></a><!-- doxytag: member="TKLogging::queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:" ref="a7cab0851110d0d8d723c3b91b6bec392" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf5eb7b217cbaf558fe941ad41ec322d"></a><!-- doxytag: member="TKLogging::queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:withOffset:" ref="adf5eb7b217cbaf558fe941ad41ec322d" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite,[withOffset] NSNumber *offset)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:withOffset:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f946448769465c60c312606d52598d6"></a><!-- doxytag: member="TKLogging::createDirectoryIfNeeded:" ref="a8f946448769465c60c312606d52598d6" args="(NSString *directory)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>createDirectoryIfNeeded:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a846df30f2d997fc09a4f53aa1dc7a08b"></a><!-- doxytag: member="TKLogging::logLoop" ref="a846df30f2d997fc09a4f53aa1dc7a08b" args="()" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <b>logLoop</b></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a531907d8a4eea7e4a6e9700f13ab5105">getCurrentAppDirectory</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a8ea6a78abd960c052ff68c7036271816">fileExists:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_logging.html">TKLogging</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a80f3b298b5b09b7a95d4b61e6fa96d86">crashRecoveryLogger</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_logging.html">TKLogging</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#aff47b02310b064bdc327f6ddca8912e3">mainLogger</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a5fd168038799d0fb5ef7c4ad98bb8bf5">spawnMainLogger:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a732e584261ae42e2c6cdf14528696274">spawnCrashRecoveryLogger:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">NSInteger</a>)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a2f126d95cf162dcc755f1cb71a3bdb26">unwrittenItemCount</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(NSString *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a531907d8a4eea7e4a6e9700f13ab5105">getCurrentAppDirectory</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(BOOL)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a8ea6a78abd960c052ff68c7036271816">fileExists:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_logging.html">TKLogging</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a80f3b298b5b09b7a95d4b61e6fa96d86">crashRecoveryLogger</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="interface_t_k_logging.html">TKLogging</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#aff47b02310b064bdc327f6ddca8912e3">mainLogger</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a5fd168038799d0fb5ef7c4ad98bb8bf5">spawnMainLogger:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(void)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a732e584261ae42e2c6cdf14528696274">spawnCrashRecoveryLogger:</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">(<a class="el" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">NSInteger</a>)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_t_k_logging.html#a2f126d95cf162dcc755f1cb71a3bdb26">unwrittenItemCount</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a531907d8a4eea7e4a6e9700f13ab5105"></a><!-- doxytag: member="TKLogging::getCurrentAppDirectory" ref="a531907d8a4eea7e4a6e9700f13ab5105" args="()" -->
+(NSString *)&#160;</td><td class="memItemRight" valign="bottom">+ <b>getCurrentAppDirectory</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ea6a78abd960c052ff68c7036271816"></a><!-- doxytag: member="TKLogging::fileExists:" ref="a8ea6a78abd960c052ff68c7036271816" args="(NSString *path)" -->
+(BOOL)&#160;</td><td class="memItemRight" valign="bottom">+ <b>fileExists:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80f3b298b5b09b7a95d4b61e6fa96d86"></a><!-- doxytag: member="TKLogging::crashRecoveryLogger" ref="a80f3b298b5b09b7a95d4b61e6fa96d86" args="()" -->
+(<a class="el" href="interface_t_k_logging.html">TKLogging</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <b>crashRecoveryLogger</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff47b02310b064bdc327f6ddca8912e3"></a><!-- doxytag: member="TKLogging::mainLogger" ref="aff47b02310b064bdc327f6ddca8912e3" args="()" -->
+(<a class="el" href="interface_t_k_logging.html">TKLogging</a> *)&#160;</td><td class="memItemRight" valign="bottom">+ <b>mainLogger</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fd168038799d0fb5ef7c4ad98bb8bf5"></a><!-- doxytag: member="TKLogging::spawnMainLogger:" ref="a5fd168038799d0fb5ef7c4ad98bb8bf5" args="(id param)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">+ <b>spawnMainLogger:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a732e584261ae42e2c6cdf14528696274"></a><!-- doxytag: member="TKLogging::spawnCrashRecoveryLogger:" ref="a732e584261ae42e2c6cdf14528696274" args="(id param)" -->
+(void)&#160;</td><td class="memItemRight" valign="bottom">+ <b>spawnCrashRecoveryLogger:</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f126d95cf162dcc755f1cb71a3bdb26"></a><!-- doxytag: member="TKLogging::unwrittenItemCount" ref="a2f126d95cf162dcc755f1cb71a3bdb26" args="()" -->
+(NSInteger)&#160;</td><td class="memItemRight" valign="bottom">+ <b>unwrittenItemCount</b></td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSMutableDictionary *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_logging.html#a3e97e5b2a308802e55748da2b8cdf2bf">filesWrittenTo</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_logging.html#abbe55549df094bde8125fed0defb2c1f">logQueue</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">NSInteger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_t_k_logging.html#a9bf06650f1ecfa10c039cbb60d94feda">count</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e97e5b2a308802e55748da2b8cdf2bf"></a><!-- doxytag: member="TKLogging::filesWrittenTo" ref="a3e97e5b2a308802e55748da2b8cdf2bf" args="" -->
+NSMutableDictionary *&#160;</td><td class="memItemRight" valign="bottom"><b>filesWrittenTo</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abbe55549df094bde8125fed0defb2c1f"></a><!-- doxytag: member="TKLogging::logQueue" ref="abbe55549df094bde8125fed0defb2c1f" args="" -->
+NSMutableArray *&#160;</td><td class="memItemRight" valign="bottom"><b>logQueue</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bf06650f1ecfa10c039cbb60d94feda"></a><!-- doxytag: member="TKLogging::count" ref="a9bf06650f1ecfa10c039cbb60d94feda" args="" -->
+NSInteger&#160;</td><td class="memItemRight" valign="bottom"><b>count</b></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a80f3b298b5b09b7a95d4b61e6fa96d86"></a><!-- doxytag: member="TKLogging::crashRecoveryLogger" ref="a80f3b298b5b09b7a95d4b61e6fa96d86" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="interface_t_k_logging.html">TKLogging</a> *) crashRecoveryLogger </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a80f3b298b5b09b7a95d4b61e6fa96d86"></a><!-- doxytag: member="TKLogging::crashRecoveryLogger" ref="a80f3b298b5b09b7a95d4b61e6fa96d86" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="interface_t_k_logging.html">TKLogging</a> *) crashRecoveryLogger </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a8f946448769465c60c312606d52598d6"></a><!-- doxytag: member="TKLogging::createDirectoryIfNeeded:" ref="a8f946448769465c60c312606d52598d6" args="(NSString *directory)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) createDirectoryIfNeeded: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a8f946448769465c60c312606d52598d6"></a><!-- doxytag: member="TKLogging::createDirectoryIfNeeded:" ref="a8f946448769465c60c312606d52598d6" args="(NSString *directory)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) createDirectoryIfNeeded: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a8ea6a78abd960c052ff68c7036271816"></a><!-- doxytag: member="TKLogging::fileExists:" ref="a8ea6a78abd960c052ff68c7036271816" args="(NSString *path)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (BOOL) fileExists: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>path</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a8ea6a78abd960c052ff68c7036271816"></a><!-- doxytag: member="TKLogging::fileExists:" ref="a8ea6a78abd960c052ff68c7036271816" args="(NSString *path)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (BOOL) fileExists: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>path</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a531907d8a4eea7e4a6e9700f13ab5105"></a><!-- doxytag: member="TKLogging::getCurrentAppDirectory" ref="a531907d8a4eea7e4a6e9700f13ab5105" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (NSString *) getCurrentAppDirectory </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a531907d8a4eea7e4a6e9700f13ab5105"></a><!-- doxytag: member="TKLogging::getCurrentAppDirectory" ref="a531907d8a4eea7e4a6e9700f13ab5105" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (NSString *) getCurrentAppDirectory </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a846df30f2d997fc09a4f53aa1dc7a08b"></a><!-- doxytag: member="TKLogging::logLoop" ref="a846df30f2d997fc09a4f53aa1dc7a08b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) logLoop </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a846df30f2d997fc09a4f53aa1dc7a08b"></a><!-- doxytag: member="TKLogging::logLoop" ref="a846df30f2d997fc09a4f53aa1dc7a08b" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) logLoop </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aff47b02310b064bdc327f6ddca8912e3"></a><!-- doxytag: member="TKLogging::mainLogger" ref="aff47b02310b064bdc327f6ddca8912e3" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="interface_t_k_logging.html">TKLogging</a> *) mainLogger </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aff47b02310b064bdc327f6ddca8912e3"></a><!-- doxytag: member="TKLogging::mainLogger" ref="aff47b02310b064bdc327f6ddca8912e3" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="interface_t_k_logging.html">TKLogging</a> *) mainLogger </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a7cab0851110d0d8d723c3b91b6bec392"></a><!-- doxytag: member="TKLogging::queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:" ref="a7cab0851110d0d8d723c3b91b6bec392" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) queueLogMessage: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">file:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>file</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">contentsOfString:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>string</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">overWriteOnFirstWrite:</td>
-          <td></td>
-          <td class="paramtype">(BOOL)&#160;</td>
-          <td class="paramname"><em>shouldOverwrite</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a7cab0851110d0d8d723c3b91b6bec392"></a><!-- doxytag: member="TKLogging::queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:" ref="a7cab0851110d0d8d723c3b91b6bec392" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) queueLogMessage: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">file:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>file</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">contentsOfString:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>string</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">overWriteOnFirstWrite:</td>
-          <td></td>
-          <td class="paramtype">(BOOL)&#160;</td>
-          <td class="paramname"><em>shouldOverwrite</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="adf5eb7b217cbaf558fe941ad41ec322d"></a><!-- doxytag: member="TKLogging::queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:withOffset:" ref="adf5eb7b217cbaf558fe941ad41ec322d" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite,[withOffset] NSNumber *offset)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) queueLogMessage: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">file:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>file</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">contentsOfString:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>string</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">overWriteOnFirstWrite:</td>
-          <td></td>
-          <td class="paramtype">(BOOL)&#160;</td>
-          <td class="paramname"><em>shouldOverwrite</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">withOffset:</td>
-          <td></td>
-          <td class="paramtype">(NSNumber *)&#160;</td>
-          <td class="paramname"><em>offset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="adf5eb7b217cbaf558fe941ad41ec322d"></a><!-- doxytag: member="TKLogging::queueLogMessage:file:contentsOfString:overWriteOnFirstWrite:withOffset:" ref="adf5eb7b217cbaf558fe941ad41ec322d" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite,[withOffset] NSNumber *offset)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) queueLogMessage: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">file:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>file</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">contentsOfString:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>string</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">overWriteOnFirstWrite:</td>
-          <td></td>
-          <td class="paramtype">(BOOL)&#160;</td>
-          <td class="paramname"><em>shouldOverwrite</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">withOffset:</td>
-          <td></td>
-          <td class="paramtype">(NSNumber *)&#160;</td>
-          <td class="paramname"><em>offset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a732e584261ae42e2c6cdf14528696274"></a><!-- doxytag: member="TKLogging::spawnCrashRecoveryLogger:" ref="a732e584261ae42e2c6cdf14528696274" args="(id param)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (void) spawnCrashRecoveryLogger: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>param</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a732e584261ae42e2c6cdf14528696274"></a><!-- doxytag: member="TKLogging::spawnCrashRecoveryLogger:" ref="a732e584261ae42e2c6cdf14528696274" args="(id param)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (void) spawnCrashRecoveryLogger: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>param</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5fd168038799d0fb5ef7c4ad98bb8bf5"></a><!-- doxytag: member="TKLogging::spawnMainLogger:" ref="a5fd168038799d0fb5ef7c4ad98bb8bf5" args="(id param)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (void) spawnMainLogger: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>param</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5fd168038799d0fb5ef7c4ad98bb8bf5"></a><!-- doxytag: member="TKLogging::spawnMainLogger:" ref="a5fd168038799d0fb5ef7c4ad98bb8bf5" args="(id param)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (void) spawnMainLogger: </td>
-          <td></td>
-          <td class="paramtype">(id)&#160;</td>
-          <td class="paramname"><em>param</em></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2f126d95cf162dcc755f1cb71a3bdb26"></a><!-- doxytag: member="TKLogging::unwrittenItemCount" ref="a2f126d95cf162dcc755f1cb71a3bdb26" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">NSInteger</a>) unwrittenItemCount </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2f126d95cf162dcc755f1cb71a3bdb26"></a><!-- doxytag: member="TKLogging::unwrittenItemCount" ref="a2f126d95cf162dcc755f1cb71a3bdb26" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">+ (<a class="el" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">NSInteger</a>) unwrittenItemCount </td>
-          <td></td>
-          <td class="paramname"></td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a96364f6b9d0e64346f68c37ef21c53e4"></a><!-- doxytag: member="TKLogging::writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:" ref="a96364f6b9d0e64346f68c37ef21c53e4" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) writeToDirectory: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">file:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>file</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">contentsOfString:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>string</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">overWriteOnFirstWrite:</td>
-          <td></td>
-          <td class="paramtype">(BOOL)&#160;</td>
-          <td class="paramname"><em>shouldOverwrite</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a96364f6b9d0e64346f68c37ef21c53e4"></a><!-- doxytag: member="TKLogging::writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:" ref="a96364f6b9d0e64346f68c37ef21c53e4" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) writeToDirectory: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">file:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>file</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">contentsOfString:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>string</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">overWriteOnFirstWrite:</td>
-          <td></td>
-          <td class="paramtype">(BOOL)&#160;</td>
-          <td class="paramname"><em>shouldOverwrite</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aeef52832329d673c31fc55f8cd170749"></a><!-- doxytag: member="TKLogging::writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:withOffset:" ref="aeef52832329d673c31fc55f8cd170749" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite,[withOffset] NSNumber *offset)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) writeToDirectory: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">file:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>file</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">contentsOfString:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>string</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">overWriteOnFirstWrite:</td>
-          <td></td>
-          <td class="paramtype">(BOOL)&#160;</td>
-          <td class="paramname"><em>shouldOverwrite</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">withOffset:</td>
-          <td></td>
-          <td class="paramtype">(NSNumber *)&#160;</td>
-          <td class="paramname"><em>offset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aeef52832329d673c31fc55f8cd170749"></a><!-- doxytag: member="TKLogging::writeToDirectory:file:contentsOfString:overWriteOnFirstWrite:withOffset:" ref="aeef52832329d673c31fc55f8cd170749" args="(NSString *directory,[file] NSString *file,[contentsOfString] NSString *string,[overWriteOnFirstWrite] BOOL shouldOverwrite,[withOffset] NSNumber *offset)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (void) writeToDirectory: </td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>directory</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">file:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>file</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">contentsOfString:</td>
-          <td></td>
-          <td class="paramtype">(NSString *)&#160;</td>
-          <td class="paramname"><em>string</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">overWriteOnFirstWrite:</td>
-          <td></td>
-          <td class="paramtype">(BOOL)&#160;</td>
-          <td class="paramname"><em>shouldOverwrite</em></td>
-        </tr>
-        <tr>
-          <td class="paramkey">withOffset:</td>
-          <td></td>
-          <td class="paramtype">(NSNumber *)&#160;</td>
-          <td class="paramname"><em>offset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<hr/><h2>Property Documentation</h2>
-<a class="anchor" id="a9bf06650f1ecfa10c039cbb60d94feda"></a><!-- doxytag: member="TKLogging::count" ref="a9bf06650f1ecfa10c039cbb60d94feda" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (<a class="el" href="_g_t_m_defines_8h.html#a338fa36f57e0bd623377fa94e3c7c338">NSInteger</a>) count<code> [read, write, assign]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3e97e5b2a308802e55748da2b8cdf2bf"></a><!-- doxytag: member="TKLogging::filesWrittenTo" ref="a3e97e5b2a308802e55748da2b8cdf2bf" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSMutableDictionary *) filesWrittenTo<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="abbe55549df094bde8125fed0defb2c1f"></a><!-- doxytag: member="TKLogging::logQueue" ref="abbe55549df094bde8125fed0defb2c1f" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">- (NSMutableArray *) logQueue<code> [read, write, retain]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>build/Debug/TKUtility.framework/Versions/A/Headers/<a class="el" href="build_2_debug_2_t_k_utility_8framework_2_versions_2_a_2_headers_2_t_k_logging_8h_source.html">TKLogging.h</a></li>
 <li><a class="el" href="_t_k_logging_8h_source.html">TKLogging.h</a></li>
-<li><a class="el" href="_t_k_logging_8m.html">TKLogging.m</a></li>
+<li>TKLogging.m</li>
 </ul>
 </div>
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="interface_t_k_logging.html">TKLogging</a>      </li>
+      <li class="footer">Generated on Fri May 6 2011 10:24:01 for TK-Utility by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -789,8 +157,6 @@ Properties</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Mon May 2 2011 18:26:23 by&#160;
-<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
+
 </body>
 </html>
