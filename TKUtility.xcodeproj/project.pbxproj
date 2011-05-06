@@ -43,6 +43,7 @@
 		40B4875711AF0309008C8CB5 /* TKLogQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874D11AF0309008C8CB5 /* TKLogQueueItem.m */; };
 		40B4875911AF0309008C8CB5 /* TKNotificationQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4874F11AF0309008C8CB5 /* TKNotificationQueueItem.m */; };
 		40B4875B11AF0309008C8CB5 /* TKTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B4875111AF0309008C8CB5 /* TKTimer.m */; };
+		40D17ED11339053D00336D32 /* TKUtility.framework in Install Framework */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TKUtility.framework */; };
 		40DB669D1239340F003722F9 /* BooleanOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB66981239340F003722F9 /* BooleanOption.xib */; };
 		40DB669E1239340F003722F9 /* EnumOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB66991239340F003722F9 /* EnumOption.xib */; };
 		40DB669F1239340F003722F9 /* NumberOption.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB669A1239340F003722F9 /* NumberOption.xib */; };
@@ -64,6 +65,20 @@
 			remoteInfo = TKUtility;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		40D17ECD133904E600336D32 /* Install Framework */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /Library/Frameworks;
+			dstSubfolderSpec = 0;
+			files = (
+				40D17ED11339053D00336D32 /* TKUtility.framework in Install Framework */,
+			);
+			name = "Install Framework";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -360,6 +375,7 @@
 				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
+				40D17ECD133904E600336D32 /* Install Framework */,
 			);
 			buildRules = (
 			);
